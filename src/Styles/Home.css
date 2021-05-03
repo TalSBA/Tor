@@ -1,0 +1,35 @@
+.p-home {
+  width: 100%;
+}
+
+.p-home .background-cover {
+  background: url("./images/calendar-background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+}
+
+.p-home h1 {
+  font-size: 80px;
+  font-family: Amatic_Bold;
+}
+.p-home h4 {
+  font-size: 30px;
+  font-family: Amatic;
+}
+.p-home h1,
+h4 {
+  color: white;
+  padding: 0;
+  margin: 0;
+}
+
+@font-face {
+  font-family: Amatic_Bold;
+  src: url("./Amatic_SC/AmaticSC-Bold.ttf");
+}
+
+@font-face {
+  font-family: Amatic;
+  src: url("./Amatic_SC/AmaticSC-Regular.ttf");
+}
