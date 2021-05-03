@@ -1,3 +1,6 @@
+.c-menu{
+  direction: ltr;
+}
 .c-menu .navbar {
   height: 50px;
   background-color: #90bbc1;

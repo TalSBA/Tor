@@ -1,6 +1,7 @@
 .App {
-  text-align: center;
+  text-align: right;
   font-family: Alef;
+  direction: rtl;;
 }
 
 @font-face {

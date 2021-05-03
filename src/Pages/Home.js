@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../Styles/Home.css";
 
 function Home(props) {
+
   return (
     <div className="p-home">
       <div className="background-cover">

@@ -13,7 +13,9 @@ function Menu({ activeUser }) {
             <Nav>
               <Nav.Link href="#/calendar">היומן שלי</Nav.Link>
               <span className="divider"></span>
-              <Navbar.Text>שלום, {activeUser.fname}</Navbar.Text>
+              <Navbar.Text>
+                שלום, {activeUser.firstName} {activeUser.lastName}
+              </Navbar.Text>
             </Nav>
           ) : (
             <Nav>

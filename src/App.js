@@ -7,30 +7,38 @@ import CreateCalendar from "./Pages/CreateCalendar";
 import Calendar from "./Pages/Calendar";
 import Menu from "./Components/Menu";
 import Footer from "./Components/Footer";
+import users from "./data/Users.json";
+import { useState } from "react";
 
 function App() {
-  const activeUser = { fname: "טל", lname: "שבתאי" };
+  const [activeUser, setActiveUser] = useState(null);
   return (
     <div className="App">
-      <Menu activeUser={activeUser} />
       <HashRouter>
         <Switch>
           <Route exact path="/">
+            <Menu activeUser={activeUser} />
             <Home />
           </Route>
           <Route exact path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/signup">
-            <Signup />
+            <Menu activeUser={activeUser} />
+            <Login
+              users={users}
+              activeUser={activeUser}
+              onLogin={(user) => setActiveUser(user)}
+            />
           </Route>
           <Route exact path="/signup">
             <Signup />
           </Route>
           <Route exact path="/create-calendar">
+            <Menu activeUser={activeUser} />
+
             <CreateCalendar />
           </Route>
           <Route exact path="/calendar">
+            <Menu activeUser={activeUser} />
+
             <Calendar />
           </Route>
         </Switch>
