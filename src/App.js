@@ -5,10 +5,14 @@ import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import CreateCalendar from "./Pages/CreateCalendar";
 import Calendar from "./Pages/Calendar";
+import Menu from "./Components/Menu";
+import Footer from "./Components/Footer";
 
 function App() {
+  const activeUser = { fname: "טל", lname: "שבתאי" };
   return (
     <div className="App">
+      <Menu activeUser={activeUser} />
       <HashRouter>
         <Switch>
           <Route exact path="/">
@@ -31,6 +35,7 @@ function App() {
           </Route>
         </Switch>
       </HashRouter>
+      <Footer />
     </div>
   );
 }

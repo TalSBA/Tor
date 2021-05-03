@@ -1,0 +1,12 @@
+.c-menu .navbar {
+  height: 50px;
+  background-color: #90bbc1;
+  font-size: 17px;
+}
+
+.c-menu .divider{
+    margin-right: 10px;
+    height: 20px;
+    margin-top: 10px;
+    border-left: solid 1px white;
+}
