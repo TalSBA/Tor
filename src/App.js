@@ -17,11 +17,17 @@ function App() {
       <HashRouter>
         <Switch>
           <Route exact path="/">
-            <Menu activeUser={activeUser} />
+            <Menu
+              activeUser={activeUser}
+              onLogout={() => setActiveUser(null)}
+            />
             <Home />
           </Route>
           <Route exact path="/login">
-            <Menu activeUser={activeUser} />
+            <Menu
+              activeUser={activeUser}
+              onLogout={() => setActiveUser(null)}
+            />
             <Login
               users={users}
               activeUser={activeUser}
@@ -32,13 +38,17 @@ function App() {
             <Signup />
           </Route>
           <Route exact path="/create-calendar">
-            <Menu activeUser={activeUser} />
-
+            <Menu
+              activeUser={activeUser}
+              onLogout={() => setActiveUser(null)}
+            />
             <CreateCalendar />
           </Route>
           <Route exact path="/calendar">
-            <Menu activeUser={activeUser} />
-
+            <Menu
+              activeUser={activeUser}
+              onLogout={() => setActiveUser(null)}
+            />
             <Calendar />
           </Route>
         </Switch>

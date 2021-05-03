@@ -3,19 +3,29 @@ import { Nav, Navbar } from "react-bootstrap";
 import calendarIcn from "../Styles/images/calendar-icon.png";
 import "../Styles/Menu.css";
 
-function Menu({ activeUser }) {
+function Menu({ activeUser, onLogout }) {
   return (
     <div className="c-menu">
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar.Brand href="#/">
+          <img width="50px" height="50px" src={calendarIcn}></img>
+        </Navbar.Brand>
+        {activeUser ? (
+          <Navbar.Text>
+            שלום, {activeUser.firstName} {activeUser.lastName}
+          </Navbar.Text>
+        ) : (
+          ""
+        )}
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
         <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="mr-auto"></Nav>
           {activeUser ? (
             <Nav>
               <Nav.Link href="#/calendar">היומן שלי</Nav.Link>
-              <span className="divider"></span>
-              <Navbar.Text>
-                שלום, {activeUser.firstName} {activeUser.lastName}
-              </Navbar.Text>
+              <Nav.Link href="#" onClick={onLogout}>התנתק</Nav.Link>
+              {/* <span className="divider"></span> */}
             </Nav>
           ) : (
             <Nav>
@@ -23,9 +33,6 @@ function Menu({ activeUser }) {
             </Nav>
           )}
         </Navbar.Collapse>
-        <Navbar.Brand href="#/">
-          <img width="50px" height="50px" src={calendarIcn}></img>
-        </Navbar.Brand>
       </Navbar>
     </div>
   );
