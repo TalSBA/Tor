@@ -1,0 +1,29 @@
+.c-business-services > .form-group {
+  display: flex;
+  align-items: center;
+}
+
+.c-business-services > .form-group > .btn {
+  background-color: green;
+  border: none;
+}
+
+.c-business-services > .badge {
+  border: solid 2px green;
+  margin: 10px;
+  padding: 8px;
+  font-size: 14px;
+  transition: all 0.4s;
+  box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);
+}
+
+.c-business-services > .badge:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 0px 80px -25px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s;
+}
+
+.c-business-services > .badge > svg {
+  padding-left: 5px;
+  cursor: pointer;
+}

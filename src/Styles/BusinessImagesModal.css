@@ -1,0 +1,12 @@
+.modal-content {
+  direction: rtl;
+  width: 700px !important;
+  margin: 0 auto;
+}
+.modal-dialog {
+  max-width: none !important;
+}
+
+.modal-content img {
+  margin: 10px;
+}
