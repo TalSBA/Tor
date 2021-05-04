@@ -1,14 +1,25 @@
 import React, { useState } from "react";
 import { Card, Form, Alert, Button } from "react-bootstrap";
+import { Redirect } from "react-router";
+import User from "../Model/User";
 import "../Styles/Signup.css";
 
-function Signup(props) {
+function Signup({ activeUser, onLogin }) {
   const [showSignupError, setShowsignupError] = useState(false);
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [fullName, setName] = useState("");
 
-  function signup() {}
+  if (activeUser) {
+    return <Redirect to="/" />;
+  }
+
+  function signup(e) {
+    //TODO: validation code
+    const activeUser = new User(fullName, email);
+    console.log(activeUser);
+    onLogin(activeUser);
+  }
   return (
     <div className="p-signup">
       <Card>

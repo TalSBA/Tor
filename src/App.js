@@ -35,7 +35,7 @@ function App() {
             />
           </Route>
           <Route exact path="/signup">
-            <Signup />
+            <Signup activeUser={activeUser} onLogin={(user) => setActiveUser(user)}/>
           </Route>
           <Route exact path="/create-calendar">
             <Menu

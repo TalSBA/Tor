@@ -12,7 +12,7 @@ function Menu({ activeUser, onLogout }) {
         </Navbar.Brand>
         {activeUser ? (
           <Navbar.Text>
-            שלום, {activeUser.firstName} {activeUser.lastName}
+            שלום, {activeUser.fullName}
           </Navbar.Text>
         ) : (
           ""
@@ -30,6 +30,7 @@ function Menu({ activeUser, onLogout }) {
           ) : (
             <Nav>
               <Nav.Link href="#/login">התחבר</Nav.Link>
+              <Nav.Link href="#/signup">הרשם</Nav.Link>
             </Nav>
           )}
         </Navbar.Collapse>

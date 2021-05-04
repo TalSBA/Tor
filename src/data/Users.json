@@ -1,13 +1,11 @@
 [
     {
-        "firstName": "טל",
-        "lastName": "בן עמי",
+        "fullName": "טל שבתאי",
         "email": "taltola36@gmail.com",
         "password": "123"
     },
     {
-        "firstName": "שי",
-        "lastName": "שבתאי",
+        "fullName": "שי שבתאי",
         "email": "shay.shabshay@gmail.com",
         "password": "123456"
     }
