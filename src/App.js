@@ -42,14 +42,14 @@ function App() {
               activeUser={activeUser}
               onLogout={() => setActiveUser(null)}
             />
-            <CreateCalendar />
+            <CreateCalendar activeUser={activeUser} />
           </Route>
           <Route exact path="/calendar">
             <Menu
               activeUser={activeUser}
               onLogout={() => setActiveUser(null)}
             />
-            <Calendar />
+            <Calendar activeUser={activeUser}/>
           </Route>
         </Switch>
       </HashRouter>
