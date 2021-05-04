@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router";
-import { Card, Form, Alert, Button, Image } from "react-bootstrap";
+import { Card, Form, Alert, Button, Image, Col } from "react-bootstrap";
 import "../Styles/CreateCalendar.css";
 import BusinessServices from "../Components/BusinessServices";
 import BusinessImagesModal from "../Components/BusinessImagesModal";
@@ -54,53 +54,61 @@ function CreateCalendar({ activeUser }) {
               <Alert variant="danger">אחד הפרטים לא תקינים!</Alert>
             ) : null}
             <Form onSubmit={createCalendar}>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>שם העסק</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="שם העסק"
-                  value={bName}
-                  onChange={(e) => setBName(e.target.value)}
+              <Form.Row>
+                <Form.Group as={Col} md="4" controlId="formBasicEmail">
+                  <Form.Label>שם העסק</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="שם העסק"
+                    value={bName}
+                    onChange={(e) => setBName(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group as={Col} md="4" controlId="formBasicEmail">
+                  <Form.Label>תחום</Form.Label>
+                  <Form.Control
+                    as="select"
+                    value={bType}
+                    onChange={(e) => setBType(e.target.value)}
+                  >
+                    <option>מספרה</option>
+                    <option>קוסמטיקה</option>
+                    <option>אחר</option>
+                  </Form.Control>
+                </Form.Group>
+              </Form.Row>
+              <Form.Row>
+                <Form.Group as={Col} md="4" controlId="formBasicPassword">
+                  <Form.Label>טלפון</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="טלפון"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                </Form.Group>
+                <BusinessServices
+                  services={services}
+                  onAddService={addService}
+                  onDeleteService={deleteService}
                 />
-              </Form.Group>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>תחום</Form.Label>
-                <Form.Control
-                  as="select"
-                  value={bType}
-                  onChange={(e) => setBType(e.target.value)}
+                <Button
+                  className="pic-image-btn"
+                  onClick={() => setModalImagesShow(true)}
                 >
-                  <option>מספרה</option>
-                  <option>קוסמטיקה</option>
-                  <option>אחר</option>
-                </Form.Control>
-              </Form.Group>
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label>טלפון</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="טלפון"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  בחר תמונה לעסק
+                </Button>
+                <BusinessImagesModal
+                  show={modalImagesShow}
+                  onHide={() => setModalImagesShow(false)}
+                  onSubmitImage={(image) => setSelectedImage(image)}
                 />
-              </Form.Group>
-              <BusinessServices
-                services={services}
-                onAddService={addService}
-                onDeleteService={deleteService}
-              />
-              <Button
-                className="pic-image-btn"
-                onClick={() => setModalImagesShow(true)}
-              >
-                בחר תמונה לעסק
-              </Button>
-              <BusinessImagesModal
-                show={modalImagesShow}
-                onHide={() => setModalImagesShow(false)}
-                onSubmitImage={(image) => setSelectedImage(image)}
-              />
-              {selectedImage ? <Image width="100px" height="90px" src={selectedImage.src} /> : ""}
+                {selectedImage ? (
+                  <Image width="100px" height="90px" src={selectedImage.src} />
+                ) : (
+                  ""
+                )}
+              </Form.Row>
               <Button variant="success" type="submit" block>
                 <span> צור יומן</span>
               </Button>
