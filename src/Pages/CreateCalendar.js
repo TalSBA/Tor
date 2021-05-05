@@ -9,6 +9,7 @@ function CreateCalendar({ activeUser }) {
   const [showCreateError, setShowCreateError] = useState(false);
   const [phone, setPhone] = useState("");
   const [bType, setBType] = useState("");
+  const [address, setAddress] = useState("");
   const [bName, setBName] = useState("");
   const [services, setServices] = useState([]);
   const [modalImagesShow, setModalImagesShow] = useState(false);
@@ -65,6 +66,15 @@ function CreateCalendar({ activeUser }) {
                   />
                 </Form.Group>
                 <Form.Group as={Col} md="4" controlId="formBasicEmail">
+                  <Form.Label>כתובת</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="כתובת"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group as={Col} md="4" controlId="formBasicEmail">
                   <Form.Label>תחום</Form.Label>
                   <Form.Control
                     as="select"
@@ -92,23 +102,23 @@ function CreateCalendar({ activeUser }) {
                   onAddService={addService}
                   onDeleteService={deleteService}
                 />
-                <Button
-                  className="pic-image-btn"
-                  onClick={() => setModalImagesShow(true)}
-                >
-                  בחר תמונה לעסק
-                </Button>
-                <BusinessImagesModal
-                  show={modalImagesShow}
-                  onHide={() => setModalImagesShow(false)}
-                  onSubmitImage={(image) => setSelectedImage(image)}
-                />
-                {selectedImage ? (
-                  <Image width="100px" height="90px" src={selectedImage.src} />
-                ) : (
-                  ""
-                )}
               </Form.Row>
+              <Button
+                className="pic-image-btn"
+                onClick={() => setModalImagesShow(true)}
+              >
+                בחר תמונה לעסק
+              </Button>
+              <BusinessImagesModal
+                show={modalImagesShow}
+                onHide={() => setModalImagesShow(false)}
+                onSubmitImage={(image) => setSelectedImage(image)}
+              />
+              {selectedImage ? (
+                <Image width="150px" height="100px" src={selectedImage.src} />
+              ) : (
+                ""
+              )}
               <Button variant="success" type="submit" block>
                 <span> צור יומן</span>
               </Button>

@@ -1,19 +1,27 @@
 .p-create-calendar {
-    width: 600px;
-    margin: 50px auto;
-  }
-  
-  .p-create-calendar .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  
-  .p-create-calendar .card-header {
-    text-align: center;
-  }
-  
-  .p-create-calendar .pic-image-btn{
-      background-color: white;
-      color: teal;
-      border: solid 1px teal;
-      margin-bottom: 10px;
-    }
+  width: 600px;
+  margin: 50px auto;
+}
+
+.p-create-calendar .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.p-create-calendar .card-header {
+  text-align: center;
+}
+
+.p-create-calendar .pic-image-btn {
+  display: block;
+  background-color: white;
+  color: teal;
+  border: solid 1px teal;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.p-create-calendar form img {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
