@@ -74,6 +74,8 @@ function CreateCalendar({ activeUser }) {
                     onChange={(e) => setAddress(e.target.value)}
                   />
                 </Form.Group>
+              </Form.Row>
+              <Form.Row>
                 <Form.Group as={Col} md="4" controlId="formBasicEmail">
                   <Form.Label>תחום</Form.Label>
                   <Form.Control
@@ -86,8 +88,6 @@ function CreateCalendar({ activeUser }) {
                     <option>אחר</option>
                   </Form.Control>
                 </Form.Group>
-              </Form.Row>
-              <Form.Row>
                 <Form.Group as={Col} md="4" controlId="formBasicPassword">
                   <Form.Label>טלפון</Form.Label>
                   <Form.Control
@@ -97,12 +97,12 @@ function CreateCalendar({ activeUser }) {
                     onChange={(e) => setPhone(e.target.value)}
                   />
                 </Form.Group>
-                <BusinessServices
-                  services={services}
-                  onAddService={addService}
-                  onDeleteService={deleteService}
-                />
               </Form.Row>
+              <BusinessServices
+                services={services}
+                onAddService={addService}
+                onDeleteService={deleteService}
+              />
               <Button
                 className="pic-image-btn"
                 onClick={() => setModalImagesShow(true)}
