@@ -25,3 +25,15 @@
   margin: 0 auto;
   margin-bottom: 10px;
 }
+
+.p-create-calendar .validation-error{
+  color: #dc3545;
+  font-size: 80%;
+  margin-top: .25rem;
+  width: 100%;
+  display: none;
+}
+
+.p-create-calendar .display{
+  display: inline;
+}

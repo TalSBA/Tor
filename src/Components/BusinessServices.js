@@ -35,9 +35,11 @@ function BusinessServices({ services, onAddService, onDeleteService }) {
           value={duration}
           onChange={(e) => setDuration(e.target.value)}
         >
+          <option>10 דקות</option>
           <option>15 דקות</option>
           <option>20 דקות</option>
           <option>30 דקות</option>
+          <option>60 דקות</option>
         </Form.Control>
         <Button onClick={addService}>
           <FaPlus />

@@ -9,6 +9,7 @@ import Menu from "./Components/Menu";
 import Footer from "./Components/Footer";
 import users from "./data/Users.json";
 import { useState } from "react";
+import ConfirmCalendar from "./Pages/ConfirmCalendar";
 
 function App() {
   const [activeUser, setActiveUser] = useState(null);
@@ -50,6 +51,13 @@ function App() {
               onLogout={() => setActiveUser(null)}
             />
             <Calendar activeUser={activeUser}/>
+          </Route>
+          <Route exact path="/confirm-calendar">
+            <Menu
+              activeUser={activeUser}
+              onLogout={() => setActiveUser(null)}
+            />
+            <ConfirmCalendar activeUser={activeUser}/>
           </Route>
         </Switch>
       </HashRouter>
