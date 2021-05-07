@@ -5,6 +5,7 @@ import "../Styles/CreateCalendar.css";
 import BusinessServices from "../Components/BusinessServices";
 import BusinessImagesModal from "../Components/BusinessImagesModal";
 import ConfirmCalendar from "./ConfirmCalendar";
+import ActivityHoursModal from "../Components/ActivityHoursModal";
 
 function CreateCalendar({ activeUser }) {
   const [showCreateError, setShowCreateError] = useState(false);
@@ -14,9 +15,11 @@ function CreateCalendar({ activeUser }) {
   const [bName, setBName] = useState("");
   const [services, setServices] = useState([]);
   const [modalImagesShow, setModalImagesShow] = useState(false);
+  const [modalActivityShow, setModalActivityShow] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [validated, setValidated] = useState(false);
   const [calendar, setCalendar] = useState(null);
+  const [activityHours, setActivityHours] = useState(null);
 
   var ID = function () {
     // Math.random should be unique because of its seeding algorithm.
@@ -40,7 +43,8 @@ function CreateCalendar({ activeUser }) {
         type: bType,
         phone: phone,
         services: services,
-        image: selectedImage? selectedImage.src : null,
+        image: selectedImage ? selectedImage.src : null,
+        activityHours: activityHours,
       });
     }
     setValidated(true);
@@ -135,7 +139,11 @@ function CreateCalendar({ activeUser }) {
                   onAddService={addService}
                   onDeleteService={deleteService}
                 />
-                <p className={`validation-error ${services.length === 0 ? "display" : ""}`}>
+                <p
+                  className={`validation-error ${
+                    services.length === 0 ? "display" : ""
+                  }`}
+                >
                   אנא הוסף שירות אחד לפחות.
                 </p>
                 <Button
@@ -154,8 +162,34 @@ function CreateCalendar({ activeUser }) {
                 ) : (
                   ""
                 )}
+                <Button
+                  className="pic-image-btn"
+                  onClick={() => setModalActivityShow(true)}
+                >
+                  עדכן שעות פעילות
+                </Button>
+                <ActivityHoursModal
+                  show={modalActivityShow}
+                  onHide={() => setModalActivityShow(false)}
+                  onUpdate={(activityHours) => {
+                    setActivityHours(activityHours);
+                    setModalActivityShow(false);
+                  }}
+                />
+                {activityHours
+                  ? activityHours.map((dayHours) => {
+                      return (
+                        <div>
+                          <label>
+                            {dayHours.day} {dayHours.start} - {dayHours.end}
+                          </label>
+                          <br />
+                        </div>
+                      );
+                    })
+                  : ""}
                 <Button variant="success" type="submit" block>
-                  <span> צור יומן</span>
+                  <span>צור יומן</span>
                 </Button>
               </Form>
             </Card.Text>
