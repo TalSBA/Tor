@@ -1,6 +1,7 @@
 import { Switch } from "@material-ui/core";
 import React, { useState } from "react";
 import { Col, Form } from "react-bootstrap";
+import DayHours from "../Model/DayHours";
 
 const hours = [
   "08:00",
@@ -22,32 +23,47 @@ const hours = [
   "17:00",
 ];
 
-function DayRow({ day, onSelectHours }) {
-  const [checked, setChecked] = useState(false);
-  const [start, setStart] = useState("התחלה");
-  const [end, setEnd] = useState("סיום");
-
+function DayRow({ dayHours, onSelectHours }) {
+  //   const [checked, setChecked] = useState(false);
+  //   const [start, setStart] = useState("התחלה");
+  //   const [end, setEnd] = useState("סיום");
 
   function onStartChange(e) {
-    setStart(e.target.value);
-    onSelectHours({ day: day, start: e.target.value, end: end });
+    // setStart(e.target.value);
+    onSelectHours({
+      day: dayHours.day,
+      start: e.target.value,
+      end: dayHours.end,
+      active: dayHours.active,
+    });
   }
 
   function onEndChange(e) {
-    setEnd(e.target.value);
-    onSelectHours({ day: day, start: start, end: e.target.value });
+    // setEnd(e.target.value);
+    onSelectHours({
+      day: dayHours.day,
+      start: dayHours.start,
+      end: e.target.value,
+      active: dayHours.active,
+    });
+  }
+
+  function onCheckedChange(e) {
+    onSelectHours(
+      new DayHours(dayHours.day, dayHours.start, dayHours.end, !dayHours.active)
+    );
   }
   return (
     <Form.Row>
       <Form.Group as={Col} md="3">
-        <Form.Label>יום {day}</Form.Label>
+        <Form.Label>יום {dayHours.day}</Form.Label>
       </Form.Group>
       <Form.Group as={Col} md="3">
         <Form.Control
           as="select"
           id="start"
-          disabled={!checked}
-          value={start}
+          disabled={!dayHours.active}
+          value={dayHours.start}
           onChange={onStartChange}
         >
           <option>התחלה</option>
@@ -60,8 +76,8 @@ function DayRow({ day, onSelectHours }) {
         <Form.Control
           as="select"
           id="end"
-          disabled={!checked}
-          value={end}
+          disabled={!dayHours.active}
+          value={dayHours.end}
           onChange={onEndChange}
         >
           <option>סיום</option>
@@ -71,8 +87,8 @@ function DayRow({ day, onSelectHours }) {
         </Form.Control>
       </Form.Group>
       <Switch
-        checked={checked}
-        onChange={() => setChecked(!checked)}
+        checked={dayHours.active}
+        onChange={onCheckedChange}
         color="primary"
         name="checkedB"
         inputProps={{ "aria-label": "primary checkbox" }}

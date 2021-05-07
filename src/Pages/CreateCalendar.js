@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router";
 import { Card, Form, Alert, Button, Image, Col } from "react-bootstrap";
 import "../Styles/CreateCalendar.css";
@@ -6,6 +6,8 @@ import BusinessServices from "../Components/BusinessServices";
 import BusinessImagesModal from "../Components/BusinessImagesModal";
 import ConfirmCalendar from "./ConfirmCalendar";
 import ActivityHoursModal from "../Components/ActivityHoursModal";
+import ActivityHours from "../Model/ActivityHours";
+import DayHours from "../Model/DayHours";
 
 function CreateCalendar({ activeUser }) {
   const [showCreateError, setShowCreateError] = useState(false);
@@ -19,7 +21,19 @@ function CreateCalendar({ activeUser }) {
   const [selectedImage, setSelectedImage] = useState(null);
   const [validated, setValidated] = useState(false);
   const [calendar, setCalendar] = useState(null);
-  const [activityHours, setActivityHours] = useState(null);
+  const [activityHours, setActivityHours] = useState(
+    new ActivityHours([
+      new DayHours("א", "התחלה", "סיום", false),
+      new DayHours("ב", "התחלה", "סיום", false),
+      new DayHours("ג", "התחלה", "סיום", false),
+      new DayHours("ד", "התחלה", "סיום", false),
+      new DayHours("ה", "התחלה", "סיום", false),
+      new DayHours("ו", "התחלה", "סיום", false),
+      new DayHours("ש", "התחלה", "סיום", false),
+    ])
+  );
+  const [activityHoursUpdated, setActivityHoursUpdated] = useState(null);
+
 
   var ID = function () {
     // Math.random should be unique because of its seeding algorithm.
@@ -63,6 +77,11 @@ function CreateCalendar({ activeUser }) {
   function deleteService(serviceId) {
     const newServices = services.filter((service) => service.id != serviceId);
     setServices(newServices);
+  }
+
+  function updateActivityHours(hours) {
+    setActivityHoursUpdated(hours);
+    setModalActivityShow(false);
   }
   return (
     <div className="p-create-calendar">
@@ -169,22 +188,25 @@ function CreateCalendar({ activeUser }) {
                   עדכן שעות פעילות
                 </Button>
                 <ActivityHoursModal
+                  activityHours={activityHours}
                   show={modalActivityShow}
                   onHide={() => setModalActivityShow(false)}
                   onUpdate={(activityHours) => {
-                    setActivityHours(activityHours);
-                    setModalActivityShow(false);
+                    updateActivityHours(activityHours);
                   }}
+                  onChangeHours={(activityHours) => setActivityHours(activityHours)}
                 />
-                {activityHours
-                  ? activityHours.map((dayHours) => {
-                      return (
-                        <div>
+                {activityHours && activityHoursUpdated
+                  ? activityHours.dayHours.map((dayHours, index) => {
+                      return dayHours.active ? (
+                        <div key={index}>
                           <label>
                             {dayHours.day} {dayHours.start} - {dayHours.end}
                           </label>
                           <br />
                         </div>
+                      ) : (
+                        ""
                       );
                     })
                   : ""}

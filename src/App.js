@@ -12,7 +12,7 @@ import { useState } from "react";
 import ConfirmCalendar from "./Pages/ConfirmCalendar";
 
 function App() {
-  const [activeUser, setActiveUser] = useState(null);
+  const [activeUser, setActiveUser] = useState(users[0]);
   return (
     <div className="App">
       <HashRouter>
