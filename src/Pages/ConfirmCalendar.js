@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card } from "react-bootstrap";
 import "../Styles/ConfirmCalendar.css";
 
 function ConfirmCalendar({ calendar }) {
+  useEffect(() => {
+    console.log(calendar);
+  }, []);
   return (
     <div className="p-confirm-calendar">
       <Card>

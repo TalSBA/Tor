@@ -11,6 +11,7 @@ import users from "./data/Users.json";
 import { useState } from "react";
 import ConfirmCalendar from "./Pages/ConfirmCalendar";
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
+import ScheduleAppointment from "./Pages/ScheduleAppointment";
 
 function App() {
   const [activeUser, setActiveUser] = useState(users[0]);
@@ -59,6 +60,9 @@ function App() {
               onLogout={() => setActiveUser(null)}
             />
             <ConfirmCalendar activeUser={activeUser}/>
+          </Route>
+          <Route exact path="/schedule-appointment">
+            <ScheduleAppointment />
           </Route>
         </Switch>
       </HashRouter>
