@@ -1,16 +1,24 @@
 import React, { useState } from "react";
-import { Badge, Button, Container } from "react-bootstrap";
-import { FaClock, FaMapMarkerAlt } from "react-icons/fa";
+import { Button, Container } from "react-bootstrap";
+import { FaBackward, FaClock, FaMapMarkerAlt } from "react-icons/fa";
 import "../Styles/ScheduleAppointment.css";
-import services from "../data/Services.json";
-import DatePickers from "../Components/DatePicker";
+import DatePicker from "../Components/DatePicker";
+import TimePicker from "../Components/TimePicker";
+import ServicePicker from "../Components/ServicePicker";
 
 function ScheduleAppointment(props) {
-  const [paging, setPaging] = useState("services");
+  const [paging, setPaging] = useState(1);
 
-  function handlerNextClick() {
-    if (paging === "services") {
-      setPaging("datePicker");
+  function handleNextClick() {
+    if (paging >= 1) {
+      const nextPage = paging + 1;
+      setPaging(nextPage);
+    }
+  }
+  function handleBackClick() {
+    if (paging > 1) {
+      const backToPage = paging - 1;
+      setPaging(backToPage);
     }
   }
   return (
@@ -45,25 +53,18 @@ function ScheduleAppointment(props) {
         </aside>
         <section>
           <div className="appointment-details-container">
-            {paging === "services" ? (
-              <div className="services">
-                <h4>בחר שירות:</h4>
-                {services.map((service) => {
-                  console.log(service);
-                  return (
-                    <div>
-                      <Badge pill>
-                        {service.name} - {service.duration}
-                      </Badge>
-                    </div>
-                  );
-                })}
-              </div>
+            {paging > 1 ? (
+              <Button onClick={handleBackClick} className="back-btn">
+                <span>Back </span>
+                <FaBackward />
+              </Button>
             ) : (
               ""
             )}
-            {paging === "datePicker" ? <DatePickers /> : ""}
-            <Button onClick={handlerNextClick} className="next-btn">
+            {paging === 1 ? <ServicePicker /> : ""}
+            {paging === 2 ? <DatePicker /> : ""}
+            {paging === 3 ? <TimePicker /> : ""}
+            <Button onClick={handleNextClick} className="next-btn">
               Next
             </Button>
           </div>
