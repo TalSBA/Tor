@@ -1,0 +1,51 @@
+export const appointments = [
+  {
+    title: "ג'ל - טל בן עמי",
+    startDate: new Date("Mon May 5 2021 9:00"),
+    endDate: new Date("Mon May 5 2021 10:30"),
+    id: 0,
+    location: "Room 1",
+  },
+  {
+    title: "גבות - טל שבתאי",
+    startDate: new Date("Mon May 2 2021 11:00"),
+    endDate: new Date("Mon May 2 2021 14:30"),
+    id: 1,
+    location: "Room 1",
+  },
+  {
+    title: "טיפול פנים - מיכאלה",
+    startDate: new Date("Mon May 4 2021 9:00"),
+    endDate: new Date("Mon May 4 2021 12:30"),
+    id: 2,
+    location: "Room 2",
+  },
+  {
+    title: "גבות + שפם - שני",
+    startDate: new Date("Mon May 6 2021 12:00"),
+    endDate: new Date("Mon May 6 2021 14:10"),
+    id: 3,
+    location: "Room 2",
+  },
+  {
+    title: "פדיקור + ג'ל - אורטל",
+    startDate: new Date("Mon May 2 2021 9:00"),
+    endDate: new Date("Mon May 2 2021 10:15"),
+    id: 4,
+    location: "Room 2",
+  },
+  {
+    title: "הסרת שיער - סופיה",
+    startDate: new Date("Mon May 5 2021 14:00"),
+    endDate: new Date("Mon May 5 2021 16:30"),
+    id: 5,
+    location: "Room 2",
+  },
+  {
+    title: "הסרת שיער - סופיה",
+    startDate: new Date("Mon May 10 2021 14:00"),
+    endDate: new Date("Mon May 10 2021 16:30"),
+    id: 5,
+    location: "Room 2",
+  },
+];

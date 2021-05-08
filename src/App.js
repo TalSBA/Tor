@@ -10,6 +10,7 @@ import Footer from "./Components/Footer";
 import users from "./data/Users.json";
 import { useState } from "react";
 import ConfirmCalendar from "./Pages/ConfirmCalendar";
+import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
 function App() {
   const [activeUser, setActiveUser] = useState(users[0]);
