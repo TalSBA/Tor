@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
     flexWrap: "wrap",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DatePickers() {
+export default function DatePickers({ onDateSelected }) {
   const classes = useStyles();
 
   return (
@@ -29,6 +29,7 @@ export default function DatePickers() {
         InputLabelProps={{
           shrink: true,
         }}
+        onSelect={(e) => onDateSelected(e.target.value)}
       />
     </form>
   );

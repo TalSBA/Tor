@@ -5,21 +5,55 @@ import "../Styles/ScheduleAppointment.css";
 import DatePicker from "../Components/DatePicker";
 import TimePicker from "../Components/TimePicker";
 import ServicePicker from "../Components/ServicePicker";
+import ProgressBar from "../Components/ProgressBar";
 
 function ScheduleAppointment(props) {
   const [paging, setPaging] = useState(1);
+  const [selectedTime, setTime] = useState("");
+  const [selectedDate, setDate] = useState("");
+  const [selectedServices, setServices] = useState("");
+  const [countTimeSelected, setCountTime] = useState("");
+  const [percent, setPercent] = useState(0);
+  const [loadText, setLoadText] = useState("בחר שירות");
+
+
+  function setTextAndPercentByPaging(page){
+    if(page === 2){
+      setPercent(40);
+      setLoadText("מתי נוח לך?");
+    }
+    if(page === 3){
+      setPercent(70);
+      setLoadText("שעה?");
+    }
+  }
 
   function handleNextClick() {
     if (paging >= 1) {
       const nextPage = paging + 1;
       setPaging(nextPage);
+      setTextAndPercentByPaging(nextPage);
     }
   }
   function handleBackClick() {
     if (paging > 1) {
       const backToPage = paging - 1;
       setPaging(backToPage);
+      setTextAndPercentByPaging(backToPage);
     }
+  }
+  function setServicesAndCountTime(services, countTime){
+    console.log(services.length);
+    if(services.length > 0){
+      setPercent(20);
+      setLoadText("מעולה, לבחירת זמן >")
+    }
+    else{
+      setPercent(0);
+      setLoadText("בחר שירות")
+    }
+    setServices(services);
+    setCountTime(countTime);
   }
   return (
     <div className="p-schedule-appointment">
@@ -47,7 +81,7 @@ function ScheduleAppointment(props) {
           <div className="page-details-item rtl-right map">
             <iframe
               className="business-map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3380.9460766982834!2d34.7856410848804!3d32.07070718119105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151d4b829eb12dd1%3A0x2c681e75744e9d07!2z15TXkNeo15HXoteUIDUsINeq15wg15DXkdeZ15Eg15nXpNeV!5e0!3m2!1siw!2sil!4v1620475569722!5m2!1siw!2sil"
+              src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCFMJkJHBOiL9zAis1Af9wJxwCZrA7Smxs&q=${"הארבעה 5 תל אביב"}`}
             ></iframe>
           </div>
         </aside>
@@ -61,12 +95,13 @@ function ScheduleAppointment(props) {
             ) : (
               ""
             )}
-            {paging === 1 ? <ServicePicker /> : ""}
-            {paging === 2 ? <DatePicker /> : ""}
-            {paging === 3 ? <TimePicker /> : ""}
-            <Button onClick={handleNextClick} className="next-btn">
+            {paging === 1 ? <ServicePicker onChange={(services, countTime) => setServicesAndCountTime(services, countTime)}/> : ""}
+            {paging === 2 ? <DatePicker onDateSelected={(date) => setDate(date)}/> : ""}
+            {paging === 3 ? <TimePicker onTimeSelected={(time) => setTime(time)} /> : ""}
+            {/* <Button onClick={handleNextClick} className="next-btn">
               Next
-            </Button>
+            </Button> */}
+            <ProgressBar text={loadText} percent={percent} onClick={handleNextClick}/>
           </div>
         </section>
       </Container>

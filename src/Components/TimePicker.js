@@ -1,5 +1,5 @@
-import React from "react";
-import { Form } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 
 const availableHours = [
   "08:00",
@@ -20,19 +20,34 @@ const availableHours = [
   "16:30",
   "17:00",
 ];
-function TimePicker(props) {
+function TimePicker({ onTimeSelected }) {
+  const [selectedTime, setSelectedTime] = useState("");
+
+  function timeSelected(e) {
+    if (e.target.value === selectedTime) {
+      setSelectedTime("");
+    } else {
+      setSelectedTime(e.target.value);
+      onTimeSelected(e.target.value);
+    }
+  }
+
   return (
     <div className="available-hours">
-      <h4>בחר שעה רצויה:</h4>
-      <Form>
-        <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Control as="select">
-            {availableHours.map((hour) => {
-              return <option>{hour}</option>;
-            })}
-          </Form.Control>
-        </Form.Group>
-      </Form>
+      <h4>שעות פנויות</h4>
+      <div>
+        {availableHours.map((hour) => {
+          return (
+            <Button
+              className={`${selectedTime === hour ? "selected-time" : ""}`}
+              value={hour}
+              onClick={(e) => timeSelected(e)}
+            >
+              {hour}
+            </Button>
+          );
+        })}
+      </div>
     </div>
   );
 }
