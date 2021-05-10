@@ -1,8 +1,7 @@
 .available-hours {
   display: flex;
   flex-direction: column;
-  height: 350px;
-  /* align-items: baseline; */
+  height: 300px;
 }
 
 .available-hours .btn {

@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DatePickers({ onDateSelected }) {
   const classes = useStyles();
-  const [value, setValue] = useState("");
+  const [selectedDate, setDate] = useState("");
 
   return (
     <form className={`${classes.container} date-picker`} noValidate>
@@ -31,8 +31,8 @@ export default function DatePickers({ onDateSelected }) {
         InputLabelProps={{
           shrink: true,
         }}
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        value={selectedDate}
+        onChange={(e) => setDate(e.target.value)}
         onSelect={(e) => onDateSelected(e.target.value)}
       />
     </form>

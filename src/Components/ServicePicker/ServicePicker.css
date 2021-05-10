@@ -1,9 +1,9 @@
 .services {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 380px;
+  margin-top: 20px;
+  height: 300px;
 }
 
 .services .badge {

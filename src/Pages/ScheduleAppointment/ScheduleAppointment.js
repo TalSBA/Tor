@@ -14,6 +14,7 @@ function ScheduleAppointment(props) {
   const [selectedTime, setTime] = useState("");
   const [selectedDate, setDate] = useState("");
   const [selectedServices, setServices] = useState([]);
+  const [customerDetails, setCustomerDetails] = useState([]);
   const [countTimeSelected, setCountTime] = useState("");
   const [percent, setPercent] = useState(0);
   const [loadText, setLoadText] = useState("בחר שירות");
@@ -57,6 +58,7 @@ function ScheduleAppointment(props) {
     } else {
       setPercent(0);
       setLoadText("בחר שירות");
+      setLoadDisabled(true);
     }
     setServices(services);
     setCountTime(countTime);
@@ -87,18 +89,20 @@ function ScheduleAppointment(props) {
   }
   return (
     <div className="p-schedule-appointment">
-      <div className="cover-image">
-        <div className="page-title">
-          <h1>טל</h1>
-          <h2>
-            <FaMapMarkerAlt /> רחוב הארבעה 5, תל אביב יפו
-          </h2>
-        </div>
-      </div>
       <Container>
         <Row>
-          <Col className="page-details">
-            <div className="page-details-item rtl-right">
+          <div className="cover-image">
+            <div className="page-title">
+              <h1>טל</h1>
+              <h2>
+                <FaMapMarkerAlt /> רחוב הארבעה 5, תל אביב יפו
+              </h2>
+            </div>
+          </div>
+        </Row>
+        <Row className="details-row">
+          <Col className="business-details-container">
+            <div className="business-details-item">
               <FaClock />
               <span className="business-time">
                 ראשון - 08:00 - 17:00
@@ -109,15 +113,15 @@ function ScheduleAppointment(props) {
                 <br />
               </span>
             </div>
-            <div className="page-details-item rtl-right map">
+            <div className="business-details-item map">
               <iframe
                 className="business-map"
                 src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCFMJkJHBOiL9zAis1Af9wJxwCZrA7Smxs&q=${"הארבעה 5 תל אביב"}`}
               ></iframe>
             </div>
           </Col>
-          <Col>
-            <div className="appointment-details-container">
+          <Col className="appointment-details-container">
+            <div className="appointment-details">
               {paging > 1 ? (
                 <Button onClick={handleBackClick} className="back-btn">
                   <FaBackward />
@@ -147,6 +151,9 @@ function ScheduleAppointment(props) {
               {paging === 4 ? (
                 <CustomerDetails
                   validDetails={(valid) => handleFormValid(valid)}
+                  setFormData={(customerDetails) =>
+                    setCustomerDetails(customerDetails)
+                  }
                 />
               ) : (
                 ""
@@ -156,7 +163,6 @@ function ScheduleAppointment(props) {
                   services={selectedServices}
                   date={selectedDate}
                   time={selectedTime}
-                  scheduleNewAppointment={newScheduleHandle}
                 />
               ) : (
                 ""

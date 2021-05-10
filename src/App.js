@@ -66,7 +66,7 @@ function App() {
           </Route>
         </Switch>
       </HashRouter>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

@@ -1,6 +1,15 @@
 .p-schedule-appointment {
   background-color: #f1f5f8;
-  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 100vh;
+  display: flex;
+}
+
+.p-schedule-appointment .container {
+  display: inline-block;
+  /* padding-bottom: 140px; */
 }
 
 .p-schedule-appointment .cover-image {
@@ -8,9 +17,8 @@
   background-size: cover;
   background-position: center;
   height: 320px;
-  width: 75%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  margin: 0 auto;
   box-shadow: inset 0px -150px 60px -40px rgb(0 0 0 / 60%);
   border-radius: 20px;
 }
@@ -19,7 +27,7 @@
   text-align: right;
   padding-right: 50px;
   position: absolute;
-  top: 250px;
+  top: 230px;
   color: white;
 }
 .p-schedule-appointment .cover-image .page-title h1,
@@ -32,21 +40,23 @@ h2 {
   /* cursor: pointer; */
 }
 
-.container {
-  width: 90%;
-  margin-top: 20px;
-  margin-bottom: 30px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 30px;
-  padding-right: 30px;
-  height: 500px;
-  /* margin-top: 40px; */
-  /* height: 500px; */
+.p-schedule-appointment .details-row .col {
+  margin: 10px;
 }
 
-.p-schedule-appointment .page-details {
-  width: 100%;
+.p-schedule-appointment .business-details-container {
+  background-color: white;
+  /* padding-bottom: 10px; */
+  border-radius: 20px;
+  border: solid #ffffff 1px;
+  margin-bottom: 20px;
+  /* padding-right: 20px; */
+  box-shadow: 0 5px 20px rgb(0 0 0 / 5%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.p-schedule-appointment .appointment-details-container {
   background-color: white;
   /* padding-bottom: 10px; */
   border-radius: 20px;
@@ -56,7 +66,7 @@ h2 {
   box-shadow: 0 5px 20px rgb(0 0 0 / 5%);
 }
 
-.p-schedule-appointment .page-details-item {
+.p-schedule-appointment .business-details-item {
   /* margin-top: 10px;
   margin-left: 10px; */
   text-align: right;
@@ -65,59 +75,30 @@ h2 {
   border-radius: 15px;
 }
 
-.trl-left {
-  direction: rtl !important;
-  text-align: right !important;
-}
-
-.p-schedule-appointment .page-details-item .business-time {
+.p-schedule-appointment .business-details-item .business-time {
   margin-right: 10px;
 }
 
-.p-schedule-appointment .page-details-item .business-map {
+.p-schedule-appointment .business-details-item .business-map {
   border: 0;
   height: 300px;
 }
 
-/* aside {
-  flex: 1;
-  min-width: 360px;
-}
-
-section {
-  flex: 2;
-  margin-right: 10px;
-  height: 450px;
-  min-height: 450px;
-} */
-
-.p-schedule-appointment:first-child{
-  flex: 1;
-}
-.p-schedule-appointment:nth-child(2n){
-  flex: 2;
-}
-
-.p-schedule-appointment .appointment-details-container {
-  background-color: white;
-  border-radius: 20px;
-  height: 450px;
-  overflow: hidden;
-  max-width: 600px;
-  margin-right: auto;
-  margin-bottom: 30px;
-  box-shadow: 0 5px 20px rgb(0 0 0 / 5%);
+.p-schedule-appointment .appointment-details {
+  font-size: 20px;
+  padding: 10px 20px;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
 }
 
-.p-schedule-appointment .appointment-details-container h4 {
+.p-schedule-appointment .appointment-details h4 {
   font-size: 30px;
   text-align: center;
   color: black;
 }
 
-.p-schedule-appointment .appointment-details-container .next-btn {
+.p-schedule-appointment .appointment-details .next-btn {
   background-color: white;
   border: solid 2px #17a2b8;
   color: black;
@@ -127,15 +108,15 @@ section {
   margin-top: auto;
 }
 
-.p-schedule-appointment .appointment-details-container .back-btn {
-  display: flex;
-  justify-content: flex-end;
+.p-schedule-appointment .appointment-details .back-btn {
   background-color: white;
   border: none;
   color: black;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.p-schedule-appointment .appointment-details-container .next-btn:hover {
+.p-schedule-appointment .appointment-details .next-btn:hover {
   background-color: #17a2b8;
   box-shadow: 0px 15px 20px rgba(121, 197, 226, 0.4);
   transform: translateY(-7px);
