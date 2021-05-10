@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import "./ConfirmAppointment.css";
 
-function ConfirmAppointment({ services, date, time, scheduleNewAppointment }) {
+function ConfirmAppointment({ services, date, time, customerDetails, scheduleNewAppointment }) {
   useEffect(() => {
     console.log("services", services);
+    console.log("customer", customerDetails);
   }, []);
   return (
     <div className="confirm-appointment">
@@ -20,6 +21,10 @@ function ConfirmAppointment({ services, date, time, scheduleNewAppointment }) {
       <p>
         <span> בשעה</span>{" "}
         {time}
+      </p>
+      <p>
+        <span> אישור התור ישלח למייל</span>{" "}
+        {customerDetails.email}
       </p>
       <Button onClick={scheduleNewAppointment}>קבע תור נוסף</Button>
     </div>

@@ -113,7 +113,7 @@ h2 {
   border: none;
   color: black;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .p-schedule-appointment .appointment-details .next-btn:hover {

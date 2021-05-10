@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import { FaBackward, FaClock, FaMapMarkerAlt } from "react-icons/fa";
+import { FaClock, FaForward, FaMapMarkerAlt } from "react-icons/fa";
 import "./ScheduleAppointment.css";
 import DatePicker from "../../Components/DatePicker/DatePicker";
 import TimePicker from "../../Components/TimePicker/TimePicker";
@@ -124,7 +124,7 @@ function ScheduleAppointment(props) {
             <div className="appointment-details">
               {paging > 1 ? (
                 <Button onClick={handleBackClick} className="back-btn">
-                  <FaBackward />
+                  <FaForward />
                 </Button>
               ) : (
                 ""
@@ -163,6 +163,8 @@ function ScheduleAppointment(props) {
                   services={selectedServices}
                   date={selectedDate}
                   time={selectedTime}
+                  customerDetails={customerDetails}
+                  scheduleNewAppointment={newScheduleHandle}
                 />
               ) : (
                 ""

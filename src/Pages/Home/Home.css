@@ -1,18 +1,19 @@
 .p-home {
   width: 100%;
   text-align: center;
+  position: relative;
 }
-
 .p-home .background-cover {
   background: url("./images/calendar-background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 80vh;
+  height: 90vh;
 }
 
 .p-home h1 {
   font-size: 80px;
   font-family: Amatic_Bold;
+  z-index: 100px;
 }
 .p-home h4 {
   font-size: 30px;
