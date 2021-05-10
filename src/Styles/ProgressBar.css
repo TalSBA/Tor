@@ -6,6 +6,7 @@
   bottom: 0px;
   display: flex;
   justify-content: center;
+  align-items: flex-end;
 }
 .container .progressbar-container {
   background-color: gray;
@@ -48,6 +49,8 @@
   background-color: transparent;
   overflow: visible;
   font-size: 20px;
+  animation: 3s ease-in-out;
+  animation-fill-mode:both; 
 }
 .container .disabled {
   opacity: 0.5;
@@ -56,6 +59,12 @@
 
 @keyframes g {
   0% {
+    background-color: #17a2b8;
+  }
+  50% {
+    background-color: #17a2b8;
+  }
+  100% {
     background-color: #17a2b8;
   }
 }

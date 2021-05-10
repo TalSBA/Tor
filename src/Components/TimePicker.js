@@ -26,6 +26,7 @@ function TimePicker({ onTimeSelected }) {
   function timeSelected(e) {
     if (e.target.value === selectedTime) {
       setSelectedTime("");
+      onTimeSelected("");
     } else {
       setSelectedTime(e.target.value);
       onTimeSelected(e.target.value);

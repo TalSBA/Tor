@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DatePickers({ onDateSelected }) {
   const classes = useStyles();
+  const [value, setValue] = useState("");
 
   return (
     <form className={`${classes.container} date-picker`} noValidate>
@@ -29,6 +30,8 @@ export default function DatePickers({ onDateSelected }) {
         InputLabelProps={{
           shrink: true,
         }}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
         onSelect={(e) => onDateSelected(e.target.value)}
       />
     </form>
