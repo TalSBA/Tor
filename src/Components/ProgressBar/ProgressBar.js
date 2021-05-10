@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/ProgressBar.css";
+import "./ProgressBar.css";
 
 class ProgressBar extends React.Component {
   constructor(props) {

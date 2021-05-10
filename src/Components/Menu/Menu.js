@@ -1,7 +1,7 @@
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
-import calendarIcn from "../Styles/images/calendar-icon.png";
-import "../Styles/Menu.css";
+import calendarIcn from "./images/calendar-icon.png";
+import "./Menu.css";
 
 function Menu({ activeUser, onLogout }) {
   return (

@@ -1,11 +1,6 @@
 import { Redirect } from "react-router";
 import * as React from "react";
 import Paper from "@material-ui/core/Paper";
-import FormGroup from "@material-ui/core/FormGroup";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Typography from "@material-ui/core/FormControl";
-import { makeStyles } from "@material-ui/core/styles";
 import {
   ViewState,
   EditingState,
@@ -26,8 +21,8 @@ import {
   ConfirmationDialog,
 } from "@devexpress/dx-react-scheduler-material-ui";
 
-import { appointments } from "../data/appointments";
-import "../Styles/Calendar.css";
+import { appointments } from "../../data/appointments";
+import "./Calendar.css";
 
 const currentDate = new Date();
 

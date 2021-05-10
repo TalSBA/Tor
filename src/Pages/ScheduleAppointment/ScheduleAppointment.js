@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { FaBackward, FaClock, FaMapMarkerAlt } from "react-icons/fa";
-import "../Styles/ScheduleAppointment.css";
-import DatePicker from "../Components/DatePicker";
-import TimePicker from "../Components/TimePicker";
-import ServicePicker from "../Components/ServicePicker";
-import ProgressBar from "../Components/ProgressBar";
-import CustomerDetails from "../Components/CustomerDetails";
-import ConfirmAppointment from "../Components/ConfirmAppointment";
+import "./ScheduleAppointment.css";
+import DatePicker from "../../Components/DatePicker/DatePicker";
+import TimePicker from "../../Components/TimePicker/TimePicker";
+import ServicePicker from "../../Components/ServicePicker/ServicePicker";
+import ProgressBar from "../../Components/ProgressBar/ProgressBar";
+import CustomerDetails from "../../Components/CustomerDetails/CustomerDetails";
+import ConfirmAppointment from "../../Components/ConfirmAppointment/ConfirmAppointment";
 
 function ScheduleAppointment(props) {
   const [paging, setPaging] = useState(1);

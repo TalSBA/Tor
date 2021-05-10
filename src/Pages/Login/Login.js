@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Alert, Button, Card } from "react-bootstrap";
 import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
-import "../Styles/Login.css";
+import "./Login.css";
 
 function Login({ activeUser, users, onLogin }) {
   const [email, setEmail] = useState("");

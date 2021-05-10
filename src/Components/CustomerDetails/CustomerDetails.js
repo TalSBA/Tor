@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Col, Form } from "react-bootstrap";
-import "../Styles/CustomerDetails.css";
+import "./CustomerDetails.css";
 
 function CustomerDetails({ validDetails }) {
   const [validated, setValidated] = useState(false);

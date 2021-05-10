@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Badge, Col } from "react-bootstrap";
-import "../Styles/BusinessServices.css";
+import "./BusinessServices.css";
 import { FaPlus, FaTimes } from "react-icons/fa";
 
 function BusinessServices({ services, onAddService, onDeleteService }) {

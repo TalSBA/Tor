@@ -1,7 +1,7 @@
 import { Switch } from "@material-ui/core";
 import React, { useState } from "react";
 import { Col, Form } from "react-bootstrap";
-import DayHours from "../Model/DayHours";
+import DayHours from "../../Model/DayHours";
 
 const hours = [
   "08:00",

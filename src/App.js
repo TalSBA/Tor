@@ -1,17 +1,17 @@
 import { HashRouter, Route, Switch } from "react-router-dom";
 import "./Styles/App.css";
-import Home from "./Pages/Home";
-import Login from "./Pages/Login";
-import Signup from "./Pages/Signup";
-import CreateCalendar from "./Pages/CreateCalendar";
-import Calendar from "./Pages/Calendar";
-import Menu from "./Components/Menu";
-import Footer from "./Components/Footer";
+import Home from "./Pages/Home/Home";
+import Login from "./Pages/Login/Login";
+import Signup from "./Pages/Signup/Signup";
+import CreateCalendar from "./Pages/CreateCalendar/CreateCalendar";
+import Calendar from "./Pages/Calendar/Calendar";
+import Menu from "./Components/Menu/Menu";
+import Footer from "./Components/Footer/Footer";
 import users from "./data/Users.json";
 import { useState } from "react";
-import ConfirmCalendar from "./Pages/ConfirmCalendar";
+import ConfirmCalendar from "./Pages/ConfirmCalendar/ConfirmCalendar";
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
-import ScheduleAppointment from "./Pages/ScheduleAppointment";
+import ScheduleAppointment from "./Pages/ScheduleAppointment/ScheduleAppointment";
 
 function App() {
   const [activeUser, setActiveUser] = useState(users[0]);

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
-import "../Styles/BusinessImagesModal.css";
-import gelImg from "../Styles/images/gel.jpg";
-import barberImg from "../Styles/images/london-barbershop.jpg";
-import barberGentelImg from "../Styles/images/gentelmen barbershop.jpg";
-import cosmetics from "../Styles/images/cosmetics.jpg";
-import resturant from "../Styles/images/resturant.jpg";
+import "./BusinessImagesModal.css";
+import gelImg from "./images/gel.jpg";
+import barberImg from "./images/london-barbershop.jpg";
+import barberGentelImg from "./images/gentelmen barbershop.jpg";
+import cosmetics from "./images/cosmetics.jpg";
+import resturant from "./images/resturant.jpg";
 import ImagePicker from "react-image-picker";
 import "react-image-picker/dist/index.css";
 import "bootstrap/dist/css/bootstrap.min.css";

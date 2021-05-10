@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Card, Form, Alert, Button } from "react-bootstrap";
 import { Redirect } from "react-router";
-import User from "../Model/User";
-import "../Styles/Signup.css";
+import User from "../../Model/User";
+import "./Signup.css";
 
 function Signup({ activeUser, onLogin }) {
   const [showSignupError, setShowsignupError] = useState(false);

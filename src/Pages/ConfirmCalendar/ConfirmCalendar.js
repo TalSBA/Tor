@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Card } from "react-bootstrap";
-import "../Styles/ConfirmAppointment.css";
+import "./ConfirmCalendar.css";
 
 function ConfirmCalendar({ calendar }) {
   useEffect(() => {

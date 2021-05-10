@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form, Modal } from "react-bootstrap";
-import DayRow from "./DayRow";
-import "../Styles/ActivityModal.css";
-import DayHours from "../Model/DayHours";
+import DayRow from "../DayRow/DayRow";
+import "./ActivityHoursModal.css";
 
 function ActivityHoursModal({ activityHours, show, onHide, onUpdate, onChangeHours }) {
   //   const [activityHours, setActivityHours] = useState([]);

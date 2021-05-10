@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router";
 import { Card, Form, Alert, Button, Image, Col } from "react-bootstrap";
-import "../Styles/CreateCalendar.css";
-import BusinessServices from "../Components/BusinessServices";
-import BusinessImagesModal from "../Components/BusinessImagesModal";
-import ConfirmCalendar from "./ConfirmCalendar";
-import ActivityHoursModal from "../Components/ActivityHoursModal";
-import ActivityHours from "../Model/ActivityHours";
-import DayHours from "../Model/DayHours";
+import "./CreateCalendar.css";
+import BusinessServices from "../../Components/BusinessServices/BusinessServices";
+import BusinessImagesModal from "../../Components/BusinessImagesModal/BusinessImagesModal";
+import ConfirmCalendar from "../ConfirmCalendar/ConfirmCalendar";
+import ActivityHoursModal from "../../Components/ActivityHoursModal/ActivityHoursModal";
+import ActivityHours from "../../Model/ActivityHours";
+import DayHours from "../../Model/DayHours";
 
 function CreateCalendar({ activeUser }) {
   const [showCreateError, setShowCreateError] = useState(false);

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
+import "./ConfirmAppointment.css";
 
 function ConfirmAppointment({ services, date, time, scheduleNewAppointment }) {
   useEffect(() => {
