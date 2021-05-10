@@ -1,0 +1,32 @@
+.confirm-appointment {
+  text-align: center;
+  font-size: 20px;
+}
+
+.confirm-appointment > h4 {
+  margin-bottom: 40px;
+}
+
+.confirm-appointment > p {
+  font-weight: bold;
+  color: #17a2b8;
+}
+
+.confirm-appointment > p span {
+  font-weight: bold;
+  color: black;
+}
+
+.confirm-appointment .btn {
+  background-color: white;
+  color: #17a2b8;
+  border: solid 1px #17a2b8;
+}
+
+.confirm-appointment .btn:hover {
+  background-color: #17a2b8;
+  box-shadow: 0px 15px 20px rgba(121, 197, 226, 0.4);
+  transform: translateY(-7px);
+  color: white;
+  transition: all 0.3s ease 0s;
+}

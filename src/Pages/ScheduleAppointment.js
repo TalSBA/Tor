@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { FaBackward, FaClock, FaMapMarkerAlt } from "react-icons/fa";
 import "../Styles/ScheduleAppointment.css";
 import DatePicker from "../Components/DatePicker";
@@ -82,6 +82,9 @@ function ScheduleAppointment(props) {
   function handleFormValid(isValid) {
     setLoadDisabled(!isValid);
   }
+  function newScheduleHandle() {
+    setPaging(1);
+  }
   return (
     <div className="p-schedule-appointment">
       <div className="cover-image">
@@ -93,84 +96,87 @@ function ScheduleAppointment(props) {
         </div>
       </div>
       <Container>
-        <aside className="page-details">
-          <div className="page-details-item rtl-right">
-            <FaClock />
-            <span className="business-time">
-              ראשון - 08:00 - 17:00
-              <br />
-              שני - 08:00 - 16:30
-              <br />
-              רביעי - 09:00 - 18:00
-              <br />
-            </span>
-          </div>
-          <div className="page-details-item rtl-right map">
-            <iframe
-              className="business-map"
-              src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCFMJkJHBOiL9zAis1Af9wJxwCZrA7Smxs&q=${"הארבעה 5 תל אביב"}`}
-            ></iframe>
-          </div>
-        </aside>
-        <section>
-          <div className="appointment-details-container">
-            {paging > 1 ? (
-              <Button onClick={handleBackClick} className="back-btn">
-                <FaBackward />
-              </Button>
-            ) : (
-              ""
-            )}
-            {paging === 1 ? (
-              <ServicePicker
-                onChange={(services, countTime) =>
-                  setServicesAndCountTime(services, countTime)
-                }
-              />
-            ) : (
-              ""
-            )}
-            {paging === 2 ? (
-              <DatePicker onDateSelected={(date) => handleDatePicked(date)} />
-            ) : (
-              ""
-            )}
-            {paging === 3 ? (
-              <TimePicker onTimeSelected={(time) => handleTimePicked(time)} />
-            ) : (
-              ""
-            )}
-            {paging === 4 ? (
-              <CustomerDetails
-                validDetails={(valid) => handleFormValid(valid)}
-              />
-            ) : (
-              ""
-            )}
-            {paging === 5 ? (
-              <ConfirmAppointment
-                services={selectedServices}
-                date={selectedDate}
-                time={selectedTime}
-              />
-            ) : (
-              ""
-            )}
-            {/* <Button onClick={handleNextClick} className="next-btn">
+        <Row>
+          <Col className="page-details">
+            <div className="page-details-item rtl-right">
+              <FaClock />
+              <span className="business-time">
+                ראשון - 08:00 - 17:00
+                <br />
+                שני - 08:00 - 16:30
+                <br />
+                רביעי - 09:00 - 18:00
+                <br />
+              </span>
+            </div>
+            <div className="page-details-item rtl-right map">
+              <iframe
+                className="business-map"
+                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCFMJkJHBOiL9zAis1Af9wJxwCZrA7Smxs&q=${"הארבעה 5 תל אביב"}`}
+              ></iframe>
+            </div>
+          </Col>
+          <Col>
+            <div className="appointment-details-container">
+              {paging > 1 ? (
+                <Button onClick={handleBackClick} className="back-btn">
+                  <FaBackward />
+                </Button>
+              ) : (
+                ""
+              )}
+              {paging === 1 ? (
+                <ServicePicker
+                  onChange={(services, countTime) =>
+                    setServicesAndCountTime(services, countTime)
+                  }
+                />
+              ) : (
+                ""
+              )}
+              {paging === 2 ? (
+                <DatePicker onDateSelected={(date) => handleDatePicked(date)} />
+              ) : (
+                ""
+              )}
+              {paging === 3 ? (
+                <TimePicker onTimeSelected={(time) => handleTimePicked(time)} />
+              ) : (
+                ""
+              )}
+              {paging === 4 ? (
+                <CustomerDetails
+                  validDetails={(valid) => handleFormValid(valid)}
+                />
+              ) : (
+                ""
+              )}
+              {paging === 5 ? (
+                <ConfirmAppointment
+                  services={selectedServices}
+                  date={selectedDate}
+                  time={selectedTime}
+                  scheduleNewAppointment={newScheduleHandle}
+                />
+              ) : (
+                ""
+              )}
+              {/* <Button onClick={handleNextClick} className="next-btn">
               Next
             </Button> */}
-            {paging < 5 ? (
-              <ProgressBar
-                text={loadText}
-                percent={percent}
-                disabled={loadDisabled}
-                onClick={handleNextClick}
-              />
-            ) : (
-              ""
-            )}
-          </div>
-        </section>
+              {paging < 5 ? (
+                <ProgressBar
+                  text={loadText}
+                  percent={percent}
+                  disabled={loadDisabled}
+                  onClick={handleNextClick}
+                />
+              ) : (
+                ""
+              )}
+            </div>
+          </Col>
+        </Row>
       </Container>
     </div>
   );

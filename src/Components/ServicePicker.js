@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Badge } from "react-bootstrap";
 import { FaClock } from "react-icons/fa";
 import services from "../data/Services.json";
+import "../Styles/ServicePicker.css";
 
 function ServicePicker({ onChange }) {
   const [selectedServices, setSelectedServices] = React.useState([]);

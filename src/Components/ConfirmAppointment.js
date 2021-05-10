@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
+import { Button } from "react-bootstrap";
 
-function ConfirmAppointment({ services, date, time }) {
+function ConfirmAppointment({ services, date, time, scheduleNewAppointment }) {
   useEffect(() => {
     console.log("services", services);
   }, []);
@@ -19,6 +20,7 @@ function ConfirmAppointment({ services, date, time }) {
         <span> בשעה</span>{" "}
         {time}
       </p>
+      <Button onClick={scheduleNewAppointment}>קבע תור נוסף</Button>
     </div>
   );
 }
