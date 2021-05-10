@@ -1,5 +1,13 @@
-.c-menu {
-  /* direction: ltr; */
+.c-menu .navbar {
+  padding: 0;
+  height: min-content;
+  background-color: rgb(53, 97, 105) !important;
+}
+.c-menu .navbar a, .navbar-text{
+color: whitesmoke !important;
+}
+.c-menu .nav-link:hover {
+  background-color: rgba(108, 225, 243, 0.3) !important;
 }
 .c-menu .navbar-text {
   margin-right: 10px;

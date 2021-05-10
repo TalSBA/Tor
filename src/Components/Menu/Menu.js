@@ -6,9 +6,9 @@ import "./Menu.css";
 function Menu({ activeUser, onLogout }) {
   return (
     <div className="c-menu">
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <Navbar.Brand href="#/">
-          <img width="50px" height="50px" src={calendarIcn}></img>
+          <img width="30px" height="30px" src={calendarIcn}></img>
         </Navbar.Brand>
         {activeUser ? (
           <Navbar.Text>

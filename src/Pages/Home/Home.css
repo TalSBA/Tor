@@ -3,13 +3,38 @@
   text-align: center;
   position: relative;
 }
+
 .p-home .background-cover {
-  background: url("./images/calendar-background.jpg");
+  background: url("./images/stock-photo-close-up-of-pin-on-calendar.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 90vh;
 }
 
+.p-home > .background-cover > .side-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 300px;
+  background-color: rgb(199, 239, 241, 0.8);
+  height: 90vh;
+  padding: 10px;
+}
+.p-home > .background-cover .btn{
+  margin-top: 20px;
+  background-color: transparent;
+  border: solid 2px rgb(53, 97, 105);
+  font-weight: bold;
+  box-shadow: 0px 15px 20px rgba(130, 207, 238, 0.4);
+  color: rgb(53, 97, 105);
+  transition: all 0.3s ease 0s;
+  border-radius: 10px;
+  width: 150px;
+}
+
+.p-home > .background-cover .btn:hover {
+  transform: translateY(-5px);
+}
 .p-home h1 {
   font-size: 80px;
   font-family: Amatic_Bold;
@@ -21,7 +46,7 @@
 }
 .p-home h1,
 h4 {
-  color: white;
+  color: black;
   padding: 0;
   margin: 0;
 }
