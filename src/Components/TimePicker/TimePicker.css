@@ -21,3 +21,7 @@
   background-color: #17a2b8 !important;
   color: white;
 }
+
+.available-hours .btn-hours{
+  overflow-y: scroll;
+}

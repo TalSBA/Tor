@@ -166,7 +166,7 @@ function ScheduleAppointment(props) {
                 ""
               )}
               {paging === 3 ? (
-                <TimePicker onTimeSelected={(time) => handleTimePicked(time)} />
+                <TimePicker activityHours={calendar.activityHours} date={selectedDate} onTimeSelected={(time) => handleTimePicked(time)} />
               ) : (
                 ""
               )}

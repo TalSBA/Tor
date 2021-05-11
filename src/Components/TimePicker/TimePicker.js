@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+import { FaRegClock, FaUserClock } from "react-icons/fa";
 import "./TimePicker.css";
+import { getAvailableHours } from "../../Services/services";
 
 const availableHours = [
   "08:00",
@@ -21,9 +23,43 @@ const availableHours = [
   "16:30",
   "17:00",
 ];
-function TimePicker({ onTimeSelected }) {
+function TimePicker({ activityHours, date, onTimeSelected }) {
   const [selectedTime, setSelectedTime] = useState("");
+  const [dayHours, setDayHours] = useState("");
 
+  useEffect(() => {
+    console.log(hebDay());
+    setDayHours(activityHours.filter((dayHours) => dayHours.day === hebDay())[0]);
+  }, []);
+
+  const hebDay = () => {
+    switch (new Date(date).getDay()) {
+      case 0:
+        return "א";
+        break;
+      case 1:
+        return "ב";
+        break;
+      case 2:
+        return "ג";
+        break;
+      case 3:
+        return "ד";
+        break;
+      case 4:
+        return "ה";
+        break;
+      case 5:
+        return "ו";
+        break;
+      case 6:
+        return "ש";
+        break;
+      default:
+        return;
+        break;
+    }
+  };
 
   function timeSelected(e) {
     if (e.target.value === selectedTime) {
@@ -38,15 +74,15 @@ function TimePicker({ onTimeSelected }) {
   return (
     <div className="available-hours">
       <h4>שעות פנויות</h4>
-      <div>
-        {availableHours.map((hour) => {
+      <div className="btn-hours">
+        {getAvailableHours(date, dayHours.start, dayHours.end).map((hour) => {
           return (
             <Button
               className={`${selectedTime === hour ? "selected-time" : ""}`}
               value={hour}
               onClick={(e) => timeSelected(e)}
             >
-              {hour}
+              {hour} <FaRegClock />
             </Button>
           );
         })}

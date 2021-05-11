@@ -8,7 +8,7 @@ import ConfirmCalendar from "../ConfirmCalendar/ConfirmCalendar";
 import ActivityHoursModal from "../../Components/ActivityHoursModal/ActivityHoursModal";
 import ActivityHours from "../../Model/ActivityHours";
 import DayHours from "../../Model/DayHours";
-import createCalendarService from "../../Services/services";
+import {createCalendarService} from "../../Services/services";
 
 function CreateCalendar({ activeUser }) {
   const [showCreateError, setShowCreateError] = useState(false);
