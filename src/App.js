@@ -14,7 +14,7 @@ import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 import ScheduleAppointment from "./Pages/ScheduleAppointment/ScheduleAppointment";
 
 function App() {
-  const [activeUser, setActiveUser] = useState(users[0]);
+  const [activeUser, setActiveUser] = useState(null);
   return (
     <div className="App">
       <HashRouter>
@@ -61,7 +61,7 @@ function App() {
             />
             <ConfirmCalendar activeUser={activeUser}/>
           </Route>
-          <Route exact path="/schedule-appointment">
+          <Route exact path="/schedule-appointment/:id">
             <ScheduleAppointment />
           </Route>
         </Switch>

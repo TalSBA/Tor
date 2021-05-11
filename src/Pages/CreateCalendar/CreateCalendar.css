@@ -13,9 +13,6 @@
 
 .p-create-calendar .pic-image-btn {
   display: block;
-  background-color: white;
-  color: teal;
-  border: solid 1px teal;
   margin: 0 auto;
   margin-bottom: 10px;
 }
@@ -26,14 +23,28 @@
   margin-bottom: 10px;
 }
 
-.p-create-calendar .validation-error{
+.p-create-calendar .validation-error {
   color: #dc3545;
   font-size: 80%;
-  margin-top: .25rem;
+  margin-top: 0.25rem;
   width: 100%;
   display: none;
 }
 
-.p-create-calendar .display{
+.p-create-calendar .display {
   display: inline;
 }
+
+/* .p-create-calendar .tor-btn {
+  color: white;
+  border: solid 1px rgb(53, 97, 105);
+  background-color: rgb(53, 97, 105);
+  transition: all 0.3s ease 0s;
+}
+
+.p-create-calendar .tor-btn:hover {
+  background-color: rgb(53, 97, 105);
+  border: solid 1px rgb(53, 97, 105);
+  color: white;
+  transform: translateY(-5px);
+} */

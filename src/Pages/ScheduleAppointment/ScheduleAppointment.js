@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { FaClock, FaForward, FaMapMarkerAlt } from "react-icons/fa";
 import "./ScheduleAppointment.css";
@@ -8,8 +8,13 @@ import ServicePicker from "../../Components/ServicePicker/ServicePicker";
 import ProgressBar from "../../Components/ProgressBar/ProgressBar";
 import CustomerDetails from "../../Components/CustomerDetails/CustomerDetails";
 import ConfirmAppointment from "../../Components/ConfirmAppointment/ConfirmAppointment";
+import { useParams } from "react-router";
+import calendars from "../../data/Calendars.json";
 
 function ScheduleAppointment(props) {
+  const { id } = useParams();
+  const [calendar, setCalendar] = useState(null);
+
   const [paging, setPaging] = useState(1);
   const [selectedTime, setTime] = useState("");
   const [selectedDate, setDate] = useState("");
@@ -19,6 +24,17 @@ function ScheduleAppointment(props) {
   const [percent, setPercent] = useState(0);
   const [loadText, setLoadText] = useState("בחר שירות");
   const [loadDisabled, setLoadDisabled] = useState(true);
+
+  useEffect(() => {
+    console.log("calendars", calendars);
+    console.log("id", id);
+    console.log(
+      "filter",
+      calendars.filter((calendar) => calendar.id == id)
+    );
+
+    setCalendar(calendars.filter((calendar) => calendar.id == id)[0]);
+  }, []);
 
   function setTextAndPercentByPaging(page) {
     if (page === 2) {
@@ -87,15 +103,15 @@ function ScheduleAppointment(props) {
   function newScheduleHandle() {
     setPaging(1);
   }
-  return (
+  return calendar ? (
     <div className="p-schedule-appointment">
       <Container>
         <Row>
-          <div className="cover-image">
+          <div className="cover-image" style={{backgroundImage: `url(${process.env.PUBLIC_URL + calendar.image})`}}>
             <div className="page-title">
-              <h1>טל</h1>
+              <h1>{calendar.name}</h1>
               <h2>
-                <FaMapMarkerAlt /> רחוב הארבעה 5, תל אביב יפו
+                <FaMapMarkerAlt /> {calendar.address}
               </h2>
             </div>
           </div>
@@ -105,18 +121,23 @@ function ScheduleAppointment(props) {
             <div className="business-details-item">
               <FaClock />
               <span className="business-time">
-                ראשון - 08:00 - 17:00
-                <br />
-                שני - 08:00 - 16:30
-                <br />
-                רביעי - 09:00 - 18:00
-                <br />
+                {calendar.activityHours.map((dayHour) => {
+                  return dayHour.active ? (
+                    <span>
+                      {dayHour.day} - {dayHour.start} - {dayHour.end} <br />
+                    </span>
+                  ) : (
+                    <span>
+                    {dayHour.day} - סגור <br />
+                  </span>
+                  );
+                })}
               </span>
             </div>
             <div className="business-details-item map">
               <iframe
                 className="business-map"
-                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCFMJkJHBOiL9zAis1Af9wJxwCZrA7Smxs&q=${"הארבעה 5 תל אביב"}`}
+                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCFMJkJHBOiL9zAis1Af9wJxwCZrA7Smxs&q=${calendar.address}`}
               ></iframe>
             </div>
           </Col>
@@ -131,6 +152,7 @@ function ScheduleAppointment(props) {
               )}
               {paging === 1 ? (
                 <ServicePicker
+                  services={calendar.services}
                   onChange={(services, countTime) =>
                     setServicesAndCountTime(services, countTime)
                   }
@@ -187,6 +209,8 @@ function ScheduleAppointment(props) {
         </Row>
       </Container>
     </div>
+  ) : (
+    <div></div>
   );
 }
 

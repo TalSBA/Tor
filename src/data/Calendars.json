@@ -1,0 +1,147 @@
+[
+    {
+        "id": 1,
+        "name": "טל קוסמטיקס",
+        "address": "דויט אייזנהאואר 1, נתניה",
+        "type": "קוסמטיקה",
+        "phone": "0527436743",
+        "services": [
+            {
+                "id": "_56b115ksp",
+                "name": "גבות",
+                "duration": "10 דקות"
+            },
+            {
+                "id": "_j6vxh0so9",
+                "name": "ג'ל רגליים",
+                "duration": "60 דקות"
+            },
+            {
+                "id": "_eeinhoiuf",
+                "name": "ג'ל ידיים",
+                "duration": "60 דקות"
+            },
+            {
+                "id": "_f9ld9b33w",
+                "name": "טיפול פנים",
+                "duration": "60 דקות"
+            }
+        ],
+        "image": "/images/cosmetics.jpg",
+        "activityHours": [
+            {
+                "day": "א",
+                "start": "08:00",
+                "end": "17:00",
+                "active": true
+            },
+            {
+                "day": "ב",
+                "start": "08:00",
+                "end": "16:30",
+                "active": true
+            },
+            {
+                "day": "ג",
+                "start": "התחלה",
+                "end": "סיום",
+                "active": false
+            },
+            {
+                "day": "ד",
+                "start": "08:30",
+                "end": "17:00",
+                "active": true
+            },
+            {
+                "day": "ה",
+                "start": "09:00",
+                "end": "17:00",
+                "active": true
+            },
+            {
+                "day": "ו",
+                "start": "08:30",
+                "end": "13:00",
+                "active": true
+            },
+            {
+                "day": "ש",
+                "start": "התחלה",
+                "end": "סיום",
+                "active": false
+            }
+        ],
+        "userId": 1
+    },
+    {
+        "id": 2,
+        "name": "ראש גדול",
+        "address": "אבן גבירול 3, תל אביב",
+        "type": "מספרה",
+        "phone": "0547569875",
+        "services": [
+            {
+                "id": "_56b515ksp",
+                "name": "תספורת",
+                "duration": "10 דקות"
+            },
+            {
+                "id": "_j6vxh0so9",
+                "name": "גוונים",
+                "duration": "60 דקות"
+            },
+            {
+                "id": "_eeinhoiuf",
+                "name": "פן",
+                "duration": "20 דקות"
+            }
+        ],
+        "image": "/images/london-barbershop.jpg",
+        "activityHours": [
+            {
+                "day": "א",
+                "start": "08:00",
+                "end": "17:00",
+                "active": true
+            },
+            {
+                "day": "ב",
+                "start": "התחלה",
+                "end": "סיום",
+                "active": false
+            },
+            {
+                "day": "ג",
+                "start": "08:00",
+                "end": "16:30",
+                "active": false
+            },
+            {
+                "day": "ד",
+                "start": "08:30",
+                "end": "17:00",
+                "active": true
+            },
+            {
+                "day": "ה",
+                "start": "09:00",
+                "end": "17:00",
+                "active": true
+            },
+            {
+                "day": "ו",
+                "start": "08:30",
+                "end": "13:00",
+                "active": true
+            },
+            {
+                "day": "ש",
+                "start": "התחלה",
+                "end": "סיום",
+                "active": false
+            }
+        ],
+        "userId": 2
+    }
+]

@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { Card } from "react-bootstrap";
 import "./ConfirmCalendar.css";
 
-function ConfirmCalendar({ calendar }) {
+function ConfirmCalendar({ calendar, calendarId }) {
   useEffect(() => {
     console.log(calendar);
   }, []);
+  
   return (
     <div className="p-confirm-calendar">
       <Card>
@@ -34,10 +35,10 @@ function ConfirmCalendar({ calendar }) {
                 מעכשיו הלקוחות שלך יוכלו לקבוע תורים בעצמם דרך הלינק הבא:
                 <br />
                 <a
-                  href="http://localhost:3000/?#/scheduale-appointment/0"
+                  href={`http://${window.location.hostname}:3000/#/schedule-appointment/{calendarId}`}
                   target="_blank"
                 >
-                  http://localhost:3000/?#/scheduale-appointment/0
+                  http://{window.location.hostname}:3000/#/schedule-appointment/{calendarId}
                 </a>
               </div>
             </center>

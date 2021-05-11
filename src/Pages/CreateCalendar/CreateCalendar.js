@@ -8,6 +8,7 @@ import ConfirmCalendar from "../ConfirmCalendar/ConfirmCalendar";
 import ActivityHoursModal from "../../Components/ActivityHoursModal/ActivityHoursModal";
 import ActivityHours from "../../Model/ActivityHours";
 import DayHours from "../../Model/DayHours";
+import createCalendarService from "../../Services/services";
 
 function CreateCalendar({ activeUser }) {
   const [showCreateError, setShowCreateError] = useState(false);
@@ -57,8 +58,9 @@ function CreateCalendar({ activeUser }) {
         type: bType,
         phone: phone,
         services: services,
-        image: selectedImage ? selectedImage.src : null,
+        image: selectedImage ? selectedImage.src : "../ScheduleAppointment/ScheduleAppointment/images/schedule-appointment.jpg",
         activityHours: activityHours,
+        userId: activeUser.id
       });
     }
     setValidated(true);
@@ -86,7 +88,7 @@ function CreateCalendar({ activeUser }) {
   return (
     <div className="p-create-calendar">
       {calendar ? (
-        <ConfirmCalendar calendar={calendar} />
+        <ConfirmCalendar calendar={calendar} calendarId={createCalendarService(calendar)} />
       ) : (
         <Card>
           <Card.Header>
@@ -166,7 +168,7 @@ function CreateCalendar({ activeUser }) {
                   אנא הוסף שירות אחד לפחות.
                 </p>
                 <Button
-                  className="pic-image-btn"
+                  className="pic-image-btn tor-btn"
                   onClick={() => setModalImagesShow(true)}
                 >
                   בחר תמונה לעסק
@@ -182,7 +184,7 @@ function CreateCalendar({ activeUser }) {
                   ""
                 )}
                 <Button
-                  className="pic-image-btn"
+                  className="pic-image-btn tor-btn"
                   onClick={() => setModalActivityShow(true)}
                 >
                   עדכן שעות פעילות

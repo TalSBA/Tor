@@ -13,7 +13,7 @@
 }
 
 .p-schedule-appointment .cover-image {
-  background-image: url("./images/schedule-appointment.jpg");
+  /* background-image: url("../../../src/Components/BusinessImagesModal/images/gentelmen barbershop.jpg"); */
   background-size: cover;
   background-position: center;
   height: 320px;

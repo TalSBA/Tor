@@ -41,7 +41,7 @@ function BusinessServices({ services, onAddService, onDeleteService }) {
           <option>30 דקות</option>
           <option>60 דקות</option>
         </Form.Control>
-        <Button onClick={addService}>
+        <Button className="tor-btn" onClick={addService}>
           <FaPlus />
         </Button>
       </Form.Group>
