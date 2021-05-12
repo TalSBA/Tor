@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./ConfirmCalendar.css";
 
-function ConfirmCalendar({ calendar, calendarId }) {
+function ConfirmCalendar({ calendar }) {
   useEffect(() => {
     console.log(calendar);
   }, []);
-  
+
   return (
     <div className="p-confirm-calendar">
       <Card>
@@ -35,12 +36,21 @@ function ConfirmCalendar({ calendar, calendarId }) {
                 מעכשיו הלקוחות שלך יוכלו לקבוע תורים בעצמם דרך הלינק הבא:
                 <br />
                 <a
-                  href={`http://${window.location.hostname}:3000/#/schedule-appointment/${calendarId}`}
+                  href={`http://${window.location.hostname}:3000/#/schedule-appointment/${calendar.userId}`}
                   target="_blank"
                 >
-                  http://{window.location.hostname}:3000/#/schedule-appointment/{calendarId}
+                  http://{window.location.hostname}:3000/#/schedule-appointment/
+                  {calendar.userId}
                 </a>
               </div>
+              <Link to="/">
+                {" "}
+                <Button>לעמוד הבית</Button>
+              </Link>
+              <Link to="/calendar">
+                {" "}
+                <Button>ליומן שלי</Button>
+              </Link>
             </center>
           </Card.Text>
         </Card.Body>
