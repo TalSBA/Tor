@@ -35,7 +35,7 @@ function ConfirmCalendar({ calendar, calendarId }) {
                 מעכשיו הלקוחות שלך יוכלו לקבוע תורים בעצמם דרך הלינק הבא:
                 <br />
                 <a
-                  href={`http://${window.location.hostname}:3000/#/schedule-appointment/{calendarId}`}
+                  href={`http://${window.location.hostname}:3000/#/schedule-appointment/${calendarId}`}
                   target="_blank"
                 >
                   http://{window.location.hostname}:3000/#/schedule-appointment/{calendarId}

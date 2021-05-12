@@ -7,14 +7,24 @@ import CreateCalendar from "./Pages/CreateCalendar/CreateCalendar";
 import Calendar from "./Pages/Calendar/Calendar";
 import Menu from "./Components/Menu/Menu";
 import Footer from "./Components/Footer/Footer";
-import users from "./data/Users.json";
-import { useState } from "react";
+import usersJSON from "./data/Users.json";
+import { useEffect, useState } from "react";
 import ConfirmCalendar from "./Pages/ConfirmCalendar/ConfirmCalendar";
-import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
+import "@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css";
 import ScheduleAppointment from "./Pages/ScheduleAppointment/ScheduleAppointment";
+import { AddToQueueSharp } from "@material-ui/icons";
+import User from "./Model/User";
 
 function App() {
+  const [users, setUsers] = useState(usersJSON.map(plainUser => new User(plainUser)));
   const [activeUser, setActiveUser] = useState(null);
+
+  useEffect(() => {
+    setUsers(users);
+  });
+  function AddUser(user) {
+    setUsers([...users, user]);
+  }
   return (
     <div className="App">
       <HashRouter>
@@ -38,7 +48,11 @@ function App() {
             />
           </Route>
           <Route exact path="/signup">
-            <Signup activeUser={activeUser} onLogin={(user) => setActiveUser(user)}/>
+            <Signup
+              activeUser={activeUser}
+              onLogin={(user) => setActiveUser(user)}
+              onSignup={(user) => AddUser(user)}
+            />
           </Route>
           <Route exact path="/create-calendar">
             <Menu
@@ -52,14 +66,14 @@ function App() {
               activeUser={activeUser}
               onLogout={() => setActiveUser(null)}
             />
-            <Calendar activeUser={activeUser}/>
+            <Calendar activeUser={activeUser} />
           </Route>
           <Route exact path="/confirm-calendar">
             <Menu
               activeUser={activeUser}
               onLogout={() => setActiveUser(null)}
             />
-            <ConfirmCalendar activeUser={activeUser}/>
+            <ConfirmCalendar activeUser={activeUser} />
           </Route>
           <Route exact path="/schedule-appointment/:id">
             <ScheduleAppointment />

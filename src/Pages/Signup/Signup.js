@@ -4,12 +4,19 @@ import { Redirect } from "react-router";
 import User from "../../Model/User";
 import "./Signup.css";
 
-function Signup({ activeUser, onLogin }) {
+function Signup({ activeUser, onSignup, onLogin }) {
   const [showSignupError, setShowsignupError] = useState(false);
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [fullName, setName] = useState("");
   const [validated, setValidated] = useState(false);
+
+  var ID = function () {
+    // Math.random should be unique because of its seeding algorithm.
+    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+    // after the decimal.
+    return "_" + Math.random().toString(36).substr(2, 9);
+  };
 
   if (activeUser) {
     return <Redirect to="/" />;
@@ -21,8 +28,9 @@ function Signup({ activeUser, onLogin }) {
       event.preventDefault();
       event.stopPropagation();
     } else {
-      const activeUser = new User(fullName, email);
+      const activeUser = new User({id: ID(), fullName: fullName, email: email, password: pwd});
       console.log(activeUser);
+      onSignup(activeUser);
       onLogin(activeUser);
     }
     setValidated(true);

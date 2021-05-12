@@ -55,6 +55,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1;
 }
 .p-schedule-appointment .appointment-details-container {
   background-color: white;
@@ -64,6 +65,7 @@ h2 {
   margin-bottom: 20px;
   /* padding-right: 20px; */
   box-shadow: 0 5px 20px rgb(0 0 0 / 5%);
+  flex: 2;
 }
 
 .p-schedule-appointment .business-details-item {

@@ -29,7 +29,9 @@ function TimePicker({ activityHours, date, onTimeSelected }) {
 
   useEffect(() => {
     console.log(hebDay());
-    setDayHours(activityHours.filter((dayHours) => dayHours.day === hebDay())[0]);
+    setDayHours(
+      activityHours.filter((dayHours) => dayHours.day === hebDay())[0]
+    );
   }, []);
 
   const hebDay = () => {
@@ -74,6 +76,10 @@ function TimePicker({ activityHours, date, onTimeSelected }) {
   return (
     <div className="available-hours">
       <h4>שעות פנויות</h4>
+      <h5>
+        {date} (יום {hebDay()}')
+      </h5>
+
       <div className="btn-hours">
         {getAvailableHours(date, dayHours.start, dayHours.end).map((hour) => {
           return (

@@ -15,10 +15,9 @@ function Login({ activeUser, users, onLogin }) {
 
   function login(e) {
     e.preventDefault();
-
     let activeUser = null;
     for (const user of users) {
-      if (user.email === email && user.password === pwd) {
+      if (user.login(email, pwd)) {
         activeUser = user;
         break;
       }
