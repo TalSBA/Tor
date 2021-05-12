@@ -1,0 +1,48 @@
+.p-settings {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.p-settings nav {
+  border-bottom: solid 1px lightgray;
+}
+.p-settings .nav-link {
+  border: none;
+  font-size: 30px;
+  padding-right: 40px;
+  padding-left: 40px;
+  color: grey;
+}
+
+.p-settings .nav-link.active {
+  border-bottom: solid 3px black;
+  font-weight: bold;
+}
+.p-settings .user-details{
+    padding-top: 20px;
+}
+.p-settings .user-details .form-group input{
+    width: 500px;
+}
+
+.p-settings .pic-image-btn {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+  .p-settings .user-details .btn-save{
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+}
+
+.p-settings form img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }

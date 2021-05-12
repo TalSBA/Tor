@@ -4,7 +4,7 @@ import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 import "./Login.css";
 
-function Login({ activeUser, users, onLogin }) {
+function Login({ users, calendars, activeUser, onLogin }) {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [showInvalidLogin, setShowInvalidLogin] = useState(false);
@@ -16,15 +16,23 @@ function Login({ activeUser, users, onLogin }) {
   function login(e) {
     e.preventDefault();
     let activeUser = null;
+    let userCalendar = null;
     for (const user of users) {
       if (user.login(email, pwd)) {
         activeUser = user;
         break;
       }
     }
+    console.log(calendars);
+    for (const calendar of calendars) {
+      if (activeUser.id === calendar.userId) {
+        userCalendar = calendar;
+        break;
+      }
+    }
 
     if (activeUser) {
-      onLogin(activeUser);
+      onLogin(activeUser, userCalendar);
     } else {
       setShowInvalidLogin(true);
     }

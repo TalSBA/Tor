@@ -10,8 +10,8 @@ function Home(props) {
         <div className="side-bar">
           <h1>תור</h1>
           <h4>דרך נוחה ופשוטה לנהל יומן תורים עבור העסק שלך</h4>
-          <Link to="./create-calendar">
-            <Button>יצירת יומן</Button>
+          <Link to="./calendar">
+            <Button>היומן שלי</Button>
           </Link>
         </div>
       </div>
