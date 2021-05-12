@@ -18,7 +18,6 @@ function ServicePicker({ services, onChange }) {
     if (selectedServicesIndex != -1) {
       const newServices = [...selectedServices];
       newServices.splice(selectedServicesIndex, 1);
-      console.log("newServices", newServices);
       setSelectedServices(newServices);
 
       let newTime =
@@ -31,7 +30,6 @@ function ServicePicker({ services, onChange }) {
       let newTime = countTime + parseInt(services[index].duration);
       setCountTime(newTime);
     }
-    console.log(selectedServices);
   }
   return (
     <div className="services">

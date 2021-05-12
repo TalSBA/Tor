@@ -3,12 +3,14 @@
         "id": 1,
         "fullName": "טל שבתאי",
         "email": "taltola36@gmail.com",
-        "password": "123"
+        "password": "123",
+        "calendarId": 1
     },
     {
         "id": 2,
         "fullName": "שי שבתאי",
         "email": "shay.shabshay@gmail.com",
-        "password": "123456"
+        "password": "123456",
+        "calendarId": 2
     }
 ]

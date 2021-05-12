@@ -10,7 +10,6 @@ export function createCalendarService(calendar) {
 
 export function getAvailableHours(date, from, to) {
   //send date to server and get available hours
-  console.log(from, to);
   //for mock data - get all hours between the activity hours on selected day
   const fromHour = from?  from.split(':') : [];
   const toHour = to?  to.split(':'): [];
