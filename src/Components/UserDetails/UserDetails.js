@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { FaCheckCircle } from "react-icons/fa";
 import { GrFormPrevious } from "react-icons/gr";
 import "./UserDetails.css";
 
-function UserDetails({onSubmitUserDetails}) {
+function UserDetails({ onSubmitUserDetails, activeUser }) {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [fullName, setName] = useState("");
   const [validated, setValidated] = useState(false);
+
+  useEffect(() => {
+    if (activeUser) {
+      setEmail(activeUser.email);
+      setName(activeUser.fullName);
+      setPwd(activeUser.passwod);
+    }
+  }, []);
 
   function handleUserDetails(event) {
     const form = event.currentTarget;
@@ -21,7 +30,7 @@ function UserDetails({onSubmitUserDetails}) {
   }
   return (
     <Form
-      className="c-user-deails"
+      className="c-user-details"
       noValidate
       validated={validated}
       onSubmit={handleUserDetails}
@@ -65,9 +74,15 @@ function UserDetails({onSubmitUserDetails}) {
           אנא הזן סיסמא.
         </Form.Control.Feedback>
       </Form.Group>
-      <Button variant="success" type="submit" block>
-        הבא <GrFormPrevious />
-      </Button>
+      {activeUser ? (
+        <Button className="btn-save" type="submit" block>
+          <FaCheckCircle /> שמירת הגדרות
+        </Button>
+      ) : (
+        <Button variant="success" type="submit" block>
+          הבא <GrFormPrevious />
+        </Button>
+      )}
     </Form>
   );
 }

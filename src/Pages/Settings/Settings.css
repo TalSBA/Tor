@@ -21,28 +21,49 @@
   border-bottom: solid 3px black;
   font-weight: bold;
 }
-.p-settings .user-details{
-    padding-top: 20px;
+
+.p-settings .c-user-details,
+.c-calendar-details,
+.c-business-services {
+  padding-top: 20px;
 }
-.p-settings .user-details .form-group input{
-    width: 500px;
+.p-settings .c-user-details .form-group input {
+  width: 500px;
 }
 
 .p-settings .pic-image-btn {
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 10px;
-  }
-  .p-settings .user-details .btn-save{
-    border: none;
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
-    background-color: white;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
 }
 
-.p-settings form img {
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 10px;
-  }
+.p-settings img {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.p-settings .c-calendar-details .form-group input,
+.c-business-services .form-group input {
+  width: 300px;
+}
+
+.p-settings .btn-save {
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
+  background-color: white;
+}
+
+.p-settings .display {
+  display: inline;
+}
+
+.p-settings .validation-error {
+  color: #dc3545;
+  font-size: 80%;
+  margin-top: 0.25rem;
+  width: 100%;
+  display: none;
+}

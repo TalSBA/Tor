@@ -9,6 +9,7 @@ import ActivityHoursModal from "../../Components/ActivityHoursModal/ActivityHour
 import ActivityHours from "../../Model/ActivityHours";
 import DayHours from "../../Model/DayHours";
 import { createCalendarService } from "../../Services/services";
+import CalendarDetails from "../../Components/CalendarDetails/CalendarDetails";
 
 function CreateCalendar({ onSubmitCalendarDetails }) {
   const [showCreateError, setShowCreateError] = useState(false);
@@ -16,6 +17,7 @@ function CreateCalendar({ onSubmitCalendarDetails }) {
   const [bType, setBType] = useState("");
   const [address, setAddress] = useState("");
   const [bName, setBName] = useState("");
+
   const [services, setServices] = useState([]);
   const [modalImagesShow, setModalImagesShow] = useState(false);
   const [modalActivityShow, setModalActivityShow] = useState(false);
@@ -45,6 +47,7 @@ function CreateCalendar({ onSubmitCalendarDetails }) {
   // if (!activeUser) {
   //   return <Redirect to="/login" />;
   // }
+
 
   function handleCalendarDetails(event) {
     const form = event.currentTarget;
@@ -95,61 +98,12 @@ function CreateCalendar({ onSubmitCalendarDetails }) {
         />
       ) : (
         <Form noValidate validated={validated} onSubmit={handleCalendarDetails}>
-          <Form.Row>
-            <Form.Group as={Col} md="6" controlId="formBasicEmail">
-              <Form.Label>שם העסק</Form.Label>
-              <Form.Control
-                required
-                type="text"
-                placeholder="שם העסק"
-                value={bName}
-                onChange={(e) => setBName(e.target.value)}
-              />
-              <Form.Control.Feedback type="invalid">
-                אנא הזן שם עסק.
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group as={Col} md="6" controlId="formBasicEmail">
-              <Form.Label>כתובת</Form.Label>
-              <Form.Control
-                required
-                type="text"
-                placeholder="כתובת"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-              <Form.Control.Feedback type="invalid">
-                אנא הזן כתובת.
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Form.Row>
-          <Form.Row>
-            <Form.Group as={Col} md="6" controlId="formBasicEmail">
-              <Form.Label>תחום</Form.Label>
-              <Form.Control
-                as="select"
-                value={bType}
-                onChange={(e) => setBType(e.target.value)}
-              >
-                <option>מספרה</option>
-                <option>קוסמטיקה</option>
-                <option>אחר</option>
-              </Form.Control>
-            </Form.Group>
-            <Form.Group as={Col} md="6" controlId="formBasicPassword">
-              <Form.Label>טלפון</Form.Label>
-              <Form.Control
-                required
-                type="text"
-                placeholder="טלפון"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
-              <Form.Control.Feedback type="invalid">
-                אנא הזן טלפון.
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Form.Row>
+          <CalendarDetails
+          onNameChange={(name) => setBName(name)}
+          onAddressChange={(address) => setAddress(address)}
+          onTypeChange={(type) => setBType(type)}
+          onPhoneChange={(phone) => setPhone(phone)}
+          />
           <BusinessServices
             services={services}
             onAddService={addService}

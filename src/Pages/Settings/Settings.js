@@ -3,146 +3,63 @@ import { Button, Col, Form, Image, Tab, Tabs } from "react-bootstrap";
 import { FaCheck, FaCheckCircle } from "react-icons/fa";
 import { Redirect } from "react-router";
 import BusinessImagesModal from "../../Components/BusinessImagesModal/BusinessImagesModal";
+import BusinessServices from "../../Components/BusinessServices/BusinessServices";
+import CalendarDetails from "../../Components/CalendarDetails/CalendarDetails";
+import UserDetails from "../../Components/UserDetails/UserDetails";
 import "./Settings.css";
 
 function Settings({ activeUser, calendar }) {
-  const [email, setEmail] = useState("");
-  const [pwd, setPwd] = useState("");
-  const [fullName, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [bType, setBType] = useState("");
-  const [address, setAddress] = useState("");
-  const [bName, setBName] = useState("");
   const [modalImagesShow, setModalImagesShow] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [services, setServices] = useState([]);
 
   const [validated, setValidated] = useState(false);
 
   useEffect(() => {
-    setEmail(activeUser.email);
-    setName(activeUser.fullName);
-    setPhone(calendar.phone);
-    setBType(calendar.type);
-    setAddress(calendar.address);
-    setBName(calendar.name);
-    setSelectedImage(calendar.image)
+    setServices(calendar.services);
+    setSelectedImage(calendar.image);
   }, []);
+  var ID = function () {
+    // Math.random should be unique because of its seeding algorithm.
+    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+    // after the decimal.
+    return "_" + Math.random().toString(36).substr(2, 9);
+  };
+
+  function saveChanges(updatedUser) {
+    console.log(updatedUser);
+  }
+  function addService(service) {
+    setServices(
+      services.concat({
+        id: ID(),
+        name: service.name,
+        duration: service.duration,
+      })
+    );
+  }
+
+  function deleteService(serviceId) {
+    const newServices = services.filter((service) => service.id != serviceId);
+    setServices(newServices);
+  }
 
   if (!activeUser) {
     return <Redirect to="/" />;
   }
   return (
     <div className="p-settings">
-      <Tabs
-        defaultActiveKey="general"
-        transition={false}
-        id="noanim-tab-example"
-      >
+      <Tabs defaultActiveKey="user" transition={false} id="noanim-tab-example">
+        <Tab eventKey="user" title="משתמש">
+          <UserDetails
+            onSubmitUserDetails={(updatedUser) => saveChanges(updatedUser)}
+            activeUser={activeUser}
+          />
+        </Tab>
         <Tab eventKey="general" title="כללי">
-          <Form
-            className="user-details"
-            noValidate
-            // validated={validated}
-            // onSubmit={handleUserDetails}
-          >
-            <Form.Row>
-              <Form.Group as={Col} md={6} controlId="formBasicFullName">
-                <Form.Label>שם מלא (בעל העסק)</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="שם מלא"
-                  value={fullName}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <Form.Control.Feedback type="invalid">
-                  אנא הזן שם מלא.
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} md={6} controlId="formBasicEmail">
-                <Form.Label>שם העסק</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="שם העסק"
-                  value={bName}
-                  onChange={(e) => setBName(e.target.value)}
-                />
-                <Form.Control.Feedback type="invalid">
-                  אנא הזן שם עסק.
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Form.Row>
-            <Form.Row>
-              <Form.Group as={Col} md={6} controlId="formBasicEmail">
-                <Form.Label>אימייל</Form.Label>
-                <Form.Control
-                  required
-                  type="email"
-                  placeholder="הזן אימייל"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <Form.Control.Feedback type="invalid">
-                  אנא הזן אימייל חוקי.
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} md={6} controlId="formBasicEmail">
-                <Form.Label>כתובת</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="כתובת"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                />
-                <Form.Control.Feedback type="invalid">
-                  אנא הזן כתובת.
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Form.Row>
-            <Form.Row>
-              <Form.Group as={Col} md={6} controlId="formBasicPassword">
-                <Form.Label>סיסמא</Form.Label>
-                <Form.Control
-                  required
-                  type="password"
-                  placeholder="סיסמא"
-                  value={pwd}
-                  onChange={(e) => setPwd(e.target.value)}
-                />
-                <Form.Control.Feedback type="invalid">
-                  אנא הזן סיסמא.
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} md={6} controlId="formBasicPassword">
-                <Form.Label>טלפון</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="טלפון"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-                <Form.Control.Feedback type="invalid">
-                  אנא הזן טלפון.
-                </Form.Control.Feedback>
-              </Form.Group>
-            </Form.Row>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>תחום</Form.Label>
-              <Form.Control
-                as="select"
-                value={bType}
-                onChange={(e) => setBType(e.target.value)}
-              >
-                <option>מספרה</option>
-                <option>קוסמטיקה</option>
-                <option>אחר</option>
-              </Form.Control>
-            </Form.Group>
-            <Button
-            className="pic-image-btn"
+          <CalendarDetails calendar={calendar} />
+          <Button
+            className="pic-image-btn tor-btn"
             onClick={() => setModalImagesShow(true)}
           >
             בחר תמונה לעסק
@@ -157,13 +74,30 @@ function Settings({ activeUser, calendar }) {
           ) : (
             ""
           )}
-            <Button className="btn-save" variant="success" type="submit" block>
-              <FaCheckCircle /> שמירת הגדרות
-            </Button>
-          </Form>
+          <Button className="btn-save" type="submit" block>
+            <FaCheckCircle /> שמירת הגדרות
+          </Button>
         </Tab>
-        <Tab eventKey="services" title="שירותים"></Tab>
-        <Tab eventKey="activityHours" title="שעות פעילות"></Tab>
+        <Tab eventKey="services" title="שירותים">
+          <BusinessServices
+            services={services}
+            onAddService={addService}
+            onDeleteService={deleteService}
+          />
+          <p
+            className={`validation-error ${
+              services.length === 0 ? "display" : ""
+            }`}
+          >
+            אנא הוסף שירות אחד לפחות.
+          </p>
+          <Button className="btn-save" type="submit" block>
+            <FaCheckCircle /> שמירת הגדרות
+          </Button>
+        </Tab>
+        <Tab eventKey="activityHours" title="שעות פעילות">
+          
+        </Tab>
       </Tabs>
     </div>
   );

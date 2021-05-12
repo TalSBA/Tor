@@ -1,4 +1,11 @@
-  .c-user-deails .btn > svg > polyline {
+  .c-user-details .btn > svg > polyline {
     stroke: white;
   }
   
+ .c-user-details .btn-save{
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+}
