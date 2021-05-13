@@ -16,6 +16,7 @@ function Settings({
   calendar,
   onChangeUser,
   onChangeGeneralDetails,
+  onChangeServices
 }) {
   const [modalImagesShow, setModalImagesShow] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -126,7 +127,7 @@ function Settings({
           >
             אנא הוסף שירות אחד לפחות.
           </p>
-          <Button className="btn-save" type="submit" block>
+          <Button className="btn-save" type="submit" block onClick={() => onChangeServices(calendar.id, services)}>
             <FaCheckCircle /> שמירת הגדרות
           </Button>
         </Tab>

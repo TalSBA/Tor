@@ -64,20 +64,33 @@ function App() {
     const updatedCalendars = [
       ...calendars.map((calendar) => {
         if (calendar.id == id) {
-          console.log(calendar.id, id);
-          console.log(calendar);
           calendar.name = bName;
           calendar.address = address;
           calendar.type = bType;
           calendar.phone = phone;
           calendar.image = image;
-          calendar = new CalendarModel({...calendar});
+          calendar = new CalendarModel({ ...calendar });
           userCalendar = calendar;
         }
         return calendar;
       }),
     ];
-    console.log(updatedCalendars);
+    setCalendars(updatedCalendars);
+    setUserCalendar(userCalendar);
+  }
+
+  function servicesChangedHandle(calendarId, services) {
+    let userCalendar;
+    const updatedCalendars = [
+      ...calendars.map((calendar) => {
+        if (calendar.id == calendarId) {
+          calendar.services = services;
+          calendar = new CalendarModel({ ...calendar });
+          userCalendar = calendar;
+        }
+        return calendar;
+      }),
+    ];
     setCalendars(updatedCalendars);
     setUserCalendar(userCalendar);
   }
@@ -153,6 +166,9 @@ function App() {
                   phone,
                   image
                 )
+              }
+              onChangeServices={(calendarId, services) =>
+                servicesChangedHandle(calendarId, services)
               }
             />
           </Route>
