@@ -1,5 +1,6 @@
 export default class Calendar {
     constructor(plainCalendar) {
+      this.id = plainCalendar.id;
       this.name = plainCalendar.name;
       this.address = plainCalendar.address;
       this.type = plainCalendar.type;

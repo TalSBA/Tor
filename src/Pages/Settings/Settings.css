@@ -24,10 +24,10 @@
 
 .p-settings .c-user-details,
 .c-calendar-details,
-.c-business-services {
+.c-business-services, .c-day-hours {
   padding-top: 20px;
 }
-.p-settings .c-user-details .form-group input {
+.p-settings .c-user-details .form-group input, .c-day-hours {
   width: 500px;
 }
 

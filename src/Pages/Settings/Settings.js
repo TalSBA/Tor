@@ -5,19 +5,44 @@ import { Redirect } from "react-router";
 import BusinessImagesModal from "../../Components/BusinessImagesModal/BusinessImagesModal";
 import BusinessServices from "../../Components/BusinessServices/BusinessServices";
 import CalendarDetails from "../../Components/CalendarDetails/CalendarDetails";
+import DayHours from "../../Components/DayHours/DayHours";
+import DayHoursModel from "../../Model/DayHours";
 import UserDetails from "../../Components/UserDetails/UserDetails";
+import ActivityHours from "../../Model/ActivityHours";
 import "./Settings.css";
 
-function Settings({ activeUser, calendar }) {
+function Settings({
+  activeUser,
+  calendar,
+  onChangeUser,
+  onChangeGeneralDetails,
+}) {
   const [modalImagesShow, setModalImagesShow] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [services, setServices] = useState([]);
+  const [phone, setPhone] = useState(calendar.phone);
+  const [bType, setBType] = useState(calendar.type);
+  const [address, setAddress] = useState(calendar.address);
+  const [bName, setBName] = useState(calendar.name);
 
   const [validated, setValidated] = useState(false);
+  const [activityHours, setActivityHours] = useState(
+    new ActivityHours([
+      new DayHoursModel("א", "התחלה", "סיום", false),
+      new DayHoursModel("ב", "התחלה", "סיום", false),
+      new DayHoursModel("ג", "התחלה", "סיום", false),
+      new DayHoursModel("ד", "התחלה", "סיום", false),
+      new DayHoursModel("ה", "התחלה", "סיום", false),
+      new DayHoursModel("ו", "התחלה", "סיום", false),
+      new DayHoursModel("ש", "התחלה", "סיום", false),
+    ])
+  );
 
   useEffect(() => {
     setServices(calendar.services);
     setSelectedImage(calendar.image);
+    setActivityHours(new ActivityHours(calendar.activityHours));
+    console.log(new ActivityHours(calendar.activityHours));
   }, []);
   var ID = function () {
     // Math.random should be unique because of its seeding algorithm.
@@ -26,9 +51,6 @@ function Settings({ activeUser, calendar }) {
     return "_" + Math.random().toString(36).substr(2, 9);
   };
 
-  function saveChanges(updatedUser) {
-    console.log(updatedUser);
-  }
   function addService(service) {
     setServices(
       services.concat({
@@ -44,7 +66,7 @@ function Settings({ activeUser, calendar }) {
     setServices(newServices);
   }
 
-  if (!activeUser) {
+  if (!activeUser || !calendar) {
     return <Redirect to="/" />;
   }
   return (
@@ -52,12 +74,20 @@ function Settings({ activeUser, calendar }) {
       <Tabs defaultActiveKey="user" transition={false} id="noanim-tab-example">
         <Tab eventKey="user" title="משתמש">
           <UserDetails
-            onSubmitUserDetails={(updatedUser) => saveChanges(updatedUser)}
+            onSubmitUserDetails={(updatedUser) =>
+              onChangeUser({ ...updatedUser, id: activeUser.id })
+            }
             activeUser={activeUser}
           />
         </Tab>
         <Tab eventKey="general" title="כללי">
-          <CalendarDetails calendar={calendar} />
+          <CalendarDetails
+            calendar={calendar}
+            onNameChange={(name) => setBName(name)}
+            onAddressChange={(address) => setAddress(address)}
+            onTypeChange={(type) => setBType(type)}
+            onPhoneChange={(phone) => setPhone(phone)}
+          />
           <Button
             className="pic-image-btn tor-btn"
             onClick={() => setModalImagesShow(true)}
@@ -74,7 +104,12 @@ function Settings({ activeUser, calendar }) {
           ) : (
             ""
           )}
-          <Button className="btn-save" type="submit" block>
+          <Button
+            className="btn-save"
+            type="submit"
+            block
+            onClick={() => onChangeGeneralDetails(calendar.id, bName, address, bType, phone, selectedImage)}
+          >
             <FaCheckCircle /> שמירת הגדרות
           </Button>
         </Tab>
@@ -96,7 +131,7 @@ function Settings({ activeUser, calendar }) {
           </Button>
         </Tab>
         <Tab eventKey="activityHours" title="שעות פעילות">
-          
+          <DayHours activityHours={activityHours} />
         </Tab>
       </Tabs>
     </div>

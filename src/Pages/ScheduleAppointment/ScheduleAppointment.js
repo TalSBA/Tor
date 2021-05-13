@@ -9,9 +9,9 @@ import ProgressBar from "../../Components/ProgressBar/ProgressBar";
 import CustomerDetails from "../../Components/CustomerDetails/CustomerDetails";
 import ConfirmAppointment from "../../Components/ConfirmAppointment/ConfirmAppointment";
 import { useParams } from "react-router";
-import calendars from "../../data/Calendars.json";
+// import calendars from "../../data/Calendars.json";
 
-function ScheduleAppointment(props) {
+function ScheduleAppointment({calendars}) {
   const { id } = useParams();
   const [calendar, setCalendar] = useState(null);
 

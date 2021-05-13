@@ -26,9 +26,6 @@ function App() {
   );
   const [userCalendar, setUserCalendar] = useState(null);
 
-  useEffect(() => {
-    setUsers(users);
-  });
   function AddUser(user, calendar) {
     setUsers([...users, user]);
     setCalendars([...calendars, calendar]);
@@ -38,6 +35,52 @@ function App() {
     setUserCalendar(calendar);
   }
 
+  function userDetailsChangedHandle(updatedUser) {
+    // console.log(users);
+    let newActiveUser;
+    const updatedUsers = [
+      ...users.map((user) => {
+        if (user.id == updatedUser.id) {
+          console.log(user);
+          user = new UserModel(updatedUser);
+          newActiveUser = user;
+        }
+        return user;
+      }),
+    ];
+    setUsers(updatedUsers);
+    setActiveUser(newActiveUser);
+  }
+
+  function calendarGeneralDetailsChangedHandle(
+    id,
+    bName,
+    address,
+    bType,
+    phone,
+    image
+  ) {
+    let userCalendar;
+    const updatedCalendars = [
+      ...calendars.map((calendar) => {
+        if (calendar.id == id) {
+          console.log(calendar.id, id);
+          console.log(calendar);
+          calendar.name = bName;
+          calendar.address = address;
+          calendar.type = bType;
+          calendar.phone = phone;
+          calendar.image = image;
+          calendar = new CalendarModel({...calendar});
+          userCalendar = calendar;
+        }
+        return calendar;
+      }),
+    ];
+    console.log(updatedCalendars);
+    setCalendars(updatedCalendars);
+    setUserCalendar(userCalendar);
+  }
   return (
     <div className="App">
       <HashRouter>
@@ -83,14 +126,35 @@ function App() {
             <ConfirmCalendar activeUser={activeUser} />
           </Route>
           <Route exact path="/schedule-appointment/:id">
-            <ScheduleAppointment />
+            <ScheduleAppointment calendars={calendars} />
           </Route>
           <Route exact path="/settings">
-          <Menu
+            <Menu
               activeUser={activeUser}
               onLogout={() => setActiveUser(null)}
             />
-            <Settings activeUser={activeUser} calendar={userCalendar} />
+            <Settings
+              activeUser={activeUser}
+              calendar={userCalendar}
+              onChangeUser={(user) => userDetailsChangedHandle(user)}
+              onChangeGeneralDetails={(
+                id,
+                bName,
+                address,
+                bType,
+                phone,
+                image
+              ) =>
+                calendarGeneralDetailsChangedHandle(
+                  id,
+                  bName,
+                  address,
+                  bType,
+                  phone,
+                  image
+                )
+              }
+            />
           </Route>
         </Switch>
       </HashRouter>

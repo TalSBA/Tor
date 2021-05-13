@@ -18,7 +18,7 @@ function CalendarDetails({
      setPhone(calendar.phone);
      setBType(calendar.type);
      setAddress(calendar.address);
-     setBType(calendar.name);
+     setBName(calendar.name);
     }
   }, []);
   return (

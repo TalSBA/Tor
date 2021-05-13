@@ -56,6 +56,7 @@ function CreateCalendar({ onSubmitCalendarDetails }) {
       event.stopPropagation();
     } else {
       onSubmitCalendarDetails({
+        id: ID(),
         name: bName,
         address: address,
         type: bType,
