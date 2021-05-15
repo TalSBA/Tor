@@ -5,7 +5,7 @@ import "./Footer.css";
 function Footer(props) {
   return (
     <div className="c-footer">
-      <Navbar bg="dark" variant="dark">
+      <Navbar>
         <Navbar.Text>&#169; Created By Tal Shabtay </Navbar.Text>
       </Navbar>
     </div>

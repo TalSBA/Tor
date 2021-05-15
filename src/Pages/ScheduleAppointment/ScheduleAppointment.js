@@ -121,7 +121,7 @@ function ScheduleAppointment({calendars}) {
             <div className="business-details-item">
               <FaClock />
               <span className="business-time">
-                {calendar.activityHours.map((dayHour) => {
+                {calendar.activityHours.dayHours.map((dayHour) => {
                   return dayHour.active ? (
                     <span>
                       {dayHour.day} - {dayHour.start} - {dayHour.end} <br />
