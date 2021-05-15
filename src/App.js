@@ -15,6 +15,7 @@ import ScheduleAppointment from "./Pages/ScheduleAppointment/ScheduleAppointment
 import UserModel from "./Model/User";
 import CalendarModel from "./Model/Calendar";
 import Settings from "./Pages/Settings/Settings";
+import { appointments } from "./data/appointments";
 
 function App() {
   const [users, setUsers] = useState(
@@ -25,6 +26,7 @@ function App() {
     calendarsJSON.map((plainCalendar) => new CalendarModel(plainCalendar))
   );
   const [userCalendar, setUserCalendar] = useState(null);
+  const [appointmentsData, setAppointmentsData] = useState(appointments);
 
   function AddUser(user, calendar) {
     setUsers([...users, user]);
@@ -94,7 +96,7 @@ function App() {
     setCalendars(updatedCalendars);
     setUserCalendar(userCalendar);
   }
-  function activityHoursChangedHandle(calendarId, updatedActivityHours){
+  function activityHoursChangedHandle(calendarId, updatedActivityHours) {
     let userCalendar;
     const updatedCalendars = [
       ...calendars.map((calendar) => {
@@ -144,7 +146,14 @@ function App() {
               activeUser={activeUser}
               onLogout={() => setActiveUser(null)}
             />
-            <Calendar activeUser={activeUser} />
+            <Calendar
+              activeUser={activeUser}
+              calendar={userCalendar}
+              appointments={appointmentsData}
+              onUpdateAppointments={(appointments) =>
+                setAppointmentsData(appointments)
+              }
+            />
           </Route>
           <Route exact path="/confirm-calendar">
             <Menu
@@ -185,7 +194,9 @@ function App() {
               onChangeServices={(calendarId, services) =>
                 servicesChangedHandle(calendarId, services)
               }
-              onChangeActivityHours={(calendarId, activityHours) => activityHoursChangedHandle(calendarId, activityHours)}
+              onChangeActivityHours={(calendarId, activityHours) =>
+                activityHoursChangedHandle(calendarId, activityHours)
+              }
             />
           </Route>
         </Switch>
