@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Form, Image, Tab, Tabs } from "react-bootstrap";
+import { Button, Col, Form, Image, Tab, Tabs, Toast } from "react-bootstrap";
 import { FaCheck, FaCheckCircle } from "react-icons/fa";
 import { Redirect } from "react-router";
 import BusinessImagesModal from "../../Components/BusinessImagesModal/BusinessImagesModal";
@@ -26,6 +26,7 @@ function Settings({
   const [bType, setBType] = useState("");
   const [address, setAddress] = useState("");
   const [bName, setBName] = useState("");
+  const [saved, setSaved] = useState(false);
 
   const [activityHours, setActivityHours] = useState(
     new ActivityHours([
@@ -76,12 +77,20 @@ function Settings({
     newActivityHours.dayHours[index] = dayHours;
     setActivityHours(newActivityHours);
   }
-
+  function savedChanges() {
+    setSaved(true);
+    setTimeout(() => {
+      setSaved(false);
+    }, 3000);
+  }
   if (!activeUser || !calendar) {
     return <Redirect to="/" />;
   }
   return (
     <div className="p-settings">
+      <Toast className={` ${saved ? "display" : "saved-toast"} `}>
+        <Toast.Body>הפרטים עודכנו בהצלחה!</Toast.Body>
+      </Toast>
       <Tabs defaultActiveKey="user" transition={false} id="noanim-tab-example">
         <Tab eventKey="user" title="משתמש">
           <UserDetails
@@ -119,7 +128,7 @@ function Settings({
             className="btn-save"
             type="submit"
             block
-            onClick={() =>
+            onClick={() => {
               onChangeGeneralDetails(
                 calendar.id,
                 bName,
@@ -127,8 +136,9 @@ function Settings({
                 bType,
                 phone,
                 selectedImage
-              )
-            }
+              );
+              savedChanges();
+            }}
           >
             <FaCheckCircle /> שמירת הגדרות
           </Button>
@@ -150,7 +160,10 @@ function Settings({
             className="btn-save"
             type="submit"
             block
-            onClick={() => onChangeServices(calendar.id, services)}
+            onClick={() => {
+              onChangeServices(calendar.id, services);
+              savedChanges();
+            }}
           >
             <FaCheckCircle /> שמירת הגדרות
           </Button>
@@ -164,7 +177,10 @@ function Settings({
             className="btn-save"
             type="submit"
             block
-            onClick={() => onChangeActivityHours(calendar.id, activityHours)}
+            onClick={() => {
+              onChangeActivityHours(calendar.id, activityHours);
+              savedChanges();
+            }}
           >
             <FaCheckCircle /> שמירת הגדרות
           </Button>

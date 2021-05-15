@@ -24,10 +24,12 @@
 
 .p-settings .c-user-details,
 .c-calendar-details,
-.c-business-services, .c-day-hours {
+.c-business-services,
+.c-day-hours {
   padding-top: 20px;
 }
-.p-settings .c-user-details .form-group input, .c-day-hours {
+.p-settings .c-user-details .form-group input,
+.c-day-hours {
   width: 500px;
 }
 
@@ -66,4 +68,22 @@
   margin-top: 0.25rem;
   width: 100%;
   display: none;
+}
+
+.p-settings .saved-toast {
+  display: none;
+}
+
+.p-settings .display {
+  display: inline-block;
+}
+
+.p-settings .toast {
+  justify-content: flex-end;
+  background-color: #4BB543;
+  font-weight: bold;
+  color: white;
+  flex-basis: auto;
+  position: fixed;
+  bottom: 0;
 }
