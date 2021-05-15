@@ -1,6 +1,5 @@
 export default class ActivityHours {
-    constructor(dayHours) {
-      this.dayHours = dayHours;
-    }
+  constructor(dayHours) {
+    this.dayHours = dayHours;
   }
-  
+}

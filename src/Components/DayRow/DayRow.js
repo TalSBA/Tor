@@ -1,5 +1,5 @@
 import { Switch } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Form } from "react-bootstrap";
 import DayHours from "../../Model/DayHours";
 
@@ -28,8 +28,17 @@ function DayRow({ dayHours, onSelectHours }) {
   //   const [start, setStart] = useState("התחלה");
   //   const [end, setEnd] = useState("סיום");
 
+  useEffect(() => {
+    console.log("dayHours", dayHours);
+  }, []);
   function onStartChange(e) {
     // setStart(e.target.value);
+    // onSelectHours({
+    //   day: dayHours.day,
+    //   start: e.target.value,
+    //   end: dayHours.end,
+    //   active: dayHours.active,
+    // });
     onSelectHours({
       day: dayHours.day,
       start: e.target.value,
@@ -40,6 +49,12 @@ function DayRow({ dayHours, onSelectHours }) {
 
   function onEndChange(e) {
     // setEnd(e.target.value);
+    // onSelectHours({
+    //   day: dayHours.day,
+    //   start: dayHours.start,
+    //   end: e.target.value,
+    //   active: dayHours.active,
+    // });
     onSelectHours({
       day: dayHours.day,
       start: dayHours.start,
@@ -49,9 +64,12 @@ function DayRow({ dayHours, onSelectHours }) {
   }
 
   function onCheckedChange(e) {
-    onSelectHours(
-      new DayHours(dayHours.day, dayHours.start, dayHours.end, !dayHours.active)
-    );
+    onSelectHours({
+      day: dayHours.day,
+      start: dayHours.start,
+      end: dayHours.end,
+      active: !dayHours.active,
+    });
   }
   return (
     <Form.Row>

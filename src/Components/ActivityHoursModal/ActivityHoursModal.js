@@ -20,17 +20,9 @@ function ActivityHoursModal({
   function updateHours(dayHours) {
     console.log(dayHours);
     var index = activityHours.dayHours.findIndex((x) => x.day === dayHours.day);
-    // if (index === -1) {
-    //   //   setActivityHours([...activityHours, dayHours]);
-    //   const newActivityHours = [...activityHours.dayHours];
-    //   onUpdate([...newActivityHours, dayHours]);
-    // } else {
     const newActivityHours = { ...activityHours };
     newActivityHours.dayHours[index] = dayHours;
-    //   setActivityHours(newActivityHours);
     onChangeHours(newActivityHours);
-    // }
-    console.log(activityHours);
   }
   return (
     <div>

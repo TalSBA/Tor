@@ -16,34 +16,38 @@ function Settings({
   calendar,
   onChangeUser,
   onChangeGeneralDetails,
-  onChangeServices
+  onChangeServices,
+  onChangeActivityHours,
 }) {
   const [modalImagesShow, setModalImagesShow] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [services, setServices] = useState([]);
-  const [phone, setPhone] = useState(calendar.phone);
-  const [bType, setBType] = useState(calendar.type);
-  const [address, setAddress] = useState(calendar.address);
-  const [bName, setBName] = useState(calendar.name);
+  const [phone, setPhone] = useState("");
+  const [bType, setBType] = useState("");
+  const [address, setAddress] = useState("");
+  const [bName, setBName] = useState("");
 
-  const [validated, setValidated] = useState(false);
   const [activityHours, setActivityHours] = useState(
     new ActivityHours([
-      new DayHoursModel("א", "התחלה", "סיום", false),
-      new DayHoursModel("ב", "התחלה", "סיום", false),
-      new DayHoursModel("ג", "התחלה", "סיום", false),
-      new DayHoursModel("ד", "התחלה", "סיום", false),
-      new DayHoursModel("ה", "התחלה", "סיום", false),
-      new DayHoursModel("ו", "התחלה", "סיום", false),
-      new DayHoursModel("ש", "התחלה", "סיום", false),
+      { day: "א", start: "התחלה", end: "סיום", active: false },
+      { day: "ב", start: "התחלה", end: "סיום", active: false },
+      { day: "ג", start: "התחלה", end: "סיום", active: false },
+      { day: "ד", start: "התחלה", end: "סיום", active: false },
+      { day: "ה", start: "התחלה", end: "סיום", active: false },
+      { day: "ו", start: "התחלה", end: "סיום", active: false },
+      { day: "ש", start: "התחלה", end: "סיום", active: false },
     ])
   );
 
   useEffect(() => {
     setServices(calendar.services);
     setSelectedImage(calendar.image);
-    setActivityHours(new ActivityHours(calendar.activityHours));
-    console.log(new ActivityHours(calendar.activityHours));
+    console.log(calendar.activityHours);
+    setActivityHours(calendar.activityHours);
+    setPhone(calendar.phone);
+    setBType(calendar.type);
+    setAddress(calendar.address);
+    setBName(calendar.name);
   }, []);
   var ID = function () {
     // Math.random should be unique because of its seeding algorithm.
@@ -65,6 +69,12 @@ function Settings({
   function deleteService(serviceId) {
     const newServices = services.filter((service) => service.id != serviceId);
     setServices(newServices);
+  }
+  function updateHours(dayHours) {
+    var index = activityHours.dayHours.findIndex((x) => x.day === dayHours.day);
+    const newActivityHours = { ...activityHours };
+    newActivityHours.dayHours[index] = dayHours;
+    setActivityHours(newActivityHours);
   }
 
   if (!activeUser || !calendar) {
@@ -109,7 +119,16 @@ function Settings({
             className="btn-save"
             type="submit"
             block
-            onClick={() => onChangeGeneralDetails(calendar.id, bName, address, bType, phone, selectedImage)}
+            onClick={() =>
+              onChangeGeneralDetails(
+                calendar.id,
+                bName,
+                address,
+                bType,
+                phone,
+                selectedImage
+              )
+            }
           >
             <FaCheckCircle /> שמירת הגדרות
           </Button>
@@ -127,12 +146,28 @@ function Settings({
           >
             אנא הוסף שירות אחד לפחות.
           </p>
-          <Button className="btn-save" type="submit" block onClick={() => onChangeServices(calendar.id, services)}>
+          <Button
+            className="btn-save"
+            type="submit"
+            block
+            onClick={() => onChangeServices(calendar.id, services)}
+          >
             <FaCheckCircle /> שמירת הגדרות
           </Button>
         </Tab>
         <Tab eventKey="activityHours" title="שעות פעילות">
-          <DayHours activityHours={activityHours} />
+          <DayHours
+            activityHours={activityHours}
+            onSelectHours={(dayHours) => updateHours(dayHours)}
+          />
+          <Button
+            className="btn-save"
+            type="submit"
+            block
+            onClick={() => onChangeActivityHours(calendar.id, activityHours)}
+          >
+            <FaCheckCircle /> שמירת הגדרות
+          </Button>
         </Tab>
       </Tabs>
     </div>

@@ -1,3 +1,6 @@
+import DayHours from "../Model/DayHours";
+import ActivityHours from "./ActivityHours";
+
 export default class Calendar {
     constructor(plainCalendar) {
       this.id = plainCalendar.id;

@@ -1,8 +1,8 @@
 export default class DayHours {
-  constructor(day, start, end, active) {
-    this.day = day;
-    this.start = start;
-    this.end = end;
-    this.active = active;
+  constructor(plainDayHours) {
+    this.day = plainDayHours.day;
+    this.start = plainDayHours.start;
+    this.end = plainDayHours.end;
+    this.active = plainDayHours.active;
   }
 }

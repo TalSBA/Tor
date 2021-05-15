@@ -94,6 +94,21 @@ function App() {
     setCalendars(updatedCalendars);
     setUserCalendar(userCalendar);
   }
+  function activityHoursChangedHandle(calendarId, updatedActivityHours){
+    let userCalendar;
+    const updatedCalendars = [
+      ...calendars.map((calendar) => {
+        if (calendar.id == calendarId) {
+          calendar.activityHours = updatedActivityHours;
+          calendar = new CalendarModel({ ...calendar });
+          userCalendar = calendar;
+        }
+        return calendar;
+      }),
+    ];
+    setCalendars(updatedCalendars);
+    setUserCalendar(userCalendar);
+  }
   return (
     <div className="App">
       <HashRouter>
@@ -170,6 +185,7 @@ function App() {
               onChangeServices={(calendarId, services) =>
                 servicesChangedHandle(calendarId, services)
               }
+              onChangeActivityHours={(calendarId, activityHours) => activityHoursChangedHandle(calendarId, activityHours)}
             />
           </Route>
         </Switch>

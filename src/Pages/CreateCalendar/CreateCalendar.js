@@ -26,13 +26,13 @@ function CreateCalendar({ onSubmitCalendarDetails }) {
   const [calendar, setCalendar] = useState(null);
   const [activityHours, setActivityHours] = useState(
     new ActivityHours([
-      new DayHours("א", "התחלה", "סיום", false),
-      new DayHours("ב", "התחלה", "סיום", false),
-      new DayHours("ג", "התחלה", "סיום", false),
-      new DayHours("ד", "התחלה", "סיום", false),
-      new DayHours("ה", "התחלה", "סיום", false),
-      new DayHours("ו", "התחלה", "סיום", false),
-      new DayHours("ש", "התחלה", "סיום", false),
+      { day: "א", start: "התחלה", end: "סיום", active: false },
+      { day: "ב", start: "התחלה", end: "סיום", active: false },
+      { day: "ג", start: "התחלה", end: "סיום", active: false },
+      { day: "ד", start: "התחלה", end: "סיום", active: false },
+      { day: "ה", start: "התחלה", end: "סיום", active: false },
+      { day: "ו", start: "התחלה", end: "סיום", active: false },
+      { day: "ש", start: "התחלה", end: "סיום", active: false },
     ])
   );
   const [activityHoursUpdated, setActivityHoursUpdated] = useState(null);
