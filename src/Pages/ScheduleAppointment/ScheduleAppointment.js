@@ -9,9 +9,10 @@ import ProgressBar from "../../Components/ProgressBar/ProgressBar";
 import CustomerDetails from "../../Components/CustomerDetails/CustomerDetails";
 import ConfirmAppointment from "../../Components/ConfirmAppointment/ConfirmAppointment";
 import { useParams } from "react-router";
+import emailjs from "emailjs-com";
 // import calendars from "../../data/Calendars.json";
 
-function ScheduleAppointment({calendars}) {
+function ScheduleAppointment({ calendars }) {
   const { id } = useParams();
   const [calendar, setCalendar] = useState(null);
 
@@ -57,6 +58,9 @@ function ScheduleAppointment({calendars}) {
       setPaging(nextPage);
       setTextAndPercentByPaging(nextPage);
       setLoadDisabled(true);
+      if (nextPage === 5) {
+        sendConfirmEmail();
+      }
     }
   }
   function handleBackClick() {
@@ -103,11 +107,47 @@ function ScheduleAppointment({calendars}) {
   function newScheduleHandle() {
     setPaging(1);
   }
+
+  function sendConfirmEmail() {
+    var emailParams = {
+      to_name: customerDetails.firstName,
+      to_email: customerDetails.email,
+      business_name: calendar.name,
+      date: selectedDate,
+      time: selectedTime,
+      service: selectedServices.map((service) => service.name).join('+'),
+    };
+    console.log(emailParams);
+
+    emailjs
+      .send(
+        "service_9clhw4d",
+        "template_zcj4pow",
+        emailParams,
+        "user_QYNrz7Ys24SE8mSosxVfW"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  }
+
   return calendar ? (
     <div className="p-schedule-appointment">
       <Container>
         <Row>
-          <div className="cover-image" style={{backgroundImage: `url(${process.env.PUBLIC_URL + calendar.image})`}}>
+          <div
+            className="cover-image"
+            style={{
+              backgroundImage: `url(${
+                process.env.PUBLIC_URL + calendar.image
+              })`,
+            }}
+          >
             <div className="page-title">
               <h1>{calendar.name}</h1>
               <h2>
@@ -128,8 +168,8 @@ function ScheduleAppointment({calendars}) {
                     </span>
                   ) : (
                     <span>
-                    {dayHour.day} - סגור <br />
-                  </span>
+                      {dayHour.day} - סגור <br />
+                    </span>
                   );
                 })}
               </span>
@@ -166,7 +206,11 @@ function ScheduleAppointment({calendars}) {
                 ""
               )}
               {paging === 3 ? (
-                <TimePicker activityHours={calendar.activityHours} date={selectedDate} onTimeSelected={(time) => handleTimePicked(time)} />
+                <TimePicker
+                  activityHours={calendar.activityHours}
+                  date={selectedDate}
+                  onTimeSelected={(time) => handleTimePicked(time)}
+                />
               ) : (
                 ""
               )}
