@@ -7,6 +7,7 @@ import UserDetails from "../../Components/UserDetails/UserDetails";
 import CreateClendar from "../CreateCalendar/CreateCalendar";
 import Calendar from "../../Model/Calendar";
 import ConfirmCalendar from "../ConfirmCalendar/ConfirmCalendar";
+import emailjs from "emailjs-com";
 
 function Signup({ activeUser, onSignup, onLogin }) {
   const [userDetails, setUserDetails] = useState("");
@@ -26,13 +27,43 @@ function Signup({ activeUser, onSignup, onLogin }) {
 
   function signup(calendarDetails) {
     const userID = createUserID();
+    const link = `http://${window.location.hostname}:3000/#/schedule-appointment/${userID}`;
     setUserDetails(new User({ ...userDetails, id: userID }));
-    setCalendarDetails(new Calendar({ ...calendarDetails, userId: userID }));
-    console.log(userDetails);
-    console.log(calendarDetails);
+    setCalendarDetails(
+      new Calendar({ ...calendarDetails, userId: userID, link: link })
+    );
+    // console.log(userDetails);
+    // console.log(calendarDetails);
     onSignup(userDetails, calendarDetails);
     onLogin(userDetails);
     setUserSignedup(true);
+
+    sendConfirmEmail(link);
+  }
+
+  function sendConfirmEmail(link) {
+    var emailParams = {
+      to_name: userDetails.fullName,
+      to_email: userDetails.email,
+      business_name: calendarDetails.name,
+      Schedule_Appointment_Link: link,
+    };
+
+    emailjs
+      .send(
+        "service_9clhw4d",
+        "template_ixt7yze",
+        emailParams,
+        "user_QYNrz7Ys24SE8mSosxVfW"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   }
 
   return (
