@@ -81,17 +81,20 @@ function TimePicker({ activityHours, date, onTimeSelected }) {
       </h5>
 
       <div className="btn-hours">
-        {getAvailableHours(date, dayHours.start, dayHours.end).map((hour) => {
-          return (
-            <Button
-              className={`${selectedTime === hour ? "selected-time" : ""}`}
-              value={hour}
-              onClick={(e) => timeSelected(e)}
-            >
-              {hour} <FaRegClock />
-            </Button>
-          );
-        })}
+        {getAvailableHours(date, dayHours.start, dayHours.end).map(
+          (hour, index) => {
+            return (
+              <Button
+                key={index}
+                className={`${selectedTime === hour ? "selected-time" : ""}`}
+                value={hour}
+                onClick={(e) => timeSelected(e)}
+              >
+                {hour} <FaRegClock />
+              </Button>
+            );
+          }
+        )}
       </div>
     </div>
   );

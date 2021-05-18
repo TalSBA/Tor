@@ -161,13 +161,13 @@ function ScheduleAppointment({ calendars }) {
             <div className="business-details-item">
               <FaClock />
               <span className="business-time">
-                {calendar.activityHours.dayHours.map((dayHour) => {
+                {calendar.activityHours.dayHours.map((dayHour, index) => {
                   return dayHour.active ? (
-                    <span>
+                    <span key={index}>
                       {dayHour.day} - {dayHour.start} - {dayHour.end} <br />
                     </span>
                   ) : (
-                    <span>
+                    <span key={index}>
                       {dayHour.day} - סגור <br />
                     </span>
                   );

@@ -194,8 +194,8 @@ function Calendar({
 
           <IntegratedEditing />
           <WeekView
-            startDayHour={9}
-            endDayHour={19}
+            startDayHour={8}
+            endDayHour={22}
             timeTableCellComponent={TimeTableCell}
             dayScaleCellComponent={DayScaleCell}
           />

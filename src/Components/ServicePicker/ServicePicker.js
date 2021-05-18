@@ -43,6 +43,7 @@ function ServicePicker({ services, onChange }) {
       {services.map((service) => {
         return (
           <Badge
+            key={service.id}
             pill
             className={`${
               selectedServices.includes(service) ? "selected-service" : null
