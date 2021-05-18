@@ -8,6 +8,10 @@ function ConfirmCalendar({ calendar }) {
     console.log(calendar);
   }, []);
 
+  function getRandomCalendar() {
+    return Math.floor(Math.random() * 2) + 1;
+  }
+
   return (
     <div className="p-confirm-calendar">
       <Card>
@@ -36,11 +40,11 @@ function ConfirmCalendar({ calendar }) {
                 מעכשיו הלקוחות שלך יוכלו לקבוע תורים בעצמם דרך הלינק הבא:
                 <br />
                 <a
-                  href={`http://${window.location.hostname}:3000/#/schedule-appointment/${calendar.userId}`}
+                  href={`http://${window.location.hostname}:3000/#/schedule-appointment/${(getRandomCalendar())}`}
                   target="_blank"
                 >
                   http://{window.location.hostname}:3000/#/schedule-appointment/
-                  {calendar.userId}
+                  {getRandomCalendar()}
                 </a>
               </div>
               <Link to="/">
