@@ -12,7 +12,7 @@ import { useParams } from "react-router";
 import emailjs from "emailjs-com";
 // import calendars from "../../data/Calendars.json";
 
-function ScheduleAppointment({ calendars }) {
+function ScheduleAppointment({ calendars, users }) {
   const { id } = useParams();
   const [calendar, setCalendar] = useState(null);
 
@@ -60,6 +60,7 @@ function ScheduleAppointment({ calendars }) {
       setLoadDisabled(true);
       if (nextPage === 5) {
         sendConfirmEmail();
+        sendEmailToBusiness();
       }
     }
   }
@@ -108,6 +109,34 @@ function ScheduleAppointment({ calendars }) {
     setPaging(1);
   }
 
+  function sendEmailToBusiness() {
+    var emailParams = {
+      to_name: calendar.name,
+      to_email: users.filter((user) => user.id === calendar.userId)[0].email,
+      link: "לחץ כאן",
+      message: `תור חדש ממתין לאישור. עבור: ${
+        customerDetails.firstName + " " + customerDetails.lastName
+      } בתאריך: ${selectedDate} בשעה: ${selectedTime}. לאישור -`,
+    };
+    console.log(emailParams);
+
+    emailjs
+      .send(
+        "service_9clhw4d",
+        "template_ixt7yze",
+        emailParams,
+        "user_QYNrz7Ys24SE8mSosxVfW"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  }
+
   function sendConfirmEmail() {
     var emailParams = {
       to_name: customerDetails.firstName,
@@ -115,7 +144,7 @@ function ScheduleAppointment({ calendars }) {
       business_name: calendar.name,
       date: selectedDate,
       time: selectedTime,
-      service: selectedServices.map((service) => service.name).join('+'),
+      service: selectedServices.map((service) => service.name).join("+"),
     };
     console.log(emailParams);
 

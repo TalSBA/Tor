@@ -6,7 +6,12 @@ function Footer(props) {
   return (
     <div className="c-footer">
       <Navbar>
-        <Navbar.Text>&#169; Created By Tal Shabtay </Navbar.Text>
+        <Navbar.Text>
+          &#169; Created By Tal Shabtay{" "}
+        </Navbar.Text>
+        <Navbar.Text  className="dev">
+          Demo mode{" "}
+        </Navbar.Text>
       </Navbar>
     </div>
   );

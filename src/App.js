@@ -163,7 +163,7 @@ function App() {
             <ConfirmCalendar activeUser={activeUser} />
           </Route>
           <Route exact path="/schedule-appointment/:id">
-            <ScheduleAppointment calendars={calendars} />
+            <ScheduleAppointment calendars={calendars} users={users} />
           </Route>
           <Route exact path="/settings">
             <Menu

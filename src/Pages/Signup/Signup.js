@@ -14,6 +14,11 @@ function Signup({ activeUser, onSignup, onLogin }) {
   const [calendarDetails, setCalendarDetails] = useState("");
   const [userSignedup, setUserSignedup] = useState(false);
 
+
+  function getRandomCalendar() {
+    return Math.floor(Math.random() * 2) + 1;
+  }
+
   var createUserID = function () {
     // Math.random should be unique because of its seeding algorithm.
     // Convert it to base 36 (numbers + letters), and grab the first 9 characters
@@ -27,7 +32,7 @@ function Signup({ activeUser, onSignup, onLogin }) {
 
   function signup(calendarDetails) {
     const userID = createUserID();
-    const link = `http://${window.location.hostname}:3000/#/schedule-appointment/${userID}`;
+    const link = `http://${window.location.hostname}:3000/#/schedule-appointment/${getRandomCalendar()}`;
     setUserDetails(new User({ ...userDetails, id: userID }));
     setCalendarDetails(
       new Calendar({ ...calendarDetails, userId: userID, link: link })
