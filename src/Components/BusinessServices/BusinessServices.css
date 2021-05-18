@@ -4,12 +4,12 @@
 }
 
 .c-business-services > .form-group > .btn {
-  background-color: green;
+  background-color: rgb(114, 167, 170);
   border: none;
 }
 
 .c-business-services > .badge {
-  border: solid 2px green;
+  border: solid 2px rgb(114, 167, 170);
   margin: 10px;
   padding: 8px;
   font-size: 14px;

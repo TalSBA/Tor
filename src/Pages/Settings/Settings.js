@@ -41,14 +41,15 @@ function Settings({
   );
 
   useEffect(() => {
-    setServices(calendar.services);
-    setSelectedImage(calendar.image);
-    console.log(calendar.activityHours);
-    setActivityHours(calendar.activityHours);
-    setPhone(calendar.phone);
-    setBType(calendar.type);
-    setAddress(calendar.address);
-    setBName(calendar.name);
+    if (calendar) {
+      setServices(calendar.services);
+      setSelectedImage(calendar.image);
+      setActivityHours(calendar.activityHours);
+      setPhone(calendar.phone);
+      setBType(calendar.type);
+      setAddress(calendar.address);
+      setBName(calendar.name);
+    }
   }, []);
   var ID = function () {
     // Math.random should be unique because of its seeding algorithm.

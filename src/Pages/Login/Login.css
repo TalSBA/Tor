@@ -1,12 +1,59 @@
 .p-login {
-  width: 500px;
+  width: 70%;
   margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  height: 500px;
 }
 
 .p-login .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 30px;
+  border: none;
 }
 
-.p-login .card-header {
-    text-align: center;
+.p-login .img_card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: url("./images/booking-event-calendar_23-2148551245.jpg");
+  width: 80%;
+  background-position: center;
+}
+
+.p-login .txt_card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), -12px 0 20px 0 rgba(0, 0, 0, 0.19);
+  width: 70%;
+}
+.p-login .txt_card h1 {
+  font-weight: bold;
+}
+
+.p-login .txt_card .card-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.p-login .txt_card .card-text .form-group {
+  font-size: 14px;
+}
+.p-login .txt_card .card-text .form-control{
+  border: solid 2px lightgray;
+  font-size: 14px;
+}
+.p-login .txt_card .card-text .form-label {
+  font-weight: bold;
+}
+.p-login .txt_card .btn {
+  background-color: rgb(114, 167, 170);
+  font-weight: bold;
+}
+
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .p-login .img_card {
+    display: none;
+  }
+  .p-login .txt_card{
+   width: 100%;
+  }
 }

@@ -1,12 +1,62 @@
 .p-signup {
-  width: 500px;
+  width: 100%;
   margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  height: 600px;
 }
 
 .p-signup .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 30px;
+  border: none;
 }
 
-.p-signup .card-header {
+.p-signup .txt_card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), -12px 0 20px 0 rgba(0, 0, 0, 0.19);
+  width: 70%;
+  overflow-y: scroll;
+}
+
+.p-signup .txt_card h1, .subtitle {
+  font-weight: bold;
   text-align: center;
+}
+
+.p-signup .img_card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-image: url("./images/booking-event-calendar_23-2148551245.jpg");
+  width: 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.p-signup .txt_card .card-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.p-signup .txt_card .card-text .form-group {
+  font-size: 14px;
+}
+.p-signup .txt_card .card-text .form-control{
+  border: solid 2px lightgray;
+  font-size: 14px;
+}
+.p-signup .txt_card .card-text .form-label {
+  font-weight: bold;
+}
+.p-signup .txt_card .btn {
+  background-color: rgb(114, 167, 170);
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .p-signup .img_card {
+    display: none;
+  }
+  .p-signup .txt_card{
+   width: 100%;
+  }
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Form, Button } from "react-bootstrap";
+import { Card, Form, Button, Row, Container, Col } from "react-bootstrap";
 import { Redirect } from "react-router";
 import User from "../../Model/User";
 import "./Signup.css";
@@ -47,7 +47,7 @@ function Signup({ activeUser, onSignup, onLogin }) {
       to_email: userDetails.email,
       // business_name: calendarDetails.name,
       // Schedule_Appointment_Link: link,
-      message: `יומן חדש נוצר עבור העסק: ${calendarDetails.name}.\n על מנת לאפשר ללקוחות לקבוע תור יש להשתמש בלינק הבא: ${link}`
+      message: `יומן חדש נוצר עבור העסק: ${calendarDetails.name}.\n על מנת לאפשר ללקוחות לקבוע תור יש להשתמש בלינק הבא: ${link}`,
     };
 
     emailjs
@@ -68,36 +68,36 @@ function Signup({ activeUser, onSignup, onLogin }) {
   }
 
   return (
-    <div className="p-signup">
+    <Container>
       {userSignedup ? (
         <ConfirmCalendar calendar={calendarDetails} />
       ) : (
-        <Card>
-          <Card.Header>
-            {" "}
-            <h1>ברוכים הבאים לתור!</h1>
-            <p>אנא מלא את הפרטים הבאים</p>
-          </Card.Header>
-          <Card.Body>
-            <Card.Text>
-              {userDetails ? (
-                <CreateClendar
-                  onSubmitCalendarDetails={(calendarDetails) =>
-                    signup(calendarDetails)
-                  }
-                />
-              ) : (
-                <UserDetails
-                  onSubmitUserDetails={(userDetails) =>
-                    setUserDetails(userDetails)
-                  }
-                />
-              )}
-            </Card.Text>
-          </Card.Body>
-        </Card>
+        <div className="p-signup">
+          <Card className="img_card"></Card>
+          <Card className="txt_card">
+            <Card.Body>
+              <Card.Text>
+                <h1>ברוכים הבאים לתור!</h1>
+                <p className="subtitle">אנא מלא את הפרטים הבאים</p>
+                {userDetails ? (
+                  <CreateClendar
+                    onSubmitCalendarDetails={(calendarDetails) =>
+                      signup(calendarDetails)
+                    }
+                  />
+                ) : (
+                  <UserDetails
+                    onSubmitUserDetails={(userDetails) =>
+                      setUserDetails(userDetails)
+                    }
+                  />
+                )}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
       )}
-    </div>
+    </Container>
   );
 }
 

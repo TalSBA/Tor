@@ -40,16 +40,15 @@ function Login({ users, calendars, activeUser, onLogin }) {
 
   return (
     <div className="p-login">
-      <Card>
-        <Card.Header>
-          {" "}
-          <h1>התחבר</h1>
-          <p>
-            או <Link to="/signup">צור חשבון חדש</Link>
-          </p>
-        </Card.Header>
+      <Card className="img_card">
+      </Card>
+      <Card className="txt_card">
         <Card.Body>
           <Card.Text>
+          <h1>התחבר</h1>
+          <p>
+            <span style={{color: 'rgb(182, 182, 182)', fontWeight: 'bold'}}>אין לך חשבון? </span><Link to="/signup" style={{color: 'rgb(114, 167, 170)', fontWeight: 'bold'}}>צור חשבון חדש</Link>
+          </p>
             {showInvalidLogin ? (
               <Alert variant="danger">שם משתמש או סיסמא לא נכונים!</Alert>
             ) : null}
