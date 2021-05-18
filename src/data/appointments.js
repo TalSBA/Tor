@@ -5,14 +5,17 @@ var yyyy = today.getFullYear();
 
 export const appointments = [
   {
+    costumerName: "טל בן עמי",
     title: "ג'ל - טל בן עמי",
     startDate: new Date(mm + "/" + dd + "/" + yyyy + " 08:30"),
     endDate: new Date(mm + "/" + dd + "/" + yyyy + " 10:30"),
     id: 0,
     location: "Room 1",
     Status: "Approved",
+    email: "taltola36@gmail.com"
   },
   {
+    costumerName: "טל שבתאי",
     title: "גבות - טל שבתאי",
     startDate: new Date(
       mm +
@@ -33,8 +36,10 @@ export const appointments = [
     id: 1,
     location: "Room 1",
     Status: "Pending",
+    email: "tal.shabtay1409@gmail.com"
   },
   {
+    costumerName: "מיכאלה בן דוד",
     title: "טיפול פנים - מיכאלה",
     startDate: new Date(
       mm +
@@ -55,8 +60,10 @@ export const appointments = [
     id: 2,
     location: "Room 2",
     Status: "Approved",
+    email: "taltola36@gmail.com"
   },
   {
+    costumerName: "שני כהן",
     title: "גבות + שפם - שני",
     startDate: new Date(
       mm +
@@ -77,8 +84,10 @@ export const appointments = [
     id: 3,
     location: "Room 2",
     Status: "Approved",
+    email: "taltola36@gmail.com"
   },
   {
+    costumerName: "אורטל דוד",
     title: "פדיקור + ג'ל - אורטל",
         startDate: new Date(
       mm +
@@ -99,8 +108,10 @@ export const appointments = [
     id: 4,
     location: "Room 2",
     Status: "Pending",
+    email: "tal.shabtay2609@gmail.com"
   },
   {
+    costumerName: "סופיה פרידמן",
     title: "הסרת שיער - סופיה",
     startDate: new Date(
       mm +
@@ -121,8 +132,10 @@ export const appointments = [
     id: 5,
     location: "Room 2",
     Status: "Pending",
+    email: "tal.shabtay2609@gmail.com"
   },
   {
+    costumerName: "סופיה פרידמן",
     title: "הסרת שיער - סופיה",
     startDate: new Date(
       mm +
@@ -143,5 +156,6 @@ export const appointments = [
     id: 5,
     location: "Room 2",
     Status: "Pending",
+    email: "taltola369@gmail.com"
   },
 ];

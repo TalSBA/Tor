@@ -25,6 +25,8 @@ import { fade } from "@material-ui/core/styles/colorManipulator";
 // import { appointments } from "../../data/appointments";
 import "./Calendar.css";
 import { makeStyles } from "@material-ui/core";
+import emailjs from "emailjs-com";
+import { Button } from "react-bootstrap";
 
 const currentDate = new Date();
 
@@ -70,34 +72,41 @@ function Calendar({
   const onCommitChanges = React.useCallback(
     ({ added, changed, deleted }) => {
       let updatedData = [];
-      console.log(changed);
+      let changedAppointment = null;
+      let deletedAppointment = null;
       if (added) {
+        console.log(added);
         const startingAddedId =
           data.length > 0 ? data[data.length - 1].id + 1 : 0;
-        // setData([...data, { id: startingAddedId, ...added }]);
         updatedData = [...data, { id: startingAddedId, ...added }];
       }
       if (changed) {
-        // setData(
-        //   data.map((appointment) =>
-        //     changed[appointment.id]
-        //       ? { ...appointment, ...changed[appointment.id] }
-        //       : appointment
-        //   )
-        // );
-        updatedData = data.map((appointment) =>
-          changed[appointment.id]
+        console.log(changed);
+        data.map((appointment) => {
+          return changed[appointment.id]
+            ? (changedAppointment = appointment)
+            : null;
+        });
+        updatedData = data.map((appointment) => {
+          return changed[appointment.id]
             ? { ...appointment, ...changed[appointment.id] }
-            : appointment
-        );
+            : appointment;
+        });
       }
       if (deleted !== undefined) {
-        // setData(data.filter((appointment) => appointment.id !== deleted));
+        data.map((appointment) => {
+          return appointment.id === deleted
+            ? (deletedAppointment = appointment)
+            : null;
+        });
         updatedData = data.filter((appointment) => appointment.id !== deleted);
       }
       setIsAppointmentBeingCreated(false);
       setData(updatedData);
       onUpdateAppointments(updatedData);
+      if (changedAppointment) sendChangedAppointmentDetails(changedAppointment);
+      if (deletedAppointment) sendDeletedAppointmentEmail(deletedAppointment);
+
     },
     [setData, setIsAppointmentBeingCreated, data]
   );
@@ -134,9 +143,39 @@ function Calendar({
     return <AppointmentForm.CommandButton id={id} {...restProps} />;
   }, []);
 
-  React.useEffect(() => {
-    console.log(data);
-  }, [data]);
+  function sendDeletedAppointmentEmail(appointment){
+    var emailParams = {
+      to_name: appointment.costumerName,
+      to_email: appointment.email,
+      message: `התור שלך ל ${calendar.name} בוטל!`,
+    };
+    sendEmail(emailParams);
+  }
+  function sendChangedAppointmentDetails(appointment) {
+    var emailParams = {
+      to_name: appointment.costumerName,
+      to_email: appointment.email,
+      message: `התור שלך ל ${calendar.name} עודכן ל ${appointment.startDate} - ${appointment.endDate}.`,
+    };
+    sendEmail(emailParams)
+  }
+  function sendEmail(params){
+    emailjs
+    .send(
+      "service_9clhw4d",
+      "template_ixt7yze",
+      params,
+      "user_QYNrz7Ys24SE8mSosxVfW"
+    )
+    .then(
+      (result) => {
+        console.log(result.text);
+      },
+      (error) => {
+        console.log(error.text);
+      }
+    );
+  }
   if (!activeUser) {
     return <Redirect to="/login" />;
   }
@@ -149,8 +188,8 @@ function Calendar({
           />
           <EditingState
             onCommitChanges={onCommitChanges}
-            addedAppointment={addedAppointment}
-            onAddedAppointmentChange={onAddedAppointmentChange}
+            // addedAppointment={addedAppointment}
+            // onAddedAppointmentChange={onAddedAppointmentChange}
           />
 
           <IntegratedEditing />

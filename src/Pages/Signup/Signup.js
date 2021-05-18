@@ -38,15 +38,16 @@ function Signup({ activeUser, onSignup, onLogin }) {
     onLogin(userDetails);
     setUserSignedup(true);
 
-    sendConfirmEmail(link);
+    sendConfirmEmail(calendarDetails, link);
   }
 
-  function sendConfirmEmail(link) {
+  function sendConfirmEmail(calendarDetails, link) {
     var emailParams = {
       to_name: userDetails.fullName,
       to_email: userDetails.email,
-      business_name: calendarDetails.name,
-      Schedule_Appointment_Link: link,
+      // business_name: calendarDetails.name,
+      // Schedule_Appointment_Link: link,
+      message: `יומן חדש נוצר עבור העסק: ${calendarDetails.name}.\n על מנת לאפשר ללקוחות לקבוע תור יש להשתמש בלינק הבא: ${link}`
     };
 
     emailjs
