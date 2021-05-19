@@ -3,6 +3,9 @@
   display: flex;
   align-items: center;
 }
+.c-business-services .services-badge{
+  overflow-y: scroll;
+}
 
 .c-business-services > .form-group > .btn {
   background-color: rgb(114, 167, 170);
@@ -10,7 +13,7 @@
   width: fit-content;
 }
 
-.c-business-services > .badge {
+.c-business-services > .services-badge > .badge {
   border: solid 2px rgb(114, 167, 170);
   margin: 10px;
   padding: 8px;
@@ -19,13 +22,13 @@
   box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);
 }
 
-.c-business-services > .badge:hover {
+.c-business-services > .services-badge > .badge:hover {
   transform: scale(1.02);
   box-shadow: 0px 0px 80px -25px rgba(0, 0, 0, 0.5);
   transition: all 0.4s;
 }
 
-.c-business-services > .badge > svg {
+.c-business-services > .services-badge > .badge > svg {
   padding-left: 5px;
   cursor: pointer;
 }

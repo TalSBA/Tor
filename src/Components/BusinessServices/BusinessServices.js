@@ -38,12 +38,11 @@ function BusinessServices({ servicesSettings, onSubmitServices }) {
         duration: duration,
       })
     );
+    setServiceName("");
   }
 
   function removeService(serviceId) {
-    console.log(services);
     const newServices = services.filter((service) => service.id != serviceId);
-    console.log(newServices);
     setServices(newServices);
   }
 
@@ -83,15 +82,17 @@ function BusinessServices({ servicesSettings, onSubmitServices }) {
           <FaPlus />
         </Button>
       </Form.Group>
-      {services &&
-        services.map((service) => {
-          return (
-            <Badge pill>
-              <FaTimes onClick={() => removeService(service.id)} />
-              {service.name} {service.duration}
-            </Badge>
-          );
-        })}
+      <div className="services-badge">
+        {services &&
+          services.map((service) => {
+            return (
+              <Badge pill>
+                <FaTimes onClick={() => removeService(service.id)} />
+                {service.name} {service.duration}
+              </Badge>
+            );
+          })}
+      </div>
       <p
         className={`validation-error ${services.length === 0 ? "display" : ""}`}
       >

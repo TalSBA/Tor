@@ -14,11 +14,11 @@
   margin-bottom: 10px;
 }
 
-.p-create-calendar form{
+.p-create-calendar form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .p-create-calendar .validation-error {
@@ -33,7 +33,9 @@
   display: inline;
 }
 
-
+.p-create-calendar img {
+  width: 100%;
+}
 
 /* .p-create-calendar .tor-btn {
   color: white;

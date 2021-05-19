@@ -1,9 +1,8 @@
 .p-signup {
-  width: 60%;
+  width: 70%;
   margin: 50px auto;
   display: flex;
   justify-content: center;
-  height: 500px;
 }
 
 .p-signup .card {
@@ -14,7 +13,6 @@
 .p-signup .txt_card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), -12px 0 20px 0 rgba(0, 0, 0, 0.19);
   width: 60%;
-  overflow-y: scroll;
 }
 
 .p-signup .txt_card h1, .subtitle {
@@ -75,5 +73,12 @@
   }
   .p-signup .txt_card{
    width: 100%;
+   height: 600px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .p-signup .txt_card{
+   height: 500px;
   }
 }
