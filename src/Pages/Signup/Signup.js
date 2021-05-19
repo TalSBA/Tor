@@ -49,7 +49,7 @@ function Signup({ activeUser, onSignup, onLogin }) {
     // console.log(userDetails);
     // console.log(calendarDetails);
     onSignup(userDetails, calendarDetails);
-    onLogin(userDetails);
+    onLogin(userDetails, calendarDetails);
     setUserSignedup(true);
 
     sendConfirmEmail(calendarDetails, link);

@@ -137,7 +137,7 @@ function App() {
           <Route exact path="/signup">
             <Signup
               activeUser={activeUser}
-              onLogin={(user) => setActiveUser(user)}
+              onLogin={(user, calendar) => handleLogin(user, calendar)}
               onSignup={(user, calendar) => AddUser(user, calendar)}
             />
           </Route>
