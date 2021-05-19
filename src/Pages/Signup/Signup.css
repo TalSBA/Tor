@@ -1,9 +1,9 @@
 .p-signup {
-  width: 100%;
+  width: 60%;
   margin: 50px auto;
   display: flex;
   justify-content: center;
-  height: 600px;
+  height: 500px;
 }
 
 .p-signup .card {
@@ -13,7 +13,7 @@
 
 .p-signup .txt_card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), -12px 0 20px 0 rgba(0, 0, 0, 0.19);
-  width: 70%;
+  width: 60%;
   overflow-y: scroll;
 }
 
@@ -25,15 +25,18 @@
 .p-signup .img_card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-image: url("./images/booking-event-calendar_23-2148551245.jpg");
-  width: 60%;
+  width: 65%;
   background-position: center;
   background-repeat: no-repeat;
 }
 .p-signup .txt_card .card-text {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
+  height: 400px;
   padding-bottom: 20px;
+  position: relative;
+
 }
 
 .p-signup .txt_card .card-text .form-group {
@@ -49,8 +52,23 @@
 .p-signup .txt_card .btn {
   background-color: rgb(114, 167, 170);
   font-weight: bold;
+  width: 100%;
+  border: none;
+
+}
+.p-signup .back-btn {
+  background-color: white !important;
+  border: none;
+  color: black !important;
+  display: flex;
+  justify-content: flex-start;
 }
 
+.p-signup .txt_card .btn-next{
+  /* margin-top: 50px; */
+  position: absolute;
+  bottom: 0;
+}
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   .p-signup .img_card {

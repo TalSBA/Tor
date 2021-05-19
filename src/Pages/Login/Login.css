@@ -1,5 +1,5 @@
 .p-login {
-  width: 70%;
+  width: 60%;
   margin: 50px auto;
   display: flex;
   justify-content: center;
@@ -14,13 +14,14 @@
 .p-login .img_card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-image: url("./images/booking-event-calendar_23-2148551245.jpg");
-  width: 80%;
+  width: 60%;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 .p-login .txt_card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), -12px 0 20px 0 rgba(0, 0, 0, 0.19);
-  width: 70%;
+  width: 35%;
 }
 .p-login .txt_card h1 {
   font-weight: bold;

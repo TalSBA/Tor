@@ -1,0 +1,22 @@
+.p-confirm-calendar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px;
+}
+
+.p-confirm-calendar .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), -12px 0 20px 0 rgba(0, 0, 0, 0.19);
+  width: 30%;
+}
+
+.p-confirm-calendar .card img {
+  width: 100%;
+}
+
+.p-confirm-calendar .card .btn {
+  background-color: rgb(114, 167, 170);
+  font-weight: bold;
+  border: none;
+}

@@ -10,8 +10,11 @@ import ActivityHours from "../../Model/ActivityHours";
 import DayHours from "../../Model/DayHours";
 import { createCalendarService } from "../../Services/services";
 import CalendarDetails from "../../Components/CalendarDetails/CalendarDetails";
+import { GrFormPrevious } from "react-icons/gr";
+import { FaForward } from "react-icons/fa";
+import defaultImg from "./images/564-5640631_file-antu-insert-image-svg-insert-image-here.png";
 
-function CreateCalendar({ onSubmitCalendarDetails }) {
+function CreateCalendar({ onSubmitCalendarDetails, paging, setPaging }) {
   const [showCreateError, setShowCreateError] = useState(false);
   const [phone, setPhone] = useState("");
   const [bType, setBType] = useState("");
@@ -21,7 +24,7 @@ function CreateCalendar({ onSubmitCalendarDetails }) {
   const [services, setServices] = useState([]);
   const [modalImagesShow, setModalImagesShow] = useState(false);
   const [modalActivityShow, setModalActivityShow] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState({src: defaultImg});
   const [validated, setValidated] = useState(false);
   const [calendar, setCalendar] = useState(null);
   const [activityHours, setActivityHours] = useState(
@@ -36,6 +39,7 @@ function CreateCalendar({ onSubmitCalendarDetails }) {
     ])
   );
   const [activityHoursUpdated, setActivityHoursUpdated] = useState(null);
+  // const [paging, setPaging] = useState(1);
 
   var ID = function () {
     // Math.random should be unique because of its seeding algorithm.
@@ -48,6 +52,19 @@ function CreateCalendar({ onSubmitCalendarDetails }) {
   //   return <Redirect to="/login" />;
   // }
 
+  function handleNextClick() {
+    if (paging >= 1) {
+      const nextPage = paging + 1;
+      setPaging(nextPage);
+      console.log(nextPage);
+    }
+  }
+  // function handleBackClick() {
+  //   if (paging > 1) {
+  //     const backToPage = paging - 1;
+  //     setPaging(backToPage);
+  //   }
+  // }
 
   function handleCalendarDetails(event) {
     const form = event.currentTarget;
@@ -98,74 +115,115 @@ function CreateCalendar({ onSubmitCalendarDetails }) {
           calendarId={createCalendarService(calendar)}
         />
       ) : (
-        <Form noValidate validated={validated} onSubmit={handleCalendarDetails}>
-          <CalendarDetails
-          onNameChange={(name) => setBName(name)}
-          onAddressChange={(address) => setAddress(address)}
-          onTypeChange={(type) => setBType(type)}
-          onPhoneChange={(phone) => setPhone(phone)}
-          />
-          <BusinessServices
-            services={services}
-            onAddService={addService}
-            onDeleteService={deleteService}
-          />
-          <p
-            className={`validation-error ${
-              services.length === 0 ? "display" : ""
-            }`}
+        <div>
+        
+          <Form
+            noValidate
+            validated={validated}
+            onSubmit={handleCalendarDetails}
           >
-            אנא הוסף שירות אחד לפחות.
-          </p>
-          <Button
-            className="pic-image-btn tor-btn"
-            onClick={() => setModalImagesShow(true)}
-          >
-            בחר תמונה לעסק
-          </Button>
-          <BusinessImagesModal
-            show={modalImagesShow}
-            onHide={() => setModalImagesShow(false)}
-            onSubmitImage={(image) => setSelectedImage(image)}
-          />
-          {selectedImage ? (
-            <Image width="150px" height="100px" src={selectedImage.src} />
-          ) : (
-            ""
-          )}
-          <Button
-            className="pic-image-btn tor-btn"
-            onClick={() => setModalActivityShow(true)}
-          >
-            עדכן שעות פעילות
-          </Button>
-          <ActivityHoursModal
-            activityHours={activityHours}
-            show={modalActivityShow}
-            onHide={() => setModalActivityShow(false)}
-            onUpdate={(activityHours) => {
-              updateActivityHours(activityHours);
-            }}
-            onChangeHours={(activityHours) => setActivityHours(activityHours)}
-          />
-          {activityHours && activityHoursUpdated
-            ? activityHours.dayHours.map((dayHours, index) => {
-                return dayHours.active ? (
-                  <div key={index}>
-                    <label>
-                      {dayHours.day} {dayHours.start} - {dayHours.end}
-                    </label>
-                    <br />
-                  </div>
+            {paging === 1 ? (
+              <CalendarDetails
+                onNameChange={(name) => setBName(name)}
+                onAddressChange={(address) => setAddress(address)}
+                onTypeChange={(type) => setBType(type)}
+                onPhoneChange={(phone) => setPhone(phone)}
+              />
+            ) : (
+              ""
+            )}
+            {paging === 2 ? (
+              <div>
+                <BusinessServices
+                  services={services}
+                  onAddService={addService}
+                  onDeleteService={deleteService}
+                />
+                <p
+                  className={`validation-error ${
+                    services.length === 0 ? "display" : ""
+                  }`}
+                >
+                  אנא הוסף שירות אחד לפחות.
+                </p>
+              </div>
+            ) : (
+              ""
+            )}
+            {paging === 3 ? (
+              <div>
+                <Button
+                  className="pic-image-btn tor-btn"
+                  onClick={() => setModalImagesShow(true)}
+                >
+                  בחר תמונה לעסק
+                </Button>
+                <BusinessImagesModal
+                  show={modalImagesShow}
+                  onHide={() => setModalImagesShow(false)}
+                  onSubmitImage={(image) => setSelectedImage(image)}
+                />
+                {selectedImage ? (
+                  <Image width="300px" height="300px" src={selectedImage.src} />
                 ) : (
                   ""
-                );
-              })
-            : ""}
-          <Button variant="success" type="submit" block>
-            <span>הרשם</span>
-          </Button>
-        </Form>
+                )}
+              </div>
+            ) : (
+              ""
+            )}
+            {paging === 4 ? (
+              <div>
+                <Button
+                  className="pic-image-btn tor-btn"
+                  onClick={() => setModalActivityShow(true)}
+                >
+                  עדכן שעות פעילות
+                </Button>
+                <ActivityHoursModal
+                  activityHours={activityHours}
+                  show={modalActivityShow}
+                  onHide={() => setModalActivityShow(false)}
+                  onUpdate={(activityHours) => {
+                    updateActivityHours(activityHours);
+                  }}
+                  onChangeHours={(activityHours) =>
+                    setActivityHours(activityHours)
+                  }
+                />
+                {activityHours
+                  ? activityHours.dayHours.map((dayHours, index) => {
+                      return (
+                        <div key={index}>
+                          <label>
+                            {dayHours.day} {dayHours.start} - {dayHours.end}
+                          </label>
+                          <br />
+                        </div>
+                      );
+                    })
+                  : ""}
+              </div>
+            ) : (
+              ""
+            )}
+            {paging === 5 ? (
+              <Button variant="success" type="submit" block>
+                <span>הרשם</span>
+              </Button>
+            ) : (
+              <Button
+                variant="success"
+                className="btn-next"
+                onClick={handleNextClick}
+              >
+                <span>
+                  הבא <GrFormPrevious />
+                </span>
+              </Button>
+            )}
+          </Form>
+        </div>
       )}
     </div>
   );

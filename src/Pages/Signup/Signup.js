@@ -8,12 +8,13 @@ import CreateClendar from "../CreateCalendar/CreateCalendar";
 import Calendar from "../../Model/Calendar";
 import ConfirmCalendar from "../ConfirmCalendar/ConfirmCalendar";
 import emailjs from "emailjs-com";
+import { FaForward } from "react-icons/fa";
 
 function Signup({ activeUser, onSignup, onLogin }) {
   const [userDetails, setUserDetails] = useState("");
   const [calendarDetails, setCalendarDetails] = useState("");
   const [userSignedup, setUserSignedup] = useState(false);
-
+  const [paging, setPaging] = useState(0);
 
   function getRandomCalendar() {
     return Math.floor(Math.random() * 2) + 1;
@@ -26,13 +27,21 @@ function Signup({ activeUser, onSignup, onLogin }) {
     return "_" + Math.random().toString(36).substr(2, 9);
   };
 
-  // if (activeUser) {
-  //   return <Redirect to="/" />;
-  // }
+  function handleBackClick() {
+    if (paging >= 1) {
+      const backToPage = paging - 1;
+      setPaging(backToPage);
+      if(backToPage === 0){
+        setUserDetails(null);
+      }
+    }
+  }
 
   function signup(calendarDetails) {
     const userID = createUserID();
-    const link = `http://${window.location.hostname}:3000/#/schedule-appointment/${getRandomCalendar()}`;
+    const link = `http://${
+      window.location.hostname
+    }:3000/#/schedule-appointment/${getRandomCalendar()}`;
     setUserDetails(new User({ ...userDetails, id: userID }));
     setCalendarDetails(
       new Calendar({ ...calendarDetails, userId: userID, link: link })
@@ -73,28 +82,43 @@ function Signup({ activeUser, onSignup, onLogin }) {
   }
 
   return (
-    <Container>
+    <div>
       {userSignedup ? (
         <ConfirmCalendar calendar={calendarDetails} />
       ) : (
         <div className="p-signup">
           <Card className="img_card"></Card>
           <Card className="txt_card">
+            {paging >= 1 ? (
+              <Button onClick={handleBackClick} className="back-btn">
+                <FaForward />
+              </Button>
+            ) : (
+              ""
+            )}
             <Card.Body>
               <Card.Text>
-                <h1>ברוכים הבאים לתור!</h1>
-                <p className="subtitle">אנא מלא את הפרטים הבאים</p>
-                {userDetails ? (
+                {userDetails? (
                   <CreateClendar
                     onSubmitCalendarDetails={(calendarDetails) =>
                       signup(calendarDetails)
                     }
+                    paging={paging}
+                    setPaging={(page) => {
+                      setPaging(page);
+                      console.log(paging);
+                    }}
                   />
                 ) : (
                   <UserDetails
                     onSubmitUserDetails={(userDetails) =>
                       setUserDetails(userDetails)
                     }
+                    paging={paging}
+                    setPaging={(page) => {
+                      setPaging(page);
+                      console.log(paging);
+                    }}
                   />
                 )}
               </Card.Text>
@@ -102,7 +126,7 @@ function Signup({ activeUser, onSignup, onLogin }) {
           </Card>
         </div>
       )}
-    </Container>
+    </div>
   );
 }
 

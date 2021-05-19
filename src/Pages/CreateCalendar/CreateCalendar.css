@@ -1,3 +1,6 @@
+.btn-next svg > polyline {
+  stroke: white;
+}
 
 .p-create-calendar .pic-image-btn {
   display: block;
@@ -11,6 +14,13 @@
   margin-bottom: 10px;
 }
 
+.p-create-calendar form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .p-create-calendar .validation-error {
   color: #dc3545;
   font-size: 80%;
@@ -22,6 +32,8 @@
 .p-create-calendar .display {
   display: inline;
 }
+
+
 
 /* .p-create-calendar .tor-btn {
   color: white;

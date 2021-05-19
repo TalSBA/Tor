@@ -4,7 +4,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { GrFormPrevious } from "react-icons/gr";
 import "./UserDetails.css";
 
-function UserDetails({ onSubmitUserDetails, activeUser }) {
+function UserDetails({ onSubmitUserDetails, activeUser, paging, setPaging }) {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [fullName, setName] = useState("");
@@ -25,6 +25,7 @@ function UserDetails({ onSubmitUserDetails, activeUser }) {
       event.stopPropagation();
     } else {
       onSubmitUserDetails({ fullName: fullName, email: email, password: pwd });
+      setPaging(1);
     }
     setValidated(true);
   }
@@ -35,6 +36,14 @@ function UserDetails({ onSubmitUserDetails, activeUser }) {
       validated={validated}
       onSubmit={handleUserDetails}
     >
+      {!activeUser ? (
+        <div>
+          <h1>ברוכים הבאים לתור!</h1>
+          <p className="subtitle">אנא מלא את הפרטים הבאים</p>
+        </div>
+      ) : (
+        ""
+      )}
       <Form.Group controlId="formBasicFullName">
         <Form.Label>שם מלא</Form.Label>
         <Form.Control
