@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Tor/static/css/main.1e0b3db2.chunk.css",
+    "main.css": "/Tor/static/css/main.0115be86.chunk.css",
     "main.js": "/Tor/static/js/main.d64199ed.chunk.js",
     "main.js.map": "/Tor/static/js/main.d64199ed.chunk.js.map",
     "runtime-main.js": "/Tor/static/js/runtime-main.52d58658.js",
@@ -10,7 +10,7 @@
     "static/js/2.b3dbb0dc.chunk.js.map": "/Tor/static/js/2.b3dbb0dc.chunk.js.map",
     "index.html": "/Tor/index.html",
     "static/css/2.532d390c.chunk.css.map": "/Tor/static/css/2.532d390c.chunk.css.map",
-    "static/css/main.1e0b3db2.chunk.css.map": "/Tor/static/css/main.1e0b3db2.chunk.css.map",
+    "static/css/main.0115be86.chunk.css.map": "/Tor/static/css/main.0115be86.chunk.css.map",
     "static/js/2.b3dbb0dc.chunk.js.LICENSE.txt": "/Tor/static/js/2.b3dbb0dc.chunk.js.LICENSE.txt",
     "static/media/564-5640631_file-antu-insert-image-svg-insert-image-here.4cdf98c9.png": "/Tor/static/media/564-5640631_file-antu-insert-image-svg-insert-image-here.4cdf98c9.png",
     "static/media/ActivityHoursModal.css": "/Tor/static/media/Alef-Regular.556531b6.ttf",
@@ -27,7 +27,7 @@
     "static/js/runtime-main.52d58658.js",
     "static/css/2.532d390c.chunk.css",
     "static/js/2.b3dbb0dc.chunk.js",
-    "static/css/main.1e0b3db2.chunk.css",
+    "static/css/main.0115be86.chunk.css",
     "static/js/main.d64199ed.chunk.js"
   ]
 }
