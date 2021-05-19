@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Image, Modal, Row } from "react-bootstrap";
 import "./BusinessImagesModal.css";
 import gelImg from "./images/gel.jpg";
@@ -14,9 +14,19 @@ import { GrFormPrevious } from "react-icons/gr";
 
 const imageList = [gelImg, barberImg, barberGentelImg, cosmetics, resturant];
 
-function BusinessImagesModal({ onSubmitImage, onHide, show }) {
+function BusinessImagesModal({
+  selectedImageSettings,
+  onSubmitImage,
+  onHide,
+  show,
+}) {
   const [imageSelected, setSelectedImage] = useState({ src: defaultImg });
 
+  useEffect(() => {
+    if (selectedImageSettings) {
+      setSelectedImage(selectedImageSettings);
+    }
+  }, []);
   function handleSelectImage() {
     onHide();
   }
@@ -42,11 +52,19 @@ function BusinessImagesModal({ onSubmitImage, onHide, show }) {
         ""
       )}
       <div></div>
-      <Button variant="success" className="btn-next" onClick={() => onSubmitImage(imageSelected)}>
-        <span>
-          הבא <GrFormPrevious />
-        </span>
-      </Button>
+      {!selectedImageSettings ? (
+        <Button
+          variant="success"
+          className="btn-next"
+          onClick={() => onSubmitImage(imageSelected)}
+        >
+          <span>
+            הבא <GrFormPrevious />
+          </span>
+        </Button>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

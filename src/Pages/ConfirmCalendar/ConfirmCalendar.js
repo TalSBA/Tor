@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 import "./ConfirmCalendar.css";
 
 function ConfirmCalendar({ calendar }) {
-  useEffect(() => {
-    console.log(calendar);
-  }, []);
 
   function getRandomCalendar() {
     return Math.floor(Math.random() * 2) + 1;

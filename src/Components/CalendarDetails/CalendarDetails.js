@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Form } from "react-bootstrap";
 import { GrFormPrevious } from "react-icons/gr";
 
-function CalendarDetails({ calendar, onSubmitCalendarDetails }) {
+function CalendarDetails({
+  calendar,
+  onSubmitCalendarDetails,
+  onNameChange,
+  onAddressChange,
+  onTypeChange,
+  onPhoneChange,
+}) {
   const [phone, setPhone] = useState("");
   const [bType, setBType] = useState("");
   const [address, setAddress] = useState("");
@@ -10,6 +17,7 @@ function CalendarDetails({ calendar, onSubmitCalendarDetails }) {
   const [validated, setValidated] = useState(false);
 
   useEffect(() => {
+    console.log(onNameChange);
     if (calendar) {
       setPhone(calendar.phone);
       setBType(calendar.type);
@@ -26,6 +34,7 @@ function CalendarDetails({ calendar, onSubmitCalendarDetails }) {
       event.preventDefault();
       event.stopPropagation();
     } else {
+      console.log(bName);
       onSubmitCalendarDetails({
         name: bName,
         address: address,
@@ -47,7 +56,10 @@ function CalendarDetails({ calendar, onSubmitCalendarDetails }) {
               type="text"
               placeholder="שם העסק"
               value={bName}
-              onChange={(e) => setBName(e.target.value)}
+              onChange={(e) => {
+                setBName(e.target.value);
+                if(onNameChange) {onNameChange(e.target.value)};
+              }}
             />
             <Form.Control.Feedback type="invalid">
               אנא הזן שם עסק.
@@ -60,7 +72,10 @@ function CalendarDetails({ calendar, onSubmitCalendarDetails }) {
               type="text"
               placeholder="כתובת"
               value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              onChange={(e) => {
+                setAddress(e.target.value);
+                if(onAddressChange) {onAddressChange(e.target.value)};
+              }}
             />
             <Form.Control.Feedback type="invalid">
               אנא הזן כתובת.
@@ -73,7 +88,10 @@ function CalendarDetails({ calendar, onSubmitCalendarDetails }) {
             <Form.Control
               as="select"
               value={bType}
-              onChange={(e) => setBType(e.target.value)}
+              onChange={(e) => {
+                setBType(e.target.value);
+                if(onTypeChange) {onTypeChange(e.target.value)};
+              }}
             >
               <option>מספרה</option>
               <option>קוסמטיקה</option>
@@ -87,16 +105,23 @@ function CalendarDetails({ calendar, onSubmitCalendarDetails }) {
               type="text"
               placeholder="טלפון"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => {
+                setPhone(e.target.value);
+                if(onPhoneChange) {onPhoneChange(e.target.value)};
+              }}
             />
             <Form.Control.Feedback type="invalid">
               אנא הזן טלפון.
             </Form.Control.Feedback>
           </Form.Group>
         </Form.Row>
-        <Button className="btn-next" variant="success" type="submit" block>
-          הבא <GrFormPrevious />
-        </Button>
+        {!calendar ? (
+          <Button className="btn-next" variant="success" type="submit" block>
+            הבא <GrFormPrevious />
+          </Button>
+        ) : (
+          ""
+        )}
       </Form>
     </div>
   );

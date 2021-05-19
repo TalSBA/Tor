@@ -14,7 +14,6 @@ import { GrFormPrevious } from "react-icons/gr";
 import { FaForward } from "react-icons/fa";
 
 function CreateCalendar({ onSubmitCalendarDetails, paging, setPaging }) {
-  const [showCreateError, setShowCreateError] = useState(false);
   const [calendarDetails, setCalendarDetails] = useState("");
 
   const [services, setServices] = useState([]);
@@ -51,7 +50,6 @@ function CreateCalendar({ onSubmitCalendarDetails, paging, setPaging }) {
     if (paging >= 1) {
       const nextPage = paging + 1;
       setPaging(nextPage);
-      console.log(nextPage);
     }
   }
   // function handleBackClick() {
@@ -64,9 +62,9 @@ function CreateCalendar({ onSubmitCalendarDetails, paging, setPaging }) {
   function handleCreatedCalendar(event) {
     onSubmitCalendarDetails({
       id: ID(),
-      name: calendarDetails.bName,
+      name: calendarDetails.name,
       address: calendarDetails.address,
-      type: calendarDetails.bType,
+      type: calendarDetails.type,
       phone: calendarDetails.phone,
       services: services,
       image: selectedImage
@@ -180,22 +178,6 @@ function CreateCalendar({ onSubmitCalendarDetails, paging, setPaging }) {
             </div>
           ) : (
             ""
-          )}
-          {paging === 5 ? (
-            <Button variant="success" type="submit" block>
-              <span>הרשם</span>
-            </Button>
-          ) : (
-            ""
-            // <Button
-            //   variant="success"
-            //   className="btn-next"
-            //   onClick={handleNextClick}
-            // >
-            //   <span>
-            //     הבא <GrFormPrevious />
-            //   </span>
-            // </Button>
           )}
           {/* </Form> */}
         </div>

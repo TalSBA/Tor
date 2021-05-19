@@ -34,9 +34,11 @@
 }
 
 .p-settings .pic-image-btn {
-  display: block;
-  margin: 0 auto;
   margin-bottom: 10px;
+  background-color: rgb(114, 167, 170);
+  font-weight: bold;
+  width: 100%;
+  border: none;
 }
 
 .p-settings img {
@@ -80,7 +82,7 @@
 
 .p-settings .toast {
   justify-content: flex-end;
-  background-color: #4BB543;
+  background-color: #4bb543;
   font-weight: bold;
   color: white;
   flex-basis: auto;

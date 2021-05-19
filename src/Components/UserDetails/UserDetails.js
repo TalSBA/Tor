@@ -25,7 +25,8 @@ function UserDetails({ onSubmitUserDetails, activeUser, paging, setPaging }) {
       event.stopPropagation();
     } else {
       onSubmitUserDetails({ fullName: fullName, email: email, password: pwd });
-      setPaging(1);
+      console.log(paging);
+      if (paging >= 0) setPaging(1);
     }
     setValidated(true);
   }

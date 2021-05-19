@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Button, Badge, Col } from "react-bootstrap";
 import "./BusinessServices.css";
-import { FaPlus, FaTimes } from "react-icons/fa";
+import { FaCheckCircle, FaPlus, FaTimes } from "react-icons/fa";
 import { GrFormPrevious } from "react-icons/gr";
 
 function BusinessServices({ servicesSettings, onSubmitServices }) {
@@ -11,7 +11,7 @@ function BusinessServices({ servicesSettings, onSubmitServices }) {
 
   useEffect(() => {
     if (servicesSettings) setServices(servicesSettings);
-  }, servicesSettings);
+  }, []);
   var ID = function () {
     // Math.random should be unique because of its seeding algorithm.
     // Convert it to base 36 (numbers + letters), and grab the first 9 characters
@@ -41,15 +41,16 @@ function BusinessServices({ servicesSettings, onSubmitServices }) {
   }
 
   function removeService(serviceId) {
+    console.log(services);
     const newServices = services.filter((service) => service.id != serviceId);
+    console.log(newServices);
     setServices(newServices);
   }
 
   function handleServices(event) {
     if (services.length > 0) {
       onSubmitServices(services);
-    }
-    else{
+    } else {
       event.preventDefault();
       event.stopPropagation();
     }
@@ -96,9 +97,22 @@ function BusinessServices({ servicesSettings, onSubmitServices }) {
       >
         אנא הוסף שירות אחד לפחות.
       </p>
-      <Button className="btn-next" variant="success" type="submit" block>
-        הבא <GrFormPrevious />
-      </Button>
+      {!servicesSettings ? (
+        <Button className="btn-next" variant="success" type="submit" block>
+          הבא <GrFormPrevious />
+        </Button>
+      ) : (
+        <Button
+          className="btn-save"
+          type="submit"
+          block
+          onClick={(event) => {
+            handleServices(event);
+          }}
+        >
+          <FaCheckCircle /> שמירת הגדרות
+        </Button>
+      )}
     </Form>
   );
 }

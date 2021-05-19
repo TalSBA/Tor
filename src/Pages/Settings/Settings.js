@@ -58,20 +58,20 @@ function Settings({
     return "_" + Math.random().toString(36).substr(2, 9);
   };
 
-  function addService(service) {
-    setServices(
-      services.concat({
-        id: ID(),
-        name: service.name,
-        duration: service.duration,
-      })
-    );
-  }
+  // function addService(service) {
+  //   setServices(
+  //     services.concat({
+  //       id: ID(),
+  //       name: service.name,
+  //       duration: service.duration,
+  //     })
+  //   );
+  // }
 
-  function deleteService(serviceId) {
-    const newServices = services.filter((service) => service.id != serviceId);
-    setServices(newServices);
-  }
+  // function deleteService(serviceId) {
+  //   const newServices = services.filter((service) => service.id != serviceId);
+  //   setServices(newServices);
+  // }
   function updateHours(dayHours) {
     var index = activityHours.dayHours.findIndex((x) => x.day === dayHours.day);
     const newActivityHours = { ...activityHours };
@@ -95,9 +95,10 @@ function Settings({
       <Tabs defaultActiveKey="user" transition={false} id="noanim-tab-example">
         <Tab eventKey="user" title="משתמש">
           <UserDetails
-            onSubmitUserDetails={(updatedUser) =>
-              onChangeUser({ ...updatedUser, id: activeUser.id })
-            }
+            onSubmitUserDetails={(updatedUser) => {
+              onChangeUser({ ...updatedUser, id: activeUser.id });
+              savedChanges();
+            }}
             activeUser={activeUser}
           />
         </Tab>
@@ -116,15 +117,11 @@ function Settings({
             בחר תמונה לעסק
           </Button>
           <BusinessImagesModal
+            selectedImageSettings={calendar.image}
             show={modalImagesShow}
             onHide={() => setModalImagesShow(false)}
             onSubmitImage={(image) => setSelectedImage(image)}
           />
-          {selectedImage ? (
-            <Image width="150px" height="100px" src={selectedImage.src} />
-          ) : (
-            ""
-          )}
           <Button
             className="btn-save"
             type="submit"
@@ -146,28 +143,14 @@ function Settings({
         </Tab>
         <Tab eventKey="services" title="שירותים">
           <BusinessServices
-            services={services}
-            onAddService={addService}
-            onDeleteService={deleteService}
-          />
-          <p
-            className={`validation-error ${
-              services.length === 0 ? "display" : ""
-            }`}
-          >
-            אנא הוסף שירות אחד לפחות.
-          </p>
-          <Button
-            className="btn-save"
-            type="submit"
-            block
-            onClick={() => {
+            servicesSettings={calendar.services}
+            onSubmitServices={(services) => {
+              // setServices(services);
+              console.log(services);
               onChangeServices(calendar.id, services);
               savedChanges();
             }}
-          >
-            <FaCheckCircle /> שמירת הגדרות
-          </Button>
+          />
         </Tab>
         <Tab eventKey="activityHours" title="שעות פעילות">
           <DayHours
