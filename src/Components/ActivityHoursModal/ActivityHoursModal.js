@@ -14,12 +14,8 @@ function ActivityHoursModal({
 }) {
   //   const [activityHours, setActivityHours] = useState([]);
 
-  useEffect(() => {
-    console.log(activityHours);
-  }, []);
 
   function updateHours(dayHours) {
-    console.log(dayHours);
     var index = activityHours.dayHours.findIndex((x) => x.day === dayHours.day);
     const newActivityHours = { ...activityHours };
     newActivityHours.dayHours[index] = dayHours;

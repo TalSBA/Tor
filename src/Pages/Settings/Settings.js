@@ -145,8 +145,6 @@ function Settings({
           <BusinessServices
             servicesSettings={calendar.services}
             onSubmitServices={(services) => {
-              // setServices(services);
-              console.log(services);
               onChangeServices(calendar.id, services);
               savedChanges();
             }}

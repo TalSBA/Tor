@@ -4,8 +4,6 @@ import "./ConfirmAppointment.css";
 
 function ConfirmAppointment({ services, date, time, customerDetails, scheduleNewAppointment }) {
   useEffect(() => {
-    console.log("services", services);
-    console.log("customer", customerDetails);
   }, []);
   return (
     <div className="confirm-appointment">

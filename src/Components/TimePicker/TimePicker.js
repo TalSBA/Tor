@@ -28,7 +28,6 @@ function TimePicker({ activityHours, date, onTimeSelected }) {
   const [dayHours, setDayHours] = useState("");
 
   useEffect(() => {
-    console.log(hebDay());
     setDayHours(
       activityHours.dayHours.filter((dayHours) => dayHours.day === hebDay())[0]
     );

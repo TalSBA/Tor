@@ -4,7 +4,6 @@ import DayRow from "../DayRow/DayRow";
 
 function DayHours({ activityHours, onSelectHours }) {
   useEffect(() => {
-    console.log("activityHours", activityHours.dayHours);
   }, []);
   return (
     <Form className="c-day-hours">

@@ -38,12 +38,10 @@ function App() {
   }
 
   function userDetailsChangedHandle(updatedUser) {
-    // console.log(users);
     let newActiveUser;
     const updatedUsers = [
       ...users.map((user) => {
         if (user.id == updatedUser.id) {
-          console.log(user);
           user = new UserModel(updatedUser);
           newActiveUser = user;
         }

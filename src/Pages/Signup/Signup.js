@@ -46,8 +46,6 @@ function Signup({ activeUser, onSignup, onLogin }) {
     setCalendarDetails(
       new Calendar({ ...calendarDetails, userId: userID, link: link })
     );
-    // console.log(userDetails);
-    // console.log(calendarDetails);
     onSignup(userDetails, calendarDetails);
     onLogin(userDetails, calendarDetails);
     setUserSignedup(true);
@@ -98,7 +96,7 @@ function Signup({ activeUser, onSignup, onLogin }) {
             )}
             <Card.Body>
               <Card.Text>
-                {paging >= 1? (
+                {paging >= 1 ? (
                   <CreateClendar
                     onSubmitCalendarDetails={(calendarDetails) =>
                       signup(calendarDetails)
@@ -106,7 +104,6 @@ function Signup({ activeUser, onSignup, onLogin }) {
                     paging={paging}
                     setPaging={(page) => {
                       setPaging(page);
-                      console.log(paging);
                     }}
                   />
                 ) : paging === 0 ? (
@@ -117,10 +114,11 @@ function Signup({ activeUser, onSignup, onLogin }) {
                     paging={paging}
                     setPaging={(page) => {
                       setPaging(page);
-                      console.log(paging);
                     }}
                   />
-                ): ""}
+                ) : (
+                  ""
+                )}
               </Card.Text>
             </Card.Body>
           </Card>

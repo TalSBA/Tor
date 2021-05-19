@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Image, Modal, Row } from "react-bootstrap";
 import "./BusinessImagesModal.css";
-import gelImg from "./images/gel.jpg";
-import barberImg from "./images/london-barbershop.jpg";
-import barberGentelImg from "./images/gentelmen barbershop.jpg";
-import cosmetics from "./images/cosmetics.jpg";
-import resturant from "./images/resturant.jpg";
 import ImagePicker from "react-image-picker";
 import "react-image-picker/dist/index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import defaultImg from "./images/564-5640631_file-antu-insert-image-svg-insert-image-here.png";
 import { GrFormPrevious } from "react-icons/gr";
 
-const imageList = [gelImg, barberImg, barberGentelImg, cosmetics, resturant];
-
+const imageList = ["/gel.jpg", "/london-barbershop.jpg", "/gentelmen barbershop.jpg", "/cosmetics.jpg", "/resturant.jpg"];
+const relImagesPath = window.location.origin + "/images";
 function BusinessImagesModal({
   selectedImageSettings,
   onSubmitImage,
   onHide,
   show,
 }) {
-  const [imageSelected, setSelectedImage] = useState({ src: defaultImg });
+  const [imageSelected, setSelectedImage] = useState({
+    src: relImagesPath + "/564-5640631_file-antu-insert-image-svg-insert-image-here.png",
+  });
 
   useEffect(() => {
     if (selectedImageSettings) {
-      setSelectedImage(selectedImageSettings);
+      setSelectedImage({src: selectedImageSettings});
     }
   }, []);
   function handleSelectImage() {
@@ -36,7 +32,10 @@ function BusinessImagesModal({
         <Modal.Body className="show-grid">
           <Container>
             <ImagePicker
-              images={imageList.map((image, i) => ({ src: image, value: i }))}
+              images={imageList.map((image, i) => ({
+                src: relImagesPath + image,
+                value: i,
+              }))}
               onPick={setSelectedImage}
             />
           </Container>
@@ -46,11 +45,7 @@ function BusinessImagesModal({
           <Button onClick={onHide}>סגור</Button>
         </Modal.Footer>
       </Modal>
-      {imageSelected ? (
-        <Image width="300px" height="300px" src={imageSelected.src} />
-      ) : (
-        ""
-      )}
+      {imageSelected ? <Image src={imageSelected.src} /> : ""}
       <div></div>
       {!selectedImageSettings ? (
         <Button

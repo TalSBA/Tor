@@ -45,6 +45,8 @@
   display: block;
   margin: 0 auto;
   margin-bottom: 10px;
+  width: 200px !important;
+  height: 200px !important;
 }
 
 .p-settings .c-calendar-details .form-group input,

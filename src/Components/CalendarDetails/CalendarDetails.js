@@ -17,7 +17,6 @@ function CalendarDetails({
   const [validated, setValidated] = useState(false);
 
   useEffect(() => {
-    console.log(onNameChange);
     if (calendar) {
       setPhone(calendar.phone);
       setBType(calendar.type);
@@ -27,14 +26,12 @@ function CalendarDetails({
   }, []);
 
   function handleCalendarDetails(event) {
-    console.log(event);
     const form = event.currentTarget;
     event.preventDefault();
     if (!form.checkValidity()) {
       event.preventDefault();
       event.stopPropagation();
     } else {
-      console.log(bName);
       onSubmitCalendarDetails({
         name: bName,
         address: address,

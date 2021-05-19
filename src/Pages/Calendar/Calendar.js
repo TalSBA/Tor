@@ -75,13 +75,11 @@ function Calendar({
       let changedAppointment = null;
       let deletedAppointment = null;
       if (added) {
-        console.log(added);
         const startingAddedId =
           data.length > 0 ? data[data.length - 1].id + 1 : 0;
         updatedData = [...data, { id: startingAddedId, ...added }];
       }
       if (changed) {
-        console.log(changed);
         data.map((appointment) => {
           return changed[appointment.id]
             ? (changedAppointment = appointment)

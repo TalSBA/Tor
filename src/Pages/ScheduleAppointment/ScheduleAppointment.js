@@ -27,13 +27,6 @@ function ScheduleAppointment({ calendars, users }) {
   const [loadDisabled, setLoadDisabled] = useState(true);
 
   useEffect(() => {
-    console.log("calendars", calendars);
-    console.log("id", id);
-    console.log(
-      "filter",
-      calendars.filter((calendar) => calendar.id == id)
-    );
-
     setCalendar(calendars.filter((calendar) => calendar.id == id)[0]);
   }, []);
 
@@ -118,7 +111,6 @@ function ScheduleAppointment({ calendars, users }) {
         customerDetails.firstName + " " + customerDetails.lastName
       } בתאריך: ${selectedDate} בשעה: ${selectedTime}. לאישור -`,
     };
-    console.log(emailParams);
 
     emailjs
       .send(
