@@ -167,7 +167,11 @@ function CreateCalendar({ onSubmitCalendarDetails, paging, setPaging }) {
                 ? activityHours.dayHours.map((dayHours, index) => {
                     return (
                       <div key={index}>
-                        <label>
+                        <label
+                          style={{
+                            color: `${dayHours.active ? "blue" : "black"}`,
+                          }}
+                        >
                           {dayHours.day} {dayHours.start} - {dayHours.end}
                         </label>
                         <br />
