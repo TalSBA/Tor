@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/Tor/static/css/main.518fc75b.chunk.css",
-    "main.js": "/Tor/static/js/main.b4c71f30.chunk.js",
-    "main.js.map": "/Tor/static/js/main.b4c71f30.chunk.js.map",
+    "main.css": "/Tor/static/css/main.c81057b4.chunk.css",
+    "main.js": "/Tor/static/js/main.4c5d043d.chunk.js",
+    "main.js.map": "/Tor/static/js/main.4c5d043d.chunk.js.map",
     "runtime-main.js": "/Tor/static/js/runtime-main.52d58658.js",
     "runtime-main.js.map": "/Tor/static/js/runtime-main.52d58658.js.map",
     "static/css/2.532d390c.chunk.css": "/Tor/static/css/2.532d390c.chunk.css",
@@ -10,24 +10,19 @@
     "static/js/2.b3dbb0dc.chunk.js.map": "/Tor/static/js/2.b3dbb0dc.chunk.js.map",
     "index.html": "/Tor/index.html",
     "static/css/2.532d390c.chunk.css.map": "/Tor/static/css/2.532d390c.chunk.css.map",
-    "static/css/main.518fc75b.chunk.css.map": "/Tor/static/css/main.518fc75b.chunk.css.map",
+    "static/css/main.c81057b4.chunk.css.map": "/Tor/static/css/main.c81057b4.chunk.css.map",
     "static/js/2.b3dbb0dc.chunk.js.LICENSE.txt": "/Tor/static/js/2.b3dbb0dc.chunk.js.LICENSE.txt",
-    "static/media/564-5640631_file-antu-insert-image-svg-insert-image-here.4cdf98c9.png": "/Tor/static/media/564-5640631_file-antu-insert-image-svg-insert-image-here.4cdf98c9.png",
     "static/media/ActivityHoursModal.css": "/Tor/static/media/Alef-Regular.556531b6.ttf",
     "static/media/Home.css": "/Tor/static/media/stock-photo-close-up-of-pin-on-calendar.f6811475.jpg",
     "static/media/Signup.css": "/Tor/static/media/booking-event-calendar_23-2148551245.7a5d7536.jpg",
     "static/media/calendar-icon.1c59757a.png": "/Tor/static/media/calendar-icon.1c59757a.png",
-    "static/media/index.css": "/Tor/static/media/checkbcd1a436590360ed53ac2f46c76e43e4.de390e5f.png",
-    "static/media/cosmetics.35408373.jpg": "/Tor/static/media/cosmetics.35408373.jpg",
-    "static/media/gentelmen barbershop.d6460290.jpg": "/Tor/static/media/gentelmen barbershop.d6460290.jpg",
-    "static/media/london-barbershop.dcfebb1a.jpg": "/Tor/static/media/london-barbershop.dcfebb1a.jpg",
-    "static/media/resturant.ed811dac.jpg": "/Tor/static/media/resturant.ed811dac.jpg"
+    "static/media/index.css": "/Tor/static/media/checkbcd1a436590360ed53ac2f46c76e43e4.de390e5f.png"
   },
   "entrypoints": [
     "static/js/runtime-main.52d58658.js",
     "static/css/2.532d390c.chunk.css",
     "static/js/2.b3dbb0dc.chunk.js",
-    "static/css/main.518fc75b.chunk.css",
-    "static/js/main.b4c71f30.chunk.js"
+    "static/css/main.c81057b4.chunk.css",
+    "static/js/main.4c5d043d.chunk.js"
   ]
 }
