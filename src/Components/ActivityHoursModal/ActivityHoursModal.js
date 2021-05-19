@@ -10,6 +10,7 @@ function ActivityHoursModal({
   onHide,
   onUpdate,
   onChangeHours,
+  onSubmitActivityHours
 }) {
   //   const [activityHours, setActivityHours] = useState([]);
 
@@ -39,6 +40,15 @@ function ActivityHoursModal({
           <Button onClick={onHide}>סגור</Button>
         </Modal.Footer>
       </Modal>
+      <Button
+        variant="success"
+        className="btn-next"
+        onClick={() => onSubmitActivityHours()}
+      >
+        <span>
+          הרשם
+        </span>
+      </Button>
     </div>
   );
 }

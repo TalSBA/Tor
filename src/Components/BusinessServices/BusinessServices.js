@@ -1,25 +1,62 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Button, Badge, Col } from "react-bootstrap";
 import "./BusinessServices.css";
 import { FaPlus, FaTimes } from "react-icons/fa";
+import { GrFormPrevious } from "react-icons/gr";
 
-function BusinessServices({ services, onAddService, onDeleteService }) {
+function BusinessServices({ servicesSettings, onSubmitServices }) {
   const [duration, setDuration] = useState("15 דקות");
   const [serviceName, setServiceName] = useState("");
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    if (servicesSettings) setServices(servicesSettings);
+  }, servicesSettings);
+  var ID = function () {
+    // Math.random should be unique because of its seeding algorithm.
+    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+    // after the decimal.
+    return "_" + Math.random().toString(36).substr(2, 9);
+  };
+
+  // function addService() {
+  //   if (serviceName.trim()) {
+  //     onAddService({ name: serviceName, duration: duration });
+  //     setServiceName("");
+  //   }
+  // }
+
+  // function removeService(serviceId) {
+  //   onDeleteService(serviceId);
+  // }
 
   function addService() {
-    if (serviceName.trim()) {
-      onAddService({ name: serviceName, duration: duration });
-      setServiceName("");
-    }
+    setServices(
+      services.concat({
+        id: ID(),
+        name: serviceName,
+        duration: duration,
+      })
+    );
   }
 
   function removeService(serviceId) {
-    onDeleteService(serviceId);
+    const newServices = services.filter((service) => service.id != serviceId);
+    setServices(newServices);
+  }
+
+  function handleServices(event) {
+    if (services.length > 0) {
+      onSubmitServices(services);
+    }
+    else{
+      event.preventDefault();
+      event.stopPropagation();
+    }
   }
 
   return (
-    <Form className="c-business-services">
+    <Form className="c-business-services" onSubmit={handleServices}>
       <Form.Label>הוספת שירותים</Form.Label>
       <Form.Group controlId="formBasicServices">
         <Form.Control
@@ -54,6 +91,14 @@ function BusinessServices({ services, onAddService, onDeleteService }) {
             </Badge>
           );
         })}
+      <p
+        className={`validation-error ${services.length === 0 ? "display" : ""}`}
+      >
+        אנא הוסף שירות אחד לפחות.
+      </p>
+      <Button className="btn-next" variant="success" type="submit" block>
+        הבא <GrFormPrevious />
+      </Button>
     </Form>
   );
 }

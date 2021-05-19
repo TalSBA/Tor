@@ -31,9 +31,9 @@ function Signup({ activeUser, onSignup, onLogin }) {
     if (paging >= 1) {
       const backToPage = paging - 1;
       setPaging(backToPage);
-      if(backToPage === 0){
-        setUserDetails(null);
-      }
+      // if(backToPage === 0){
+      //   setUserDetails(null);
+      // }
     }
   }
 
@@ -98,7 +98,7 @@ function Signup({ activeUser, onSignup, onLogin }) {
             )}
             <Card.Body>
               <Card.Text>
-                {userDetails? (
+                {paging >= 1? (
                   <CreateClendar
                     onSubmitCalendarDetails={(calendarDetails) =>
                       signup(calendarDetails)
@@ -109,7 +109,7 @@ function Signup({ activeUser, onSignup, onLogin }) {
                       console.log(paging);
                     }}
                   />
-                ) : (
+                ) : paging === 0 ? (
                   <UserDetails
                     onSubmitUserDetails={(userDetails) =>
                       setUserDetails(userDetails)
@@ -120,7 +120,7 @@ function Signup({ activeUser, onSignup, onLogin }) {
                       console.log(paging);
                     }}
                   />
-                )}
+                ): ""}
               </Card.Text>
             </Card.Body>
           </Card>

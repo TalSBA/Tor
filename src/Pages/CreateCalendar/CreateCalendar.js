@@ -12,20 +12,15 @@ import { createCalendarService } from "../../Services/services";
 import CalendarDetails from "../../Components/CalendarDetails/CalendarDetails";
 import { GrFormPrevious } from "react-icons/gr";
 import { FaForward } from "react-icons/fa";
-import defaultImg from "./images/564-5640631_file-antu-insert-image-svg-insert-image-here.png";
 
 function CreateCalendar({ onSubmitCalendarDetails, paging, setPaging }) {
   const [showCreateError, setShowCreateError] = useState(false);
-  const [phone, setPhone] = useState("");
-  const [bType, setBType] = useState("");
-  const [address, setAddress] = useState("");
-  const [bName, setBName] = useState("");
+  const [calendarDetails, setCalendarDetails] = useState("");
 
   const [services, setServices] = useState([]);
   const [modalImagesShow, setModalImagesShow] = useState(false);
   const [modalActivityShow, setModalActivityShow] = useState(false);
-  const [selectedImage, setSelectedImage] = useState({src: defaultImg});
-  const [validated, setValidated] = useState(false);
+  const [selectedImage, setSelectedImage] = useState();
   const [calendar, setCalendar] = useState(null);
   const [activityHours, setActivityHours] = useState(
     new ActivityHours([
@@ -66,47 +61,40 @@ function CreateCalendar({ onSubmitCalendarDetails, paging, setPaging }) {
   //   }
   // }
 
-  function handleCalendarDetails(event) {
-    const form = event.currentTarget;
-    event.preventDefault();
-    if (!form.checkValidity()) {
-      event.stopPropagation();
-    } else {
-      onSubmitCalendarDetails({
-        id: ID(),
-        name: bName,
-        address: address,
-        type: bType,
-        phone: phone,
-        services: services,
-        image: selectedImage
-          ? selectedImage.src
-          : "../ScheduleAppointment/ScheduleAppointment/images/schedule-appointment.jpg",
-        activityHours: activityHours,
-      });
-    }
-    setValidated(true);
+  function handleCreatedCalendar(event) {
+    onSubmitCalendarDetails({
+      id: ID(),
+      name: calendarDetails.bName,
+      address: calendarDetails.address,
+      type: calendarDetails.bType,
+      phone: calendarDetails.phone,
+      services: services,
+      image: selectedImage
+        ? selectedImage.src
+        : "../ScheduleAppointment/ScheduleAppointment/images/schedule-appointment.jpg",
+      activityHours: activityHours,
+    });
   }
 
-  function addService(service) {
-    setServices(
-      services.concat({
-        id: ID(),
-        name: service.name,
-        duration: service.duration,
-      })
-    );
+  function handleCalendarDetails(calendarDetails) {
+    setCalendarDetails(calendarDetails);
+    handleNextClick();
   }
 
-  function deleteService(serviceId) {
-    const newServices = services.filter((service) => service.id != serviceId);
-    setServices(newServices);
+  function handleServices(services) {
+    setServices(services);
+    handleNextClick();
+  }
+  function handleImage(image) {
+    setSelectedImage(image);
+    handleNextClick();
   }
 
   function updateActivityHours(hours) {
     setActivityHoursUpdated(hours);
     setModalActivityShow(false);
   }
+
   return (
     <div className="p-create-calendar">
       {calendar ? (
@@ -116,113 +104,100 @@ function CreateCalendar({ onSubmitCalendarDetails, paging, setPaging }) {
         />
       ) : (
         <div>
-        
-          <Form
+          {/* <Form
             noValidate
             validated={validated}
-            onSubmit={handleCalendarDetails}
-          >
-            {paging === 1 ? (
-              <CalendarDetails
-                onNameChange={(name) => setBName(name)}
-                onAddressChange={(address) => setAddress(address)}
-                onTypeChange={(type) => setBType(type)}
-                onPhoneChange={(phone) => setPhone(phone)}
+            onSubmit={handleCreatedCalendar}
+          > */}
+          {paging === 1 ? (
+            <CalendarDetails
+              onSubmitCalendarDetails={(calendarDetails) =>
+                handleCalendarDetails(calendarDetails)
+              }
+            />
+          ) : (
+            ""
+          )}
+          {paging === 2 ? (
+            <div>
+              <BusinessServices
+                services={services}
+                onSubmitServices={(services) => handleServices(services)}
               />
-            ) : (
-              ""
-            )}
-            {paging === 2 ? (
-              <div>
-                <BusinessServices
-                  services={services}
-                  onAddService={addService}
-                  onDeleteService={deleteService}
-                />
-                <p
-                  className={`validation-error ${
-                    services.length === 0 ? "display" : ""
-                  }`}
-                >
-                  אנא הוסף שירות אחד לפחות.
-                </p>
-              </div>
-            ) : (
-              ""
-            )}
-            {paging === 3 ? (
-              <div>
-                <Button
-                  className="pic-image-btn tor-btn"
-                  onClick={() => setModalImagesShow(true)}
-                >
-                  בחר תמונה לעסק
-                </Button>
-                <BusinessImagesModal
-                  show={modalImagesShow}
-                  onHide={() => setModalImagesShow(false)}
-                  onSubmitImage={(image) => setSelectedImage(image)}
-                />
-                {selectedImage ? (
-                  <Image width="300px" height="300px" src={selectedImage.src} />
-                ) : (
-                  ""
-                )}
-              </div>
-            ) : (
-              ""
-            )}
-            {paging === 4 ? (
-              <div>
-                <Button
-                  className="pic-image-btn tor-btn"
-                  onClick={() => setModalActivityShow(true)}
-                >
-                  עדכן שעות פעילות
-                </Button>
-                <ActivityHoursModal
-                  activityHours={activityHours}
-                  show={modalActivityShow}
-                  onHide={() => setModalActivityShow(false)}
-                  onUpdate={(activityHours) => {
-                    updateActivityHours(activityHours);
-                  }}
-                  onChangeHours={(activityHours) =>
-                    setActivityHours(activityHours)
-                  }
-                />
-                {activityHours
-                  ? activityHours.dayHours.map((dayHours, index) => {
-                      return (
-                        <div key={index}>
-                          <label>
-                            {dayHours.day} {dayHours.start} - {dayHours.end}
-                          </label>
-                          <br />
-                        </div>
-                      );
-                    })
-                  : ""}
-              </div>
-            ) : (
-              ""
-            )}
-            {paging === 5 ? (
-              <Button variant="success" type="submit" block>
-                <span>הרשם</span>
-              </Button>
-            ) : (
+            </div>
+          ) : (
+            ""
+          )}
+          {paging === 3 ? (
+            <div>
               <Button
-                variant="success"
-                className="btn-next"
-                onClick={handleNextClick}
+                className="pic-image-btn tor-btn"
+                onClick={() => setModalImagesShow(true)}
               >
-                <span>
-                  הבא <GrFormPrevious />
-                </span>
+                בחר תמונה לעסק
               </Button>
-            )}
-          </Form>
+              <BusinessImagesModal
+                show={modalImagesShow}
+                onHide={() => setModalImagesShow(false)}
+                onSubmitImage={(image) => handleImage(image)}
+              />
+            </div>
+          ) : (
+            ""
+          )}
+          {paging === 4 ? (
+            <div>
+              <Button
+                className="pic-image-btn tor-btn"
+                onClick={() => setModalActivityShow(true)}
+              >
+                עדכן שעות פעילות
+              </Button>
+              <ActivityHoursModal
+                activityHours={activityHours}
+                show={modalActivityShow}
+                onHide={() => setModalActivityShow(false)}
+                onUpdate={(activityHours) => {
+                  updateActivityHours(activityHours);
+                }}
+                onChangeHours={(activityHours) =>
+                  setActivityHours(activityHours)
+                }
+                onSubmitActivityHours={() => handleCreatedCalendar()}
+              />
+              {activityHours
+                ? activityHours.dayHours.map((dayHours, index) => {
+                    return (
+                      <div key={index}>
+                        <label>
+                          {dayHours.day} {dayHours.start} - {dayHours.end}
+                        </label>
+                        <br />
+                      </div>
+                    );
+                  })
+                : ""}
+            </div>
+          ) : (
+            ""
+          )}
+          {paging === 5 ? (
+            <Button variant="success" type="submit" block>
+              <span>הרשם</span>
+            </Button>
+          ) : (
+            ""
+            // <Button
+            //   variant="success"
+            //   className="btn-next"
+            //   onClick={handleNextClick}
+            // >
+            //   <span>
+            //     הבא <GrFormPrevious />
+            //   </span>
+            // </Button>
+          )}
+          {/* </Form> */}
         </div>
       )}
     </div>
