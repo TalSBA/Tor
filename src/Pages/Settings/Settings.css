@@ -9,13 +9,13 @@
 .p-settings nav {
   border-bottom: solid 1px lightgray;
 }
-.p-settings .nav-link {
+/* .p-settings .nav-link {
   border: none;
   font-size: 30px;
   padding-right: 40px;
   padding-left: 40px;
   color: grey;
-}
+} */
 
 .p-settings .nav-link.active {
   border-bottom: solid 3px black;
@@ -90,4 +90,70 @@
   flex-basis: auto;
   position: fixed;
   bottom: 50px;
+}
+
+@media screen and (min-width: 601px) {
+  .p-settings .nav-link {
+    border: none;
+    font-size: 30px;
+    padding-right: 40px;
+    padding-left: 40px;
+    color: grey;
+  }
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+  .p-settings{
+    font-size: 14px;
+  }
+  .p-settings .tab-pane{
+    overflow-y: scroll !important;
+  }
+  .p-settings .nav-link {
+    border: none;
+    color: grey;
+  }
+
+  .p-settings .c-user-details .form-group input,
+  .c-day-hours {
+    width: 200px;
+  }
+
+  .p-settings img {
+    width: 100px !important;
+    height: 100px !important;
+  }
+  .p-settings .form-control{
+    font-size: 14px;
+  }
+
+  .p-settings .pic-image-btn {
+    margin-bottom: 10px;
+    background-color: rgb(114, 167, 170);
+    font-weight: bold;
+    width: 100%;
+    border: none;
+    font-size: 14px;
+  }
+  .p-settings .btn-save {
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    margin-bottom: 50px;
+  }
+  .p-settings .tab-pane .c-day-hours{
+    width: 300px;
+  }
+  .p-settings .tab-pane .c-day-hours .form-control{
+    width: 90px;
+  }
+  .p-settings .tab-pane .c-day-hours .form-row{
+    width: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap !important;
+  }
 }
