@@ -256,20 +256,17 @@ function ScheduleAppointment({ calendars, users }) {
               ) : (
                 ""
               )}
-              {/* <Button onClick={handleNextClick} className="next-btn">
-              Next
-            </Button> */}
-              {paging < 5 ? (
-                <ProgressBar
-                  text={loadText}
-                  percent={percent}
-                  disabled={loadDisabled}
-                  onClick={handleNextClick}
-                />
-              ) : (
-                ""
-              )}
             </div>
+            {paging < 5 ? (
+              <ProgressBar
+                text={loadText}
+                percent={percent}
+                disabled={loadDisabled}
+                onClick={handleNextClick}
+              />
+            ) : (
+              ""
+            )}
           </Col>
         </Row>
       </Container>

@@ -3,9 +3,11 @@
 .container {
   width: 100%;
   position: relative;
-  bottom: 0px;
+  bottom: 0;
   display: flex;
   justify-content: center;
+  margin-top: 50px;
+  padding: 0;
 }
 .container .progressbar-container {
   background-color: gray;
@@ -49,7 +51,7 @@
   overflow: visible;
   font-size: 20px;
   animation: 3s ease-in-out;
-  animation-fill-mode:both; 
+  animation-fill-mode: both;
 }
 .container .disabled {
   opacity: 0.5;

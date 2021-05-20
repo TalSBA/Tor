@@ -3,7 +3,7 @@
   padding-bottom: 30px;
   padding-left: 30px;
   padding-right: 30px;
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
 }
 
@@ -62,7 +62,7 @@ h2 {
   /* padding-bottom: 10px; */
   border-radius: 20px;
   border: solid #ffffff 1px;
-  margin-bottom: 20px;
+  padding-bottom: 50px;
   /* padding-right: 20px; */
   box-shadow: 0 5px 20px rgb(0 0 0 / 5%);
   flex: 2;
@@ -92,6 +92,8 @@ h2 {
   border-radius: 15px;
   display: flex;
   flex-direction: column;
+  height: 350px;
+  margin-bottom: 20px;
 }
 
 .p-schedule-appointment .appointment-details h4 {
