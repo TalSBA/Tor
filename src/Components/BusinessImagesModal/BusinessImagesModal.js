@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { GrFormPrevious } from "react-icons/gr";
 
 const imageList = ["/gel.jpg", "/london-barbershop.jpg", "/gentelmen barbershop.jpg", "/cosmetics.jpg", "/resturant.jpg"];
-const relImagesPath = window.location.origin + "/images";
+const relImagesPath = process.env.PUBLIC_URL + "/images";
 function BusinessImagesModal({
   selectedImageSettings,
   onSubmitImage,

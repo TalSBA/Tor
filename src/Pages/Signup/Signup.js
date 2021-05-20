@@ -41,7 +41,7 @@ function Signup({ activeUser, onSignup, onLogin }) {
     const userID = createUserID();
     const link = `http://${
       window.location.hostname
-    }:3000/#/schedule-appointment/${getRandomCalendar()}`;
+    }:${window.location.port}/#/schedule-appointment/${getRandomCalendar()}`;
     setUserDetails(new User({ ...userDetails, id: userID }));
     setCalendarDetails(
       new Calendar({ ...calendarDetails, userId: userID, link: link })

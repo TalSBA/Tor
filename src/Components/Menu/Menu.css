@@ -3,6 +3,10 @@
   height: min-content;
   background-color: rgb(53, 97, 105) !important;
 }
+
+.c-menu .navbar-collapse .active{
+  background-color: rgba(108, 225, 243, 0.3) !important;
+}
 .c-menu .navbar a, .navbar-text{
 color: whitesmoke !important;
 }
