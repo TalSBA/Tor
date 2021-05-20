@@ -1,10 +1,11 @@
 .c-footer {
-  position: relative;
+  position: fixed;
   bottom: 0;
   width: 100%;
   direction: ltr;
   background-color: rgb(53, 97, 105) !important;
   z-index: 1;
+  height: 40px;
 }
 
 .c-footer .navbar {

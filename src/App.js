@@ -111,94 +111,96 @@ function App() {
   }
   return (
     <div className="App">
-      <HashRouter>
-        <Switch>
-          <Route exact path="/">
-            <Menu
-              activeUser={activeUser}
-              onLogout={() => setActiveUser(null)}
-            />
-            <Home />
-          </Route>
-          <Route exact path="/login">
-            <Menu
-              activeUser={activeUser}
-              onLogout={() => setActiveUser(null)}
-            />
-            <Login
-              users={users}
-              calendars={calendars}
-              activeUser={activeUser}
-              onLogin={(user, calendar) => handleLogin(user, calendar)}
-            />
-          </Route>
-          <Route exact path="/signup">
-            <Signup
-              activeUser={activeUser}
-              onLogin={(user, calendar) => handleLogin(user, calendar)}
-              onSignup={(user, calendar) => AddUser(user, calendar)}
-            />
-          </Route>
-          <Route exact path="/calendar">
-            <Menu
-              activeUser={activeUser}
-              onLogout={() => setActiveUser(null)}
-            />
-            <Calendar
-              activeUser={activeUser}
-              calendar={userCalendar}
-              appointments={appointmentsData}
-              onUpdateAppointments={(appointments) =>
-                setAppointmentsData(appointments)
-              }
-            />
-          </Route>
-          <Route exact path="/confirm-calendar">
-            <Menu
-              activeUser={activeUser}
-              onLogout={() => setActiveUser(null)}
-            />
-            <ConfirmCalendar activeUser={activeUser} />
-          </Route>
-          <Route exact path="/schedule-appointment/:id">
-            <ScheduleAppointment calendars={calendars} users={users} />
-          </Route>
-          <Route exact path="/settings">
-            <Menu
-              activeUser={activeUser}
-              onLogout={() => setActiveUser(null)}
-            />
-            <Settings
-              activeUser={activeUser}
-              calendar={userCalendar}
-              onChangeUser={(user) => userDetailsChangedHandle(user)}
-              onChangeGeneralDetails={(
-                id,
-                bName,
-                address,
-                bType,
-                phone,
-                image
-              ) =>
-                calendarGeneralDetailsChangedHandle(
+      <main>
+        <HashRouter>
+          <Switch>
+            <Route exact path="/">
+              <Menu
+                activeUser={activeUser}
+                onLogout={() => setActiveUser(null)}
+              />
+              <Home />
+            </Route>
+            <Route exact path="/login">
+              <Menu
+                activeUser={activeUser}
+                onLogout={() => setActiveUser(null)}
+              />
+              <Login
+                users={users}
+                calendars={calendars}
+                activeUser={activeUser}
+                onLogin={(user, calendar) => handleLogin(user, calendar)}
+              />
+            </Route>
+            <Route exact path="/signup">
+              <Signup
+                activeUser={activeUser}
+                onLogin={(user, calendar) => handleLogin(user, calendar)}
+                onSignup={(user, calendar) => AddUser(user, calendar)}
+              />
+            </Route>
+            <Route exact path="/calendar">
+              <Menu
+                activeUser={activeUser}
+                onLogout={() => setActiveUser(null)}
+              />
+              <Calendar
+                activeUser={activeUser}
+                calendar={userCalendar}
+                appointments={appointmentsData}
+                onUpdateAppointments={(appointments) =>
+                  setAppointmentsData(appointments)
+                }
+              />
+            </Route>
+            <Route exact path="/confirm-calendar">
+              <Menu
+                activeUser={activeUser}
+                onLogout={() => setActiveUser(null)}
+              />
+              <ConfirmCalendar activeUser={activeUser} />
+            </Route>
+            <Route exact path="/schedule-appointment/:id">
+              <ScheduleAppointment calendars={calendars} users={users} />
+            </Route>
+            <Route exact path="/settings">
+              <Menu
+                activeUser={activeUser}
+                onLogout={() => setActiveUser(null)}
+              />
+              <Settings
+                activeUser={activeUser}
+                calendar={userCalendar}
+                onChangeUser={(user) => userDetailsChangedHandle(user)}
+                onChangeGeneralDetails={(
                   id,
                   bName,
                   address,
                   bType,
                   phone,
                   image
-                )
-              }
-              onChangeServices={(calendarId, services) =>
-                servicesChangedHandle(calendarId, services)
-              }
-              onChangeActivityHours={(calendarId, activityHours) =>
-                activityHoursChangedHandle(calendarId, activityHours)
-              }
-            />
-          </Route>
-        </Switch>
-      </HashRouter>
+                ) =>
+                  calendarGeneralDetailsChangedHandle(
+                    id,
+                    bName,
+                    address,
+                    bType,
+                    phone,
+                    image
+                  )
+                }
+                onChangeServices={(calendarId, services) =>
+                  servicesChangedHandle(calendarId, services)
+                }
+                onChangeActivityHours={(calendarId, activityHours) =>
+                  activityHoursChangedHandle(calendarId, activityHours)
+                }
+              />
+            </Route>
+          </Switch>
+        </HashRouter>
+      </main>
       <Footer />
     </div>
   );

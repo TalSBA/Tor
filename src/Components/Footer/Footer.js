@@ -4,7 +4,7 @@ import "./Footer.css";
 
 function Footer(props) {
   return (
-    <div className="c-footer">
+    <footer className="c-footer">
       <Navbar>
         <Navbar.Text>
           &#169; Created By Tal Shabtay{" "}
@@ -13,7 +13,7 @@ function Footer(props) {
           Demo mode{" "}
         </Navbar.Text>
       </Navbar>
-    </div>
+    </footer>
   );
 }
 

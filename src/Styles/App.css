@@ -1,8 +1,10 @@
-
 .App {
   text-align: right;
   font-family: Alef;
   direction: rtl;
+  min-height: 100vh;
+}
+.App main{
 }
 
 @font-face {
