@@ -37,10 +37,10 @@ function ConfirmCalendar({ calendar }) {
                 מעכשיו הלקוחות שלך יוכלו לקבוע תורים בעצמם דרך הלינק הבא:
                 <br />
                 <a
-                  href={`http://${window.location.hostname}:${window.location.port}/#/schedule-appointment/${(getRandomCalendar())}`}
+                  href={`http://${window.location.hostname}:${window.location.port}/Tor/#/schedule-appointment/${(getRandomCalendar())}`}
                   target="_blank"
                 >
-                  http://{window.location.hostname}:{window.location.port}/#/schedule-appointment/
+                  http://{window.location.hostname}:{window.location.port}/Tor/#/schedule-appointment/
                   {getRandomCalendar()}
                 </a>
               </div>

@@ -4,6 +4,7 @@
   width: 100%;
   direction: ltr;
   background-color: rgb(53, 97, 105) !important;
+  z-index: 1;
 }
 
 .c-footer .navbar {
@@ -11,8 +12,9 @@
   align-content: space-between;
   justify-content: space-between;
   align-items: center;
+  padding: 0 !important;
 }
 
 .c-footer .dev{
-  color: red !important;
+  color: rgb(92, 132, 241) !important;
 }

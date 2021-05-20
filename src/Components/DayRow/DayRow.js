@@ -1,4 +1,5 @@
 import { Switch } from "@material-ui/core";
+import { Filter } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import { Col, Form } from "react-bootstrap";
 import DayHours from "../../Model/DayHours";
@@ -23,8 +24,10 @@ const hours = [
   "17:00",
 ];
 
-function DayRow({ dayHours, onSelectHours }) {
 
+function DayRow({ dayHours, onSelectHours }) {
+  const [startHours, setStartHours] = useState(hours);
+  const [endHours, setEndHours] = useState(hours);
 
   function onStartChange(e) {
     onSelectHours({
@@ -33,6 +36,8 @@ function DayRow({ dayHours, onSelectHours }) {
       end: dayHours.end,
       active: dayHours.active,
     });
+    let newEndHours = [...endHours];
+    setEndHours(newEndHours.filter((hour) => hour > e.target.value));
   }
 
   function onEndChange(e) {
@@ -66,7 +71,7 @@ function DayRow({ dayHours, onSelectHours }) {
           onChange={onStartChange}
         >
           <option>התחלה</option>
-          {hours.map((hour) => (
+          {startHours.map((hour) => (
             <option>{hour}</option>
           ))}
         </Form.Control>
@@ -80,7 +85,7 @@ function DayRow({ dayHours, onSelectHours }) {
           onChange={onEndChange}
         >
           <option>סיום</option>
-          {hours.map((hour) => (
+          {endHours.map((hour) => (
             <option>{hour}</option>
           ))}
         </Form.Control>
