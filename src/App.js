@@ -75,6 +75,7 @@ function App() {
         return calendar;
       }),
     ];
+    console.log("updatedCalendars",updatedCalendars);
     setCalendars(updatedCalendars);
     setUserCalendar(userCalendar);
   }

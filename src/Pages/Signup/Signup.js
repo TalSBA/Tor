@@ -59,7 +59,8 @@ function Signup({ activeUser, onSignup, onLogin }) {
       to_email: userDetails.email,
       // business_name: calendarDetails.name,
       // Schedule_Appointment_Link: link,
-      message: `יומן חדש נוצר עבור העסק: ${calendarDetails.name}.\n על מנת לאפשר ללקוחות לקבוע תור יש להשתמש בלינק הבא: ${link}`,
+      message: `יומן חדש נוצר עבור העסק: ${calendarDetails.name}.\n על מנת לאפשר ללקוחות לקבוע תור יש להשתמש בלינק הבא: `,
+      link: link
     };
 
     emailjs

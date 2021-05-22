@@ -23,15 +23,14 @@ function Login({ users, calendars, activeUser, onLogin }) {
         break;
       }
     }
-    console.log(calendars);
-    for (const calendar of calendars) {
-      if (activeUser.id === calendar.userId) {
-        userCalendar = calendar;
-        break;
-      }
-    }
 
     if (activeUser) {
+      for (const calendar of calendars) {
+        if (activeUser.id === calendar.userId) {
+          userCalendar = calendar;
+          break;
+        }
+      }
       onLogin(activeUser, userCalendar);
     } else {
       setShowInvalidLogin(true);
@@ -40,15 +39,22 @@ function Login({ users, calendars, activeUser, onLogin }) {
 
   return (
     <div className="p-login">
-      <Card className="img_card">
-      </Card>
+      <Card className="img_card"></Card>
       <Card className="txt_card">
         <Card.Body>
           <Card.Text>
-          <h1>התחבר</h1>
-          <p>
-            <span style={{color: 'rgb(182, 182, 182)', fontWeight: 'bold'}}>אין לך חשבון? </span><Link to="/signup" style={{color: 'rgb(114, 167, 170)', fontWeight: 'bold'}}>צור חשבון חדש</Link>
-          </p>
+            <h1>התחבר</h1>
+            <p>
+              <span style={{ color: "rgb(182, 182, 182)", fontWeight: "bold" }}>
+                אין לך חשבון?{" "}
+              </span>
+              <Link
+                to="/signup"
+                style={{ color: "rgb(114, 167, 170)", fontWeight: "bold" }}
+              >
+                צור חשבון חדש
+              </Link>
+            </p>
             {showInvalidLogin ? (
               <Alert variant="danger">שם משתמש או סיסמא לא נכונים!</Alert>
             ) : null}

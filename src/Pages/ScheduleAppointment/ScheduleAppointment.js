@@ -106,10 +106,10 @@ function ScheduleAppointment({ calendars, users }) {
     var emailParams = {
       to_name: calendar.name,
       to_email: users.filter((user) => user.id === calendar.userId)[0].email,
-      link: "לחץ כאן",
       message: `תור חדש ממתין לאישור. עבור: ${
         customerDetails.firstName + " " + customerDetails.lastName
       } בתאריך: ${selectedDate} בשעה: ${selectedTime}. לאישור -`,
+      link: "לחץ כאן"
     };
 
     emailjs

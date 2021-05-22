@@ -58,20 +58,6 @@ function Settings({
     return "_" + Math.random().toString(36).substr(2, 9);
   };
 
-  // function addService(service) {
-  //   setServices(
-  //     services.concat({
-  //       id: ID(),
-  //       name: service.name,
-  //       duration: service.duration,
-  //     })
-  //   );
-  // }
-
-  // function deleteService(serviceId) {
-  //   const newServices = services.filter((service) => service.id != serviceId);
-  //   setServices(newServices);
-  // }
   function updateHours(dayHours) {
     var index = activityHours.dayHours.findIndex((x) => x.day === dayHours.day);
     const newActivityHours = { ...activityHours };

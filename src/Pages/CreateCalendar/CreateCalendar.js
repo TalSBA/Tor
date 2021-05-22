@@ -84,8 +84,10 @@ function CreateCalendar({ onSubmitCalendarDetails, paging, setPaging }) {
     handleNextClick();
   }
   function handleImage(image) {
-    setSelectedImage(image);
-    handleNextClick();
+    if (image) {
+      setSelectedImage(image);
+      handleNextClick();
+    }
   }
 
   function updateActivityHours(hours) {

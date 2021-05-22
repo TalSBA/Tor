@@ -6,8 +6,14 @@ import "react-image-picker/dist/index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { GrFormPrevious } from "react-icons/gr";
 
-const imageList = ["/gel.jpg", "/london-barbershop.jpg", "/gentelmen barbershop.jpg", "/cosmetics.jpg", "/resturant.jpg"];
-const relImagesPath = process.env.PUBLIC_URL + "/images";
+const imageList = [
+  "/images/gel.jpg",
+  "/images/london-barbershop.jpg",
+  "/images/gentelmen barbershop.jpg",
+  "/images/cosmetics.jpg",
+  "/images/resturant.jpg",
+];
+const relImagesPath = process.env.PUBLIC_URL;
 function BusinessImagesModal({
   selectedImageSettings,
   onSubmitImage,
@@ -15,14 +21,22 @@ function BusinessImagesModal({
   show,
 }) {
   const [imageSelected, setSelectedImage] = useState({
-    src: relImagesPath + "/564-5640631_file-antu-insert-image-svg-insert-image-here.png",
+    src:
+      relImagesPath +
+      "/images/564-5640631_file-antu-insert-image-svg-insert-image-here.png",
   });
 
   useEffect(() => {
     if (selectedImageSettings) {
-      setSelectedImage({src: selectedImageSettings});
+      console.log("selectedImageSettings", selectedImageSettings);
+      setSelectedImage({ src: selectedImageSettings });
+      onSubmitImage(selectedImageSettings);
     }
   }, []);
+
+  useEffect(() => {
+    console.log("imageSelected", imageSelected);
+  }, [imageSelected]);
   function handleSelectImage() {
     onHide();
   }
@@ -36,7 +50,10 @@ function BusinessImagesModal({
                 src: relImagesPath + image,
                 value: i,
               }))}
-              onPick={setSelectedImage}
+              onPick={(e) => {
+                setSelectedImage(e);
+                selectedImageSettings ? onSubmitImage(e.src) : onSubmitImage(null);
+              }}
             />
           </Container>
         </Modal.Body>
